@@ -21,3 +21,5 @@ class Business(db.Model):
 
     user = db.relationship('User', back_populates='businesses')
     category = db.relationship('Category', back_populates='categories')
+    business_images = db.relationship('Business_image', back_populates='business_images')
+    
