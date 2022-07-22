@@ -1,7 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.forms.create_business_form import CreateBusinessForm
 from app.models import db, Business, Business_Image
 from flask_login import login_required
+
 
 
 
@@ -26,47 +27,29 @@ def get_one_business (id):
 # @login_required
 def post_one_business():
     form = CreateBusinessForm()
-    #    form['csrf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        # new_business = Business(
-        #     user_id=form.data['user_id'], 
-        #     name=form.data['name'], 
-        #     description=form.data['description'], 
-        #     category_id=form.data['category_id'], 
-        #     address=form.data['address'], 
-        #     city=form.data['city'], 
-        #     state=form.data['state'], 
-        #     zip_code=form.data['zip_code'], 
-        #     phone=form.data['phone'], 
-        #     website=form.data['website'],
-        #     price_range=form.data['price_range'],
-        #     business_hours=form.data['business_hours'],
-        #     latitude=form.data['latitude'],
-        #     longitude=form.data['longitude']
-        # )
-        # db.session.add(new_business)
-        # db.session.commit()
-        # return redirect('/')
-        return {'msg':'success'}
+        new_business = Business(
+            user_id=form.data['user_id'], 
+            name=form.data['name'], 
+            description=form.data['description'], 
+            category_id=form.data['category_id'], 
+            address=form.data['address'], 
+            city=form.data['city'], 
+            state=form.data['state'], 
+            zip_code=form.data['zip_code'], 
+            phone=form.data['phone'], 
+            website=form.data['website'],
+            price_range=form.data['price_range'],
+            business_hours=form.data['business_hours'],
+            latitude=form.data['latitude'],
+            longitude=form.data['longitude']
+        )
+        db.session.add(new_business)
+        db.session.commit()
+        return new_business.to_dict()
     return {'errors': "ERROR!!!!!!!"}, 401
 
-        #TEST:
-        # {
-        #             "user_id"="1",
-        #             "name"="demobiz", 
-        #             "description"="demobiz", 
-        #             "category_id"="1"
-        #             "address="demobiz", 
-        #             "city"="demobiz", 
-        #             "state"="demobiz",  
-        #             "zip_code"="12345",
-        #             "phone"="demobiz", 
-        #             "website"="demobiz", 
-        #             "price_range"="demobiz", 
-        #             "business_hours"="demobiz", 
-        #             "latitude"="37.322188769928474", 
-        #             "longitude"="-122.01485607795601"
-        # }
 #-------------------------UPDATE ONE BUSINESS-------------------
 
 #-------------------------DELETE ONE BUSINESS-------------------

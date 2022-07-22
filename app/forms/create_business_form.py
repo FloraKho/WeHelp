@@ -7,18 +7,17 @@ from app.models import Category
 # print("THIS IS CATEGORIES", categories)
 
 class CreateBusinessForm(FlaskForm):
-        user_id = IntegerField('User', validator=[DataRequired]), 
-        name = StringField('Name', validator=[DataRequired]), 
-        description = StringField('Description', validator=[DataRequired]), 
-        category_id = StringField('Category', validator=[DataRequired]), 
-        address = StringField('Address', validator=[DataRequired]), 
-        city = StringField('City', validator=[DataRequired]), 
-        state = StringField('State', validator=[DataRequired]), 
-        zip_code = IntegerField('Zipcode', validator=[DataRequired]), 
-        phone = StringField('Phone', validator=[DataRequired]), 
-        website = StringField('Website'),
-        price_range = StringField('Price', validator=[DataRequired]),
-        business_hours = StringField('Business Hours', validator=[DataRequired]),
-        latitude = FloatField('Latitude', validator=[DataRequired]),
-        longitude = FloatField('Longitude', validator=[DataRequired]),
-        submit = SubmitField('Create Business')
+        user_id = IntegerField('User', validators=[DataRequired()])
+        name = StringField('Name', validators=[DataRequired()])
+        description = StringField('Description', validators=[DataRequired()])
+        category_id = StringField('Category', validators=[DataRequired()])
+        address = StringField('Address', validators=[DataRequired()])
+        city = StringField('City', validators=[DataRequired()]) 
+        state = StringField('State', validators=[DataRequired()]) 
+        zip_code = IntegerField('Zipcode', validators=[DataRequired()])
+        phone = StringField('Phone', validators=[DataRequired()])
+        website = StringField('Website')
+        price_range = StringField('Price', validators=[DataRequired()])
+        business_hours = StringField('Business Hours', validators=[DataRequired()])
+        latitude = FloatField('Latitude', validators=[DataRequired()])
+        longitude = FloatField('Longitude', validators=[DataRequired()])
