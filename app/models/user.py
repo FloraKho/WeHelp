@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     profile_pic = db.Column(db.String(255))
 
     business = db.relationship('Business', back_populates='user')
-
+    review = db.relationship('Review', back_populates='user')
 
     @property
     def password(self):

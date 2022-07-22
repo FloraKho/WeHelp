@@ -1,3 +1,4 @@
+from unicodedata import category
 from .db import db 
 
 class Business(db.Model):
@@ -20,7 +21,9 @@ class Business(db.Model):
     longitude = db.Column(db.Float, nullable=False)
 
     user = db.relationship('User', back_populates='businesses')
-    business_images = db.relationship('Business_image', back_populates='businesses')
+    business_images = db.relationship('Business_image', back_populates='business')
+    category = db.relationship('Category', back_populates='business')
+    review = db.relationship('Review', back_populates='business')
 
     def to_dict(self):
         return {
