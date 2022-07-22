@@ -7,11 +7,11 @@ class Business(db.Model):
     user_id = db.Column(db.Integer, ForeignKey="users.id", nullable=False)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    category = db.Column(db.Integer, ForeignKey="categories.id", nullable=False)
+    category_id = db.Column(db.Integer, ForeignKey="categories.id", nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(50), nullable=False)
-    zipCode = db.Column(db.String(10), nullable=False)
+    zip_code = db.Column(db.String(10), nullable=False)
     phone = db.Column(db.String(10), nullable=False)
     website = db.Column(db.String(255))
     price_range = db.Column(db.String(10), nullable=False)
@@ -20,6 +20,23 @@ class Business(db.Model):
     longitude = db.Column(db.Float, nullable=False)
 
     user = db.relationship('User', back_populates='businesses')
-    category = db.relationship('Category', back_populates='categories')
-    business_images = db.relationship('Business_image', back_populates='business_images')
-    
+    business_images = db.relationship('Business_image', back_populates='businesses')
+
+    def to_dict(self):
+        return {
+                'id': self.id,
+                'user_id': self.user_id,
+                'name': self.name,
+                'description': self.description,
+                'category_id': self.category_id,
+                'address': self.address,
+                'city': self.city,
+                'state': self.state,
+                'zip_code': self.zip_code,
+                'phone': self.phone,
+                'website': self.website,
+                'price_range': self.price_range,
+                'business_hours': self.business_hours,
+                'latitude': self.latitude,
+                'longitude': self.longitude,
+            }
