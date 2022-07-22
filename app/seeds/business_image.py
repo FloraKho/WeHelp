@@ -459,3 +459,7 @@ def seed_business_img():
     db.session.add(biz20_img4)
 
     db.session.commit()
+
+def undo_business_images():
+    db.session.execute('TRUNCATE BUSINESS IMAGE RESTART IDENTITY CASCADE;')
+    db.session.commit()

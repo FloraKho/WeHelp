@@ -23,3 +23,8 @@ def seed_category():
     db.session.add(breakfast_brunch)
 
     db.session.commit()
+
+
+def undo_categories():
+    db.session.execute('TRUNCATE CATEGORIES RESTART IDENTITY CASCADE;')
+    db.session.commit()

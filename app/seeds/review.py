@@ -185,3 +185,7 @@ def seed_business_img():
     db.session.add(biz10_rev2)
 
     db.session.commit()
+
+def undo_reviews():
+    db.session.execute('TRUNCATE REVIEWS RESTART IDENTITY CASCADE;')
+    db.session.commit()
