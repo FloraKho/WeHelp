@@ -10,6 +10,7 @@ def seed_category():
     italian=Category(name='Italian')
     coffee_tea=Category(name='Coffee & Tea')
     breakfast_brunch=Category(name='Breakfast & Brunch')
+    
 
     db.session.add(chinese)
     db.session.add(korean)
