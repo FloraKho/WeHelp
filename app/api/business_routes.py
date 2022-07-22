@@ -1,5 +1,7 @@
 from flask import Blueprint
-from app.models import Business
+from app.forms.create_business_form import CreateBusinessForm
+from app.models import db, Business, Business_Image
+from flask_login import login_required
 
 
 
@@ -7,21 +9,71 @@ business_routes = Blueprint('businesses', __name__)
 #-------------------------BUSINESS VALIDATIONS------------------
 
 #-------------------------GET ALL BUSINESS----------------------
-@business_routes.route('/')
+@business_routes.route('',methods=["GET"])
 def get_all_business():
-    #businesses = Business.query.options(joinedload('business_images')).all()
+    # businesses = Business.query.options(joinedload('business_images')).all()
     businesses = Business.query.all()
     return {'Business': [business.to_dict() for business in businesses]}
 
 #-------------------------GET ONE BUSINESS----------------------
-@business_routes.route('/<int:id>')
+@business_routes.route('/<int:businessId>')
 def get_one_business (id):
     one_business = Business.query.get(id)
     return one_business.to_dict()
+
 #-------------------------POST ONE BUSINESS---------------------
-# @business_routes.route('/', methods=["POST"])
-# def post_one_business():
+@business_routes.route('', methods=["POST"])
+# @login_required
+def post_one_business():
+    form = CreateBusinessForm()
+    #    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # new_business = Business(
+        #     user_id=form.data['user_id'], 
+        #     name=form.data['name'], 
+        #     description=form.data['description'], 
+        #     category_id=form.data['category_id'], 
+        #     address=form.data['address'], 
+        #     city=form.data['city'], 
+        #     state=form.data['state'], 
+        #     zip_code=form.data['zip_code'], 
+        #     phone=form.data['phone'], 
+        #     website=form.data['website'],
+        #     price_range=form.data['price_range'],
+        #     business_hours=form.data['business_hours'],
+        #     latitude=form.data['latitude'],
+        #     longitude=form.data['longitude']
+        # )
+        # db.session.add(new_business)
+        # db.session.commit()
+        # return redirect('/')
+        return {'msg':'success'}
+    return {'errors': "ERROR!!!!!!!"}, 401
 
-
+        #TEST:
+        # {
+        #             "user_id"="1",
+        #             "name"="demobiz", 
+        #             "description"="demobiz", 
+        #             "category_id"="1"
+        #             "address="demobiz", 
+        #             "city"="demobiz", 
+        #             "state"="demobiz",  
+        #             "zip_code"="12345",
+        #             "phone"="demobiz", 
+        #             "website"="demobiz", 
+        #             "price_range"="demobiz", 
+        #             "business_hours"="demobiz", 
+        #             "latitude"="37.322188769928474", 
+        #             "longitude"="-122.01485607795601"
+        # }
 #-------------------------UPDATE ONE BUSINESS-------------------
+
 #-------------------------DELETE ONE BUSINESS-------------------
+@business_routes.route('/<int:businessId>', methods=["DELETE"])
+@login_required
+def delete_business(id):
+    business = Business.query.get(id)
+    db.session.delete(business)
+    db.session.commit()
+    return {'Successfully delete': 'Successfully delete'}
