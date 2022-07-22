@@ -1,4 +1,3 @@
-from unicodedata import category
 from .db import db 
 
 class Business(db.Model):
@@ -13,7 +12,7 @@ class Business(db.Model):
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(50), nullable=False)
     zip_code = db.Column(db.String(10), nullable=False)
-    phone = db.Column(db.String(10), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
     website = db.Column(db.String(255))
     price_range = db.Column(db.String(10), nullable=False)
     business_hours = db.Column(db.String(50), nullable=False)
@@ -21,9 +20,9 @@ class Business(db.Model):
     longitude = db.Column(db.Float, nullable=False)
 
     user = db.relationship('User', back_populates='businesses')
-    business_images = db.relationship('Business_image', back_populates='business')
+    business_images = db.relationship('Business_Image', back_populates='business', cascade="all, delete-orphan")
     category = db.relationship('Category', back_populates='business')
-    review = db.relationship('Review', back_populates='business')
+    reviews = db.relationship('Review', back_populates='business', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

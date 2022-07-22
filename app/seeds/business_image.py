@@ -461,5 +461,5 @@ def seed_business_images():
     db.session.commit()
 
 def undo_business_images():
-    db.session.execute('TRUNCATE BUSINESS IMAGE RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE business_images RESTART IDENTITY CASCADE;')
     db.session.commit()

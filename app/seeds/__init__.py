@@ -15,10 +15,11 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_users()
     # Add other seed functions here
+    seed_categories()
     seed_businesses()
     seed_business_images()
     seed_reviews()
-    seed_categories()
+
 
 
 
@@ -27,7 +28,8 @@ def seed():
 def undo():
     undo_users()
     # Add other undo functions here
+    undo_categories()
     undo_businesses()
     undo_business_images()
     undo_reviews()
-    undo_categories()
+
