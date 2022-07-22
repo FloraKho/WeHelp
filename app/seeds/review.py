@@ -1,6 +1,6 @@
 from app.models import db, Review
 
-def seed_business_img():
+def seed_reviews():
     #----------------------rena 1-4--------------------------------------
     biz1_rev1 = Review(
         user_id=15,

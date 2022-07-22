@@ -1,6 +1,6 @@
 from app.models import db, Business
 
-def seed_business():
+def seed_businesses():
 #-------------------rena 1-4------------------------------------
     business1 = Business(
         user_id=1, 

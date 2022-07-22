@@ -1,6 +1,6 @@
 from app.models import db, Business_Image
 
-def seed_business_img():
+def seed_business_images():
     #-------------------rena 1-4-----------------------------------------
     biz1_img1 = Business_Image(
         business_id=1,

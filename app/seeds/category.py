@@ -1,6 +1,6 @@
 from app.models import db, Category
 
-def seed_category():
+def seed_categories():
     chinese=Category(name='Chinese')
     korean=Category(name='Korean')
     japanese=Category(name='Japanese')
