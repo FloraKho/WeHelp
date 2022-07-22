@@ -19,7 +19,7 @@ def seed_business():
         longitude=-122.01485607795601
     )
     business2 = Business(
-        user_id=1, 
+        user_id=2, 
         name='Haidilao Hot Pot Cupertino', 
         description='Hai Di Lao Hot Pot specializes in traditional Chinese style hot pot. Just like Shabu Shabu, each customer will enjoy their own individual pot instead of sharing a community pot. ', 
         category_id=1, 
@@ -35,7 +35,7 @@ def seed_business():
         longitude=-122.00916881494726
     )
     business3 = Business(
-        user_id=1, 
+        user_id=3, 
         name='Easterly Cupertino', 
         description='An authentic Chinese Sezchuan restaurant located at Cupertino. Welcome to try our food.', 
         category_id=1, 
@@ -51,7 +51,7 @@ def seed_business():
         longitude=-122.0329999741509,
     )
     business4 = Business(
-        user_id=1, 
+        user_id=4, 
         name='Joy Dumpling', 
         description='Taiwanese Dumpling resturant,Neighborhood eatery turning out an extensive menu of Asian specialties & classic dim sum dishes.', 
         category_id=1, 
@@ -68,115 +68,115 @@ def seed_business():
     )
 #-------------------jingjing 5-10------------------------------------
     business5 = Business(
-            user_id=1, 
-            name="TANTO Japanese Restaurant", 
-            description="The word 'TANTO' can be meant 'much', 'often', and 'a lot of' in English. TANTO was named with the wish of a being a place where people can eat a lot of delicious food and laugh a lot and feel happy. 'TANTO' is originally from the name of the restaurant that our owner chef's brother used to run in Japan.The name and thoughts have been passed down for generations.", 
-            category_id=3, 
-            address="1063 E El Camino Real", 
-            city="Sunnyvale", 
-            state="CA", 
-            zip_code=94087, 
-            phone="(408)244-7311", 
-            website="https://tantoizakayasunnyvale.com/",
-            price_range="$$",
-            business_hours="11:30AM-8:30PM",
-            latitude=37.35611255892067,
-            longitude=-122.00343872290615
-        )
+        user_id=5, 
+        name="TANTO Japanese Restaurant", 
+        description="The word 'TANTO' can be meant 'much', 'often', and 'a lot of' in English. TANTO was named with the wish of a being a place where people can eat a lot of delicious food and laugh a lot and feel happy. 'TANTO' is originally from the name of the restaurant that our owner chef's brother used to run in Japan.The name and thoughts have been passed down for generations.", 
+        category_id=3, 
+        address="1063 E El Camino Real", 
+        city="Sunnyvale", 
+        state="CA", 
+        zip_code=94087, 
+        phone="(408)244-7311", 
+        website="https://tantoizakayasunnyvale.com/",
+        price_range="$$",
+        business_hours="11:30AM-8:30PM",
+        latitude=37.35611255892067,
+        longitude=-122.00343872290615
+    )
 
     business6 = Business(
-            user_id=1, 
-            name="Leichi", 
-            description="Try our home made soba with sake!!we have special fish from Japan on weekday too.", 
-            category_id=3, 
-            address="246 Saratoga Ave", 
-            city="Santa Clara", 
-            state="CA", 
-            zip_code=95050, 
-            phone="(408)320-2725", 
-            website="https://leichi-sc.com/",
-            price_range="$$$",
-            business_hours="11:30AM-9:30PM",
-            latitude=37.329867533456195, 
-            longitude=-121.96674368708152
-        )
+        user_id=6, 
+        name="Leichi", 
+        description="Try our home made soba with sake!!we have special fish from Japan on weekday too.", 
+        category_id=3, 
+        address="246 Saratoga Ave", 
+        city="Santa Clara", 
+        state="CA", 
+        zip_code=95050, 
+        phone="(408)320-2725", 
+        website="https://leichi-sc.com/",
+        price_range="$$$",
+        business_hours="11:30AM-9:30PM",
+        latitude=37.329867533456195, 
+        longitude=-121.96674368708152
+    )
 
 
     business7 = Business(
-            user_id=1, 
-            name="Amakai Japanese Cuisine", 
-            description="Unique maki & Japanese kitchen entrees fixed up in an unassuming space with sushi bar seating.", 
-            category_id=3, 
-            address="4300 Great America Pkwy #156", 
-            city="Santa Clara", 
-            state="CA", 
-            zip_code=95054, 
-            phone="(408)988-2555", 
-            website="http://www.amakaisushi.com/",
-            price_range="$$",
-            business_hours="11:00AM-8:00PM",
-            latitude=37.393909949224586, 
-            longitude=-121.97734115572653
-        )
+        user_id=7, 
+        name="Amakai Japanese Cuisine", 
+        description="Unique maki & Japanese kitchen entrees fixed up in an unassuming space with sushi bar seating.", 
+        category_id=3, 
+        address="4300 Great America Pkwy #156", 
+        city="Santa Clara", 
+        state="CA", 
+        zip_code=95054, 
+        phone="(408)988-2555", 
+        website="http://www.amakaisushi.com/",
+        price_range="$$",
+        business_hours="11:00AM-8:00PM",
+        latitude=37.393909949224586, 
+        longitude=-121.97734115572653
+    )
 
 
 
     business8 = Business(
-            user_id=1, 
-            name="Pedro's", 
-            description="Colorful Mexican eatery with patios servingg a variety of margaritas & traditional fare.", 
-            category_id=6, 
-            address="3935 Freedom Cir", 
-            city="Santa Clara", 
-            state="CA", 
-            zip_code=95054, 
-            phone="(408)496-6777", 
-            website="http://pedrosrestaurants.com/",
-            price_range="$$",
-            business_hours="11:30AM-8:00PM",
-            latitude=37.385794172144216, 
-            longitude=-121.97068927971809
-        )
+        user_id=8, 
+        name="Pedro's", 
+        description="Colorful Mexican eatery with patios servingg a variety of margaritas & traditional fare.", 
+        category_id=6, 
+        address="3935 Freedom Cir", 
+        city="Santa Clara", 
+        state="CA", 
+        zip_code=95054, 
+        phone="(408)496-6777", 
+        website="http://pedrosrestaurants.com/",
+        price_range="$$",
+        business_hours="11:30AM-8:00PM",
+        latitude=37.385794172144216, 
+        longitude=-121.97068927971809
+    )
 
     business9 = Business(
-            user_id=1, 
-            name="Pho Ha Noi", 
-            description="Bustling, dynamic venue with outdoor seating prepping pho, spring rolls & other Vietnamese dishes.", 
-            category_id=5, 
-            address="10100 S De Anza Blvd", 
-            city="Cupertino", 
-            state="CA", 
-            zip_code=95014, 
-            phone="(408)899-4164", 
-            website="https://phohanoicupertino.com/",
-            price_range="$$",
-            business_hours="11:00AM-8:45PM",
-            latitude=37.3217168749544, 
-            longitude=-122.03186930021828
-        )
+        user_id=9, 
+        name="Pho Ha Noi", 
+        description="Bustling, dynamic venue with outdoor seating prepping pho, spring rolls & other Vietnamese dishes.", 
+        category_id=5, 
+        address="10100 S De Anza Blvd", 
+        city="Cupertino", 
+        state="CA", 
+        zip_code=95014, 
+        phone="(408)899-4164", 
+        website="https://phohanoicupertino.com/",
+        price_range="$$",
+        business_hours="11:00AM-8:45PM",
+        latitude=37.3217168749544, 
+        longitude=-122.03186930021828
+    )
 
     
     business10 = Business(
-            user_id=1, 
-            name="Maggiano's Little Italy", 
-            description="Semi-upscale chain for classic Italian fare served family-style in a relaxed, polished space.", 
-            category_id=7, 
-            address="3055 Olin Ave Suite 1000", 
-            city="San Jose", 
-            state="CA", 
-            zip_code=95128, 
-            phone="(408)423-8973", 
-            website="https://www.maggianos.com/",
-            price_range="$$",
-            business_hours="11:00AM-10:00PM",
-            latitude=37.32638847839788, 
-            longitude=-121.94872524581221
-        )
+        user_id=10, 
+        name="Maggiano's Little Italy", 
+        description="Semi-upscale chain for classic Italian fare served family-style in a relaxed, polished space.", 
+        category_id=7, 
+        address="3055 Olin Ave Suite 1000", 
+        city="San Jose", 
+        state="CA", 
+        zip_code=95128, 
+        phone="(408)423-8973", 
+        website="https://www.maggianos.com/",
+        price_range="$$",
+        business_hours="11:00AM-10:00PM",
+        latitude=37.32638847839788, 
+        longitude=-121.94872524581221
+    )
         
 
 #-------------------jackie 11-15-------------------------------------
     business11 = Business(
-        user_id=1, 
+        user_id=11, 
         name='Easterly Berkeley', 
         description='human cuisine', 
         category_id=1, 
@@ -193,7 +193,7 @@ def seed_business():
     )
 
     business12 = Business(
-        user_id=2, 
+        user_id=12, 
         name='Ogane', 
         description='Best Korean BBQ in Oakland', 
         category_id=2, 
@@ -210,7 +210,7 @@ def seed_business():
     )
 
     business13 = Business(
-        user_id=2, 
+        user_id=13, 
         name='Fish & Bird Sousaku Izakaya', 
         description='Elegant outpost serving a modern Japanese izakaya menu with California & global influences.', 
         category_id=3, 
@@ -227,7 +227,7 @@ def seed_business():
     )
 
     business14 = Business(
-        user_id=3, 
+        user_id=14, 
         name='Hui Lau Shan', 
         description='Dessert restaurant', 
         category_id=9, 
@@ -244,7 +244,7 @@ def seed_business():
     )
 
     business15 = Business(
-        user_id=3, 
+        user_id=15, 
         name='Pho Huong Que', 
         description='Pho, spring rolls & other Vietnamese specialties in an unpretentious counter-service eatery.', 
         category_id=5, 
@@ -311,7 +311,7 @@ def seed_business():
         longitude=-122.18016297273617
     )
     business19 = Business(
-        user_id=1, 
+        user_id=4, 
         name='Bloom', 
         description='Inventive breakfast & lunch dishes in industrial-chic surrounds, plus beer, wine & cocktails.', 
         category_id=9, 
@@ -327,7 +327,7 @@ def seed_business():
         longitude=-121.97137765044666
     )
     business20 = Business(
-        user_id=2, 
+        user_id=5, 
         name='The Breakfast Club', 
         description='Fresh, local ingredients. Recipes carefully crafted for optimal flavor. That\'s what a meal at The Breakfast Club at Midtown is all about. Well, that and having a great time. When you mix our good vibes with our great morning cocktails, you\'re in for a refreshing and delicious treat. We\'ve got all your favorite sweet dishes in our lineup -- waffles, pancakes, French toast. Or, for our savory food fanatics, we have burgers, sandwiches, and Benedicts. It\'s time you did brunch The Breakfast Club way.', 
         category_id=9, 
