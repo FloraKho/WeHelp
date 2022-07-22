@@ -4,10 +4,10 @@ class Business(db.Model):
     __tablename__ = "businesses"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey="users.id", nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text, nullable=False)
-    category_id = db.Column(db.Integer, ForeignKey="categories.id", nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(50), nullable=False)

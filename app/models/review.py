@@ -5,8 +5,8 @@ class Review(db.Model):
     __tablename__ = 'review'
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, ForeignKey='users.id', nullable=False)
-    business_id = db.Column(db.Integer, ForeignKey='businesses.id', nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    business_id = db.Column(db.Integer, db.ForeignKey("businesses.id"), nullable=False)
     rating = db.Column(db.Integer, nullable = False)
     content = db.Column(db.String(255), nullable = False)
 
