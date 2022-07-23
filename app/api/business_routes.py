@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.forms import CreateBusinessForm
+from app.forms import CreateBusinessForm, UpdateBusinessForm
 from app.models import db, Business, Business_Image
 from flask_login import login_required
 
@@ -59,7 +59,33 @@ def post_one_business():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #-------------------------UPDATE ONE BUSINESS-------------------
+@business_routes.route('/<int:id>', methods=["PUT"])
+# @login_required
+def update_one_business(id):
+    form = CreateBusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
+    if form.validate_on_submit():
+        curr_business = Business.query.get(id)
+        curr_business.user_id=form.data['user_id'],
+        curr_business.name=form.data['name'],
+        curr_business.description=form.data['description'],
+        curr_business.category_id=form.data['category_id'],
+        curr_business.address=form.data['address'],
+        curr_business.city=form.data['city'],
+        curr_business.state=form.data['state'],
+        curr_business.zip_code=form.data['zip_code'],
+        curr_business.phone=form.data['phone'],
+        curr_business.website=form.data['website'],
+        curr_business.price_range=form.data['price_range'],
+        curr_business.business_hours=form.data['business_hours'],
+        curr_business.latitude=form.data['latitude'],
+        curr_business.longitude=form.data['longitude']
+ 
+        db.session.commit()
+        print(form.data)
+        return curr_business.to_dict()
+    return {'errors': "ERROR!!!!!!!"}, 401
 #-------------------------DELETE ONE BUSINESS-------------------
 @business_routes.route('/<int:id>', methods=["DELETE"])
 # @login_required
@@ -67,4 +93,4 @@ def delete_business(id):
     business = Business.query.get(id)
     db.session.delete(business)
     db.session.commit()
-    return {'Successfully delete': 'Successfully delete'}
+    return {'message': 'Successfully Delete.'}
