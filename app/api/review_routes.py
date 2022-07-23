@@ -1,11 +1,11 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Review
-from app.forms import addReviewForm
+from app.forms import AddReviewForm
 import datetime
 
 
-review_routes = Blueprint("review", __name__)
+review_routes = Blueprint("reviews", __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -17,23 +17,17 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@review_routes.route("/")
-def get_all_reviews():
-    reviews = Review.query.all()
-    return { "Review": [review.to_dict() for review in reviews] }
+@review_routes.route("/biz/<int:id>")
+def get_biz_reviews(id):
+    reviews = Review.query.filter(Review.business_id == id).all()
+    return { "Reviews": [review.to_dict() for review in reviews] }
 
-# @review_routes.route("/<int:id>")
-# def get_one_reviews(id):
-#     one_review = Review.query.get(id)
-#     return one_review.to_dict()
 
-@review_routes.route("/", methods=["POST"])
-@login_required
+@review_routes.route("", methods=["POST"])
+# @login_required
 def add_review():
-    # add a form
-    form = addReviewForm()
-
-    # form['csrf_token'].data = request.cookies['csrf_token']
+    form = AddReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         review = Review(
             user_id=form.data["user_id"],
@@ -44,13 +38,14 @@ def add_review():
         )
         db.session.add(review)
         db.session.commit()
+        return review.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @review_routes.route("/<int:id>", methods=["DELETE"])
-@login_required
+# @login_required
 def delete_review(id):
     review = Review.query.get(id)
     db.session.delete(review)
     db.session.commit()
-    return {"review": review.to_dict()}
+    return {"msg": "niiiice"}

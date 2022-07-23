@@ -1,13 +1,20 @@
 from flask import Blueprint, request
-from app.forms.create_business_form import CreateBusinessForm
+from app.forms import CreateBusinessForm
 from app.models import db, Business, Business_Image
 from flask_login import login_required
 
 
-
-
 business_routes = Blueprint('businesses', __name__)
 #-------------------------BUSINESS VALIDATIONS------------------
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 #-------------------------GET ALL BUSINESS----------------------
 @business_routes.route('',methods=["GET"])
@@ -17,12 +24,13 @@ def get_all_business():
     return {'Business': [business.to_dict() for business in businesses]}
 
 #-------------------------GET ONE BUSINESS----------------------
-@business_routes.route('/<int:businessId>')
+@business_routes.route('/<int:id>')
 def get_one_business (id):
     one_business = Business.query.get(id)
     return one_business.to_dict()
 
 #-------------------------POST ONE BUSINESS---------------------
+
 @business_routes.route('', methods=["POST"])
 # @login_required
 def post_one_business():
@@ -48,13 +56,13 @@ def post_one_business():
         db.session.add(new_business)
         db.session.commit()
         return new_business.to_dict()
-    return {'errors': "ERROR!!!!!!!"}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #-------------------------UPDATE ONE BUSINESS-------------------
 
 #-------------------------DELETE ONE BUSINESS-------------------
-@business_routes.route('/<int:businessId>', methods=["DELETE"])
-@login_required
+@business_routes.route('/<int:id>', methods=["DELETE"])
+# @login_required
 def delete_business(id):
     business = Business.query.get(id)
     db.session.delete(business)

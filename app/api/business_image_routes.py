@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Business_Image
 from app.forms import AddImageForm
@@ -17,17 +17,17 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 
-@business_image_routes.route("/")
-def get_all_image():
-    images = Business_Image.query.all()
+@business_image_routes.route("/biz/<int:id>")
+def get_biz_images(id):
+    images = Business_Image.query.filter(Business_Image.business_id == id).all()
     return { "Business_Images": [image.to_dict() for image in images]}
 
 
-@business_image_routes.route("/", methods=["POST"])
-@login_required
+@business_image_routes.route("", methods=["POST"])
+# @login_required
 def add_business_image():
     form = AddImageForm()
-
+    form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         image = Business_Image (
             business_id=form.data["business_id"],
@@ -40,9 +40,9 @@ def add_business_image():
     
 
 @business_image_routes.route("/<int:id>", methods=["DELETE"])
-@login_required
+# @login_required
 def delete_business_image(id):
     image = Business_Image.query.get(id)
     db.session.delete(image)
     db.session.commit()
-    return {"image": image.to_dict()}
+    return {"msg": "good"}
