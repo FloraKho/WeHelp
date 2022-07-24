@@ -8,6 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import AllBusinessesPage from './components/AllBusinessesPage'
+import BusinessDetailPage from './components/BusinessDetailPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +35,12 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <ProtectedRoute>
+          <AllBusinessesPage path='/businesses' exact={true}/>
+        </ProtectedRoute >
+        <Route>
+          <BusinessDetailPage path='/businesses/:businessId'  exact />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
