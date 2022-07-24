@@ -15,11 +15,12 @@ class Review(db.Model):
     business = db.relationship('Business', back_populates='reviews')
 
 
-def to_dict(self):
-    return {
-            'id': self.id,
-            'user_id': self.user_id,
-            'business_id': self.business_id,
-            'rating': self.rating,
-            'content': self.content
-        }
+    def to_dict(self):
+        return {
+                'id': self.id,
+                'user_id': self.user_id,
+                'business_id': self.business_id,
+                'rating': self.rating,
+                'content': self.content,
+                'created_at': self.created_at
+            }
