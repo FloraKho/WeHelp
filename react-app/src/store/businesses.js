@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const ADD_BUSINESS = "business/ADD_BUSINESS"
 const GET_BUSINESS = "business/GET_BUSINESS"
@@ -46,7 +46,7 @@ const deleteBusiness = (businessId) => {
 //thunk
 export const addBusinessThunk = (business) => async (dispatch) => {
     // const { user_id, name, description, category_id, address, city, state, zip_code, phone, website, price_range, business_hours, latitude, longitude } = business;
-    const response = await csrfFetch(`/api/businesses`, {
+    const response = await fetch(`/api/businesses`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -62,16 +62,17 @@ export const addBusinessThunk = (business) => async (dispatch) => {
 }
 
 export const getAllBusinessesThunk = () => async (dispatch) => {
-    const response = await csrfFetch(`/api/businesses`);
+    const response = await fetch(`/api/businesses`);
     if (response.ok) {
         const businesses = await response.json();
+        console.log("THIS IS BUSINESSES", businesses)
         dispatch(getAllBusinesses(businesses));
     }
 }
 
 
 export const getBusinessThunk = (businessId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/businesses/${businessId}`);
+    const response = await fetch(`/api/businesses/${businessId}`);
 
     if (response.ok) {
         const business = await response.json();
@@ -81,7 +82,7 @@ export const getBusinessThunk = (businessId) => async (dispatch) => {
 
 
 export const editBusinessThunk = (business) => async (dispatch) => {
-    const response = await csrfFetch(`/api/businesses/${business.id}`, {
+    const response = await fetch(`/api/businesses/${business.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(business)
@@ -95,7 +96,7 @@ export const editBusinessThunk = (business) => async (dispatch) => {
 
 
 export const deleteBusinessThunk = (businessId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/businesses/${businessId}`, {
+    const response = await fetch(`/api/businesses/${businessId}`, {
         method: 'DELETE'
     });
     if (response.ok) {
@@ -116,7 +117,7 @@ const businessReducer = (state = initialState, action) => {
             return newState;
         case GET_ALL_BUSINESSES:
             newState = {};
-            action.businesses.forEach(business => {
+            action.businesses.Business.forEach(business => {
                 newState[business.id] = business;
             });
             return newState;
