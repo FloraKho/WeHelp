@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -10,11 +10,20 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AllBusinessesPage from './components/AllBusinessesPage'
 import BusinessDetailPage from './components/BusinessDetailPage';
+import { getAllCategoryThunk } from './store/categories';
+import { getAllBusinessesThunk } from './store/businesses';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
+  const categories = useSelector(state => state.categoryState)
+  const businesses = useSelector(state => state.bizState)
+
+  useEffect(() => {
+    dispatch(getAllCategoryThunk())
+    dispatch(getAllBusinessesThunk())
+  },[])
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
@@ -26,6 +35,7 @@ function App() {
     return null;
   }
 
+  
   return (
     <BrowserRouter>
       <NavBar />

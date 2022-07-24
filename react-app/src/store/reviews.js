@@ -1,4 +1,4 @@
-import { csrfFetch } from "./csrf";
+// import { csrfFetch } from "./csrf";
 
 const ADD_REVIEW = "review/ADD_REVIEW"
 const GET_REVIEW = "review/GET_REVIEW"
@@ -38,7 +38,7 @@ const deleteReview = (reviewId) => {
 //thunk
 //C
 export const addReviewThunk = (review) => async (dispatch) => {
-    const response = await csrfFetch(`/api/reviews`, {
+    const response = await fetch(`/api/reviews`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -55,11 +55,11 @@ export const addReviewThunk = (review) => async (dispatch) => {
 
 //R
 export const getReviewThunk = (businessId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/biz/${businessId}`);
+    const response = await fetch(`/api/biz/${businessId}`);
 
     if (response.ok) {
         const comments = await response.json();
-        dispatch(loadall(comments, postId));
+        dispatch(getReviews(comments, businessId));
     }
 }
 
@@ -67,7 +67,7 @@ export const getReviewThunk = (businessId) => async (dispatch) => {
 //U
 export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
     const { body } = review;
-    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+    const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ body })
@@ -81,7 +81,7 @@ export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
 
 //D
 export const deleteReviewThunk = (reviewId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/creviews/${reviewId}`, {
+    const response = await fetch(`/api/creviews/${reviewId}`, {
         method: 'DELETE',
     })
 
