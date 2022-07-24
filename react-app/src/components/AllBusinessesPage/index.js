@@ -4,14 +4,8 @@ import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllBusinessesThunk } from '../../store/businesses';
 
-const AllBusinessesPage = () => {
-    // const dispatch = useDispatch()
-    // const businesses = Object.values(useSelector(state => state.businesses))
-    // console.log(businesses)
-
-    // useEffect(()=>{
-    //     dispatch(getAllBusinessesThunk())
-    // },[dispatch])
+const AllBusinessesPage = ({businesses}) => {
+    const bizArr = Object.values(businesses)
 
     return (
         <div className='all-businesses-page-container'>
@@ -19,7 +13,7 @@ const AllBusinessesPage = () => {
                 <h1>FILTER BAR放这</h1>
             </div>
             <div>
-                { businesses.map(business => (
+                { bizArr.map(business => (
                     <NavLink 
                         to={`businesses/${business.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
@@ -37,7 +31,7 @@ const AllBusinessesPage = () => {
                                 <p>{business.name}</p>
                                 <p>{'这里放category'}</p>
                                 <p>Open Hour : {business.business_hours}</p>
-                                <p>{'这里放description还是review啊？'}{business.description}</p>
+                                <p>{business.description}</p>
                                 <hr></hr>     
                                 <p>✔️ Delivery ✔️ Dine In ✔️ Take Out这个放不放都可以</p>
                             </div>

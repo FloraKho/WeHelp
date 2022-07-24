@@ -47,10 +47,10 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute>
-          <AllBusinessesPage path='/businesses' exact={true}/>
+          <AllBusinessesPage path='/businesses' exact={true} businesses={businesses}/>
         </ProtectedRoute >
         <Route>
-          <BusinessDetailPage path='/businesses/:businessId'  exact />
+          <BusinessDetailPage path='/businesses/:businessId'  exact={true}/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
