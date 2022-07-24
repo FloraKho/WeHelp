@@ -4,11 +4,13 @@ import session from './session'
 import businessReducer from './businesses'
 import reviewReducer from './reviews';
 import categoryReducer from './categories';
+import imageReducer from './images';
 const rootReducer = combineReducers({
   session,
   bizState: businessReducer,
   reviewState: reviewReducer,
-  categoryState : categoryReducer
+  categoryState : categoryReducer,
+  imageState: imageReducer
 });
 
 

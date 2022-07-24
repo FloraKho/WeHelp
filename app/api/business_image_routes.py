@@ -3,7 +3,7 @@ from flask_login import login_required
 from app.models import db, Business_Image
 from app.forms import AddImageForm
 
-business_image_routes=Blueprint("business_image", __name__)
+business_image_routes=Blueprint("business_images", __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
