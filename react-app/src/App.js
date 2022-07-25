@@ -11,6 +11,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import { getAllCategoryThunk } from './store/categories';
 import { getAllBusinessesThunk } from './store/businesses';
+import ReviewForm from './components/Reviews/ReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,6 +59,9 @@ function App() {
         <Route path='/businesses/:businessId' exact={true}>
           <BusinessInfo />
         </Route>
+        <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
+          <ReviewForm />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

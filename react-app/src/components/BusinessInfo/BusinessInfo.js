@@ -53,12 +53,12 @@ function BusinessInfo() {
                 </div>
             ))}
             <h1>{singleBusiness?.name }</h1>
-            <p><span>· {singleBusiness.price_range} ·</span>{singleBusiness?.description}</p>
+            <p><span>· {singleBusiness?.price_range} ·</span>{singleBusiness?.description}</p>
             <h2>Location & Hours</h2>
             <p>Operation Hours: {singleBusiness?.business_hours}</p>
-            <p>Location: {singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness.zip_code} </p>
-            <p>Phone: {singleBusiness.phone}</p>
-            <p>Website: {singleBusiness.website}</p>
+            <p>Location: {singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
+            <p>Phone: {singleBusiness?.phone}</p>
+            <p>Website: {singleBusiness?.website}</p>
             <h2>Recommened Reviews</h2>
             {Object.values(reviews).map(({ id, content, rating, user_id }) => (
                 <div key={id}>
