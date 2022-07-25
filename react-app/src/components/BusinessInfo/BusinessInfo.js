@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getReviewThunk } from '../../store/reviews';
-import { getBusinessThunk } from '../../store/businesses'
+import { deleteBusinessThunk, getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
 import './BusinessInfo.css'
 
@@ -12,6 +12,7 @@ import './BusinessInfo.css'
 function BusinessInfo() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const {businessId} = useParams();
 
     const reviews = useSelector(state => state.reviewState.reviews);
@@ -39,6 +40,12 @@ function BusinessInfo() {
         fetchData();
     }, []);
 
+    const handleDelete = async (e) => {
+        e.preventDefault();
+        await dispatch(deleteBusinessThunk(parseInt(businessId)))
+        .then(() => history.push(`/`));
+    }
+
     const findUserName = (user_id) => {
         let result = users.filter(user => user.id == user_id);
         return result[0].username
@@ -53,6 +60,8 @@ function BusinessInfo() {
                 </div>
             ))}
             <h1>{singleBusiness?.name }</h1>
+            <button>Edit</button>
+            <button onClick = {handleDelete}>Delete</button>
             <p><span>· {singleBusiness?.price_range} ·</span>{singleBusiness?.description}</p>
             <h2>Location & Hours</h2>
             <p>Operation Hours: {singleBusiness?.business_hours}</p>
