@@ -4,11 +4,21 @@ import { useHistory } from 'react-router-dom'
 import { addBusinessThunk } from '../../store/businesses';
 
 
-function CreateBusinessPage({user}) {
+function CreateBusinessPage({categories}) {
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const categoriesArr = Object.values(categories)
     const sessionUser = useSelector(state => state.session.user)
+    const statesArr = [
+        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
+        'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
+        'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 
+        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 
+        'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
+        'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 
+        'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+      ]
+    const pricesArr = ["$","$$","$$$","$$$$"]
 
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
@@ -23,6 +33,7 @@ function CreateBusinessPage({user}) {
     const [ business_hours, setBusiness_hours ] = useState("");
     const [ latitude, setLatitude ] = useState(null);
     const [ longitude, setLongitude ] = useState(null);
+
 
     const handleCreate = async (e) => {
         e.preventDefault();
@@ -52,7 +63,173 @@ function CreateBusinessPage({user}) {
         <>
         <h1>Create Your Own Business Listing</h1>
         <form onSubmit={handleCreate}>
-
+            <div>
+                <label>
+                    Business Name
+                    <input
+                        placeholder='Business Name'
+                        type='text'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Address
+                    <input
+                        placeholder='Address'
+                        type='text'
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    City
+                    <input
+                        placeholder='City'
+                        type='text'
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    State
+                    <select 
+                        onChange={(e) => setState(e.target.value)} 
+                        value={state}
+                        >
+                        {statesArr.map(type =>
+                            <option key={type}>{type}</option>
+                        )}
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    ZIP
+                    <input
+                        placeholder=' (ie. 12345)'
+                        type='text'
+                        value={zip_code}
+                        onChange={(e) => setZip_code(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Phone
+                    <input
+                        placeholder='ie. (123)456-7890'
+                        type='text'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Website
+                    <input
+                        placeholder='Website (Optional)'
+                        type='text'
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                    Category
+                    <select 
+                        onChange={(e) => setCategory_id(e.target.value)} 
+                        value={category_id}
+                        required
+                        >
+                        {categoriesArr.map(cate =>
+                            <option key={cate.id}>{cate.name}</option>
+                        )}
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Price Range
+                    <select 
+                        onChange={(e) => setPrice_range(e.target.value)} 
+                        value={price_range}
+                        required
+                        >
+                        {pricesArr.map(price =>
+                            <option key={price}>{price}</option>
+                        )}
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Business Hours
+                    <input
+                        placeholder='(ie. 10:00AM-10:00PM)'
+                        type='text'
+                        value={business_hours}
+                        onChange={(e) => setBusiness_hours(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                <label>
+                Please provide description to let customer know you better!
+                <br></br>
+                    <textarea
+                        placeholder='Add Your Description...'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                    />
+                </label>
+            </div>
+            <div>
+                Enter Your Google Map Location Info
+                <div>
+                    <label>
+                    latitude
+                        <input
+                            placeholder='Latitude'
+                            type='text'
+                            value={latitude}
+                            onChange={(e) => setLatitude(e.target.value)}
+                            required
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                    longitude
+                        <input
+                            placeholder='Longitude'
+                            type='text'
+                            value={longitude}
+                            onChange={(e) => setLongitude(e.target.value)}
+                            required
+                        />
+                    </label>
+                </div>
+            </div>
+            <div>
+                <button type='button'>Submit</button>
+                <button type='button' onClick={() => history.goBack()}>Cancel</button>
+            </div>
         </form>
         </>
     )
