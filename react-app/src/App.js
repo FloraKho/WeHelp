@@ -9,9 +9,14 @@ import UsersList from './components/UsersList';
 import BusinessInfo from './components/BusinessInfo/BusinessInfo';
 import User from './components/User';
 import { authenticate } from './store/session';
+import AllBusinessesPage from './components/AllBusinessesPage'
 import { getAllCategoryThunk } from './store/categories';
 import { getAllBusinessesThunk } from './store/businesses';
+
+import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPage';
+import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
 import ReviewForm from './components/Reviews/ReviewForm';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +52,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <Route path='/businesses' exact={true} >
+          <AllBusinessesPage businesses={businesses}/>
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
@@ -56,6 +64,11 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <ProtectedRoute path='/post-new-business' exact={true}>
+          <CreateBusinessPage categories={categories} />
+        </ProtectedRoute>
+        <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
+          <UpdateBusinessPage businesses={businesses} categories={categories} />
         <Route path='/businesses/:businessId' exact={true}>
           <BusinessInfo />
         </Route>
