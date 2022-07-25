@@ -55,7 +55,7 @@ export const addReviewThunk = (review) => async (dispatch) => {
 
 //R
 export const getReviewThunk = (businessId) => async (dispatch) => {
-    const response = await fetch(`/api/biz/${businessId}`);
+    const response = await fetch(`/api/reviews/biz/${businessId}`);
 
     if (response.ok) {
         const comments = await response.json();

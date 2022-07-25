@@ -6,6 +6,7 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import BusinessInfo from './components/BusinessInfo/BusinessInfo';
 import User from './components/User';
 import { authenticate } from './store/session';
 import { getAllCategoryThunk } from './store/categories';
@@ -54,6 +55,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path='/businesses/:businessId' exact={true}>
+          <BusinessInfo />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
