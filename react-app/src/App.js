@@ -19,6 +19,7 @@ function App() {
 
   const categories = useSelector(state => state.categoryState)
   const businesses = useSelector(state => state.bizState)
+  const reviews = useSelector(state => state.reviewState)
 
   useEffect(() => {
     dispatch(getAllCategoryThunk())
