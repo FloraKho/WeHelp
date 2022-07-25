@@ -6,13 +6,17 @@ import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import BusinessInfo from './components/BusinessInfo/BusinessInfo';
 import User from './components/User';
 import { authenticate } from './store/session';
 import AllBusinessesPage from './components/AllBusinessesPage'
 import { getAllCategoryThunk } from './store/categories';
 import { getAllBusinessesThunk } from './store/businesses';
+
 import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPage';
 import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
+import ReviewForm from './components/Reviews/ReviewForm';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,7 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllCategoryThunk())
-    dispatch(getAllBusinessesThunk())
+    // dispatch(getAllBusinessesThunk())
   },[])
   useEffect(() => {
     (async() => {
@@ -65,6 +69,11 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
           <UpdateBusinessPage businesses={businesses} categories={categories} />
+        <Route path='/businesses/:businessId' exact={true}>
+          <BusinessInfo />
+        </Route>
+        <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
+          <ReviewForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
