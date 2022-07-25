@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllCategoryThunk())
-    dispatch(getAllBusinessesThunk())
+    // dispatch(getAllBusinessesThunk())
   },[])
   useEffect(() => {
     (async() => {
