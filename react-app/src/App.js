@@ -13,6 +13,7 @@ import BusinessDetailPage from './components/BusinessDetailPage';
 import { getAllCategoryThunk } from './store/categories';
 import { getAllBusinessesThunk } from './store/businesses';
 import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPage';
+import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/post-new-business' exact={true}>
           <CreateBusinessPage categories={categories} />
+        </ProtectedRoute>
+        <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
+          <UpdateBusinessPage businesses={businesses} categories={categories} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
