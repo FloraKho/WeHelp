@@ -22,7 +22,7 @@ function CreateBusinessPage({categories}) {
 
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
-    const [ category_id, setCategory_id ] = useState(null);
+    const [ category_id, setCategory_id ] = useState(1);
     const [ address, setAddress ] = useState("");
     const [ city, setCity ] = useState("");
     const [ state, setState ] = useState("")
@@ -31,8 +31,8 @@ function CreateBusinessPage({categories}) {
     const [ website, setWebsite ] = useState("");
     const [ price_range, setPrice_range] = useState("");
     const [ business_hours, setBusiness_hours ] = useState("");
-    const [ latitude, setLatitude ] = useState(null);
-    const [ longitude, setLongitude ] = useState(null);
+    const [ latitude, setLatitude ] = useState(0.00);
+    const [ longitude, setLongitude ] = useState(0.00);
 
 
     const handleCreate = async (e) => {
@@ -53,8 +53,8 @@ function CreateBusinessPage({categories}) {
             latitude,
             longitude
         }
-        dispatch(addBusinessThunk(newBusiness));
-        history.push(`/businesses/${newBusiness.id}`)
+        const newbiz = dispatch(addBusinessThunk(newBusiness));
+        history.push(`/businesses/${newbiz.id}`)
     }
 
 
@@ -156,7 +156,7 @@ function CreateBusinessPage({categories}) {
                         required
                         >
                         {categoriesArr.map(cate =>
-                            <option key={cate.id}>{cate.name}</option>
+                            <option value={cate.id} key={cate.id}>{cate.name}</option>
                         )}
                     </select>
                 </label>
@@ -227,8 +227,8 @@ function CreateBusinessPage({categories}) {
                 </div>
             </div>
             <div>
-                <button type='button'>Submit</button>
-                <button type='button' onClick={() => history.goBack()}>Cancel</button>
+                <button type="submit">Submit</button>
+                {/* <button type='button' onClick={() => history.goBack()}>Cancel</button> */}
             </div>
         </form>
         </>
