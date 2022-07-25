@@ -14,20 +14,35 @@ function BusinessInfo() {
     const dispatch = useDispatch();
     const {businessId} = useParams();
 
-    const reviews = useSelector(state => state.reviewState);
+    const reviews = useSelector(state => state.reviewState.reviews);
     const images = useSelector (state => state.imageState);
     const businessInfo = useSelector (state => state.bizState);
     const singleBusiness = businessInfo[parseInt(businessId)];
 
     const [isLoaded, setLoaded] = useState(false);
+    const [users, setUsers] = useState([])
 
     useEffect (()=>{
         dispatch(getReviewThunk(parseInt(businessId)))
         .then(()=>dispatch(getBusinessThunk(parseInt(businessId))))
         .then(()=>dispatch(getBizImagesThunk(parseInt(businessId))))
+        .then(()=>dispatch(getReviewThunk(parseInt(businessId))))
         .then(()=>setLoaded(true))
     },[])
-    console.log(Object.values(images));
+
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('/api/users/');
+          const responseData = await response.json();
+          setUsers(responseData.users);
+        }
+        fetchData();
+    }, []);
+
+    const findUserName = (user_id) => {
+        let result = users.filter(user => user.id == user_id);
+        return result[0].username
+    }
 
     return(
         isLoaded&&
@@ -45,6 +60,14 @@ function BusinessInfo() {
             <p>Phone: {singleBusiness.phone}</p>
             <p>Website: {singleBusiness.website}</p>
             <h2>Recommened Reviews</h2>
+            {Object.values(reviews).map(({ id, content, rating, user_id }) => (
+                <div key={id}>
+                    <p>{findUserName(user_id)}</p>
+                    <p>{rating}</p>
+                    <p>{content}</p>
+                </div>
+            ))}
+            
         </div>
     )
 }
