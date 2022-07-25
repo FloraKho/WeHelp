@@ -11,25 +11,27 @@ function DeleteBusiness({ businessId }) {
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleDeleteSubmit = async (e) => {
-        e.prevenDefault();
+    const handleDeleteSubmit = async () => {
         await dispatch(deleteBusinessThunk(businessId));
-        setShowModal(false);
-        history.push('/');
+        console.log("deleted")
+        history.push('/businesses');
+        console.log("history pushed")
     }
 
     return (
         <>
             <div>
-                <h2 onClick={() => setShowModal(true)}>Delete</h2>
+                <button onClick={() => setShowModal(true)}>Delete</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <h2>Delete Business</h2>
-                    <p >Are you sure you want to delete your business listing?</p>
                     <div>
-                        <button onClick={() => setShowModal(false)}>Cancel</button>
-                        <button onClick={handleDeleteSubmit}>Delete</button>
+                        <h2>Delete Business</h2>
+                        <p >Are you sure you want to delete your business listing?</p>
+                        <div>
+                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                            <button onClick={handleDeleteSubmit}>Delete</button>
+                        </div>
                     </div>
                 </Modal>
             )}
