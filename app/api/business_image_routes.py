@@ -40,7 +40,18 @@ def add_business_image():
         db.session.commit()
         return image.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    
+
+@business_image_routes.route("", methods=["POST"])
+def upload_image():
+
+    form=AddImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        if "image_url" in request.files:
+            image = request.files["image_url"]
+            
+        
+
 
 @business_image_routes.route("/<int:id>", methods=["DELETE"])
 # @login_required
