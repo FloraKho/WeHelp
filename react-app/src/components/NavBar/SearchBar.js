@@ -1,9 +1,14 @@
 import { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useHistory } from "react-router-dom"
 
 const SearchBar = ({ businesses }) => {
     const [query, setQuery] = useState("")
     const businessesArr = Object.values(businesses)
+    const history = useHistory()
+
+    const handleSearch = () => {
+        history.push(`/search/${query}`)
+    }
 
     return (
         <div>
@@ -13,6 +18,7 @@ const SearchBar = ({ businesses }) => {
                 value={query}
                 onChange={event => setQuery(event.target.value)}
             />
+            <div onClick={handleSearch}><button>Search</button></div>
             {query && businessesArr.filter(business => {
                 if (query === "") {
                     //if query is empty
@@ -22,7 +28,7 @@ const SearchBar = ({ businesses }) => {
                     return business;
                 }
             }).map((business, index) => (
-                <NavLink to={`/businesses/${business.id}`}>
+                <NavLink to={`/businesses/${business.id}`} onClick={() => setQuery("")}>
                     <div key={index}>
                         <p>{business.name}</p>
                     </div>
@@ -30,8 +36,6 @@ const SearchBar = ({ businesses }) => {
             )
             )
             }
-
-            <button>Search</button>
         </div>
     )
 }

@@ -9,6 +9,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import BusinessInfo from './components/BusinessInfo/BusinessInfo';
+import SearchResult from './components/SearchResult';
 import User from './components/User';
 import Category from './components/Category';
 import { authenticate } from './store/session';
@@ -77,7 +78,7 @@ function App() {
             <UpdateBusinessPage businesses={businesses} categories={categories} />
           </ProtectedRoute>
           <Route path='/businesses/:businessId' exact={true}>
-            <BusinessInfo />
+            <BusinessInfo businesses={businesses}/>
           </Route>
           <ProtectedRoute path='/businesses/:businessId/post-review' exact={true}>
             <ReviewForm />
@@ -85,6 +86,9 @@ function App() {
           <ProtectedRoute path='/edit-review/:currentReviewId' exact={true}>
             <EditReviewForm />
           </ProtectedRoute>
+          <Route path='/search/:searchterms'>
+            <SearchResult />
+          </Route>
           <Route path='/' exact={true} >
             <HomePage businesses={businesses} categories={categories}/>
           </Route>
