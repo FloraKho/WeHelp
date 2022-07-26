@@ -108,7 +108,7 @@ def seed_business_images():
 
     biz7_img1 = Business_Image(
         business_id=7,
-        image_url="https://www.yelp.com/menu/amakai-japanese-cuisine-santa-clara/california-roll"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/RjUTwA9oNw-W_R7ztOB2wQ/o.jpg"
     )
     biz7_img2 = Business_Image(
         business_id=7,
@@ -144,25 +144,25 @@ def seed_business_images():
 
     biz9_img1 = Business_Image(
         business_id=9,
-        image_url="https://www.yelp.com/menu/pho-ha-noi-cupertino/5-grilled-pork-rolls-nem-nuong-cuon"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/40Yoe6S0bcT1701cJtl-Gg/o.jpg"
     )
     biz9_img2 = Business_Image(
         business_id=9,
-        image_url="https://www.yelp.com/menu/pho-ha-noi-cupertino/56-rock-n-roll-steak-w-tomato-rice-com-bo-luc-lac"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/Qp292Ivd-71D73Vvkf_Paw/o.jpg"
     )
     biz9_img3 = Business_Image(
         business_id=9,
-        image_url="https://www.yelp.com/menu/pho-ha-noi-cupertino/13-rare-flank-steak-brisket-and-fat-brisket-pho-pho-tai-nam-gau"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/uH6UufZa9oSMUj6sNb7cKA/o.jpg"
     )
     biz9_img4 = Business_Image(
         business_id=9,
-        image_url="https://www.yelp.com/menu/pho-ha-noi-cupertino/37-combination-of-chicken-egg-noodles-soup-mi-ga-dac-biet"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/d-CDZkOQEXj8qaWLowjPZg/o.jpg"
     )
 
 
     biz10_img1 = Business_Image(
         business_id=10,
-        image_url="https://www.yelp.com/menu/maggianos-little-italy-san-jose/chopped-salad"
+        image_url="https://s3-media0.fl.yelpcdn.com/bphoto/ntW3nEfI2o478K2WYvr9TA/o.jpg"
     )
     biz10_img2 = Business_Image(
         business_id=10,

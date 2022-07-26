@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react";
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessThunk } from '../../store/businesses'
 import { Redirect } from 'react-router-dom';
+import { getReviewThunk, addReviewThunk } from "../../store/reviews";
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {businessId} = useParams();
     useEffect (()=>{
         dispatch(getBusinessThunk(parseInt(businessId)))
@@ -22,14 +24,21 @@ const ReviewForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log({
+        const payload = ({
             user_id: user.id,
             business_id: parseInt(businessId),
             rating: rating,
             content: content
         })
+        await 
+        dispatch(addReviewThunk(payload))
+        .then(()=>dispatch(getReviewThunk(payload)));
+
+        history.push(`/businesses/${businessId}`);
+           
     }
 
+    //
     return (
         <div>
             <h1>{singleBusiness?.name}</h1>
@@ -39,6 +48,7 @@ const ReviewForm = () => {
                     name='rating'
                     type='number'
                     value={rating}
+                    required = {true}
                     onChange={(e) => setRating(e.target.value)}
                 />
                 <label>Content</label>
@@ -48,6 +58,7 @@ const ReviewForm = () => {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Please leave your review here"
+                    required={true}
                 />
                 <button type="submit">Post Review</button>
             </form>

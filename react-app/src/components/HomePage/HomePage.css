@@ -69,16 +69,15 @@
 .fiveFilled {
     position: relative;
     bottom: 37px;
-    width: 159px; /* width of container */
+    width: 160px; /* width of container */
     height: 30px; /* height of container */
     overflow: hidden;
 }
 
 .fiveFilled img {
-    width: 159px; /* width of container */
+    width: 160px; /* width of container */
     height: 30px; /* height of container */
     position: relative;
-    right: 20%;
 }
 
 .banner {

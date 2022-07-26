@@ -1,25 +1,38 @@
-import { NavLink} from 'react-router-dom';
-import './AllBiz.css'
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllBusinessesThunk } from '../../store/businesses';
+import { getAllImagesThunk } from '../../store/images';
+import './Category.css'
 
-const AllBusinessesPage = ({businesses}) => {
+const Category = ({businesses}) => {
+    const dispatch = useDispatch();
     const bizArr = Object.values(businesses)
     const imagesArr = Object.values(useSelector (state => state.imageState));
+    const {categoryId} = useParams()
+    const filter_biz = bizArr.filter(business => business.category_id == categoryId)
+
+    useEffect(() => {
+        dispatch(getAllImagesThunk())
+    }, [])
+
+    const findProfilePic = (number) => {
+        return imagesArr.filter(image => image.business_id == number)[0]
+    }
     
-    return (
+    return imagesArr && (
         <div className='all-businesses-page-container'>
             <div>
                 <h1>FILTER BAR放这</h1>
             </div>
             <div>
-                { bizArr.map(business => (
+                { filter_biz.map(business => (
                     <NavLink key={business.id}
                         to={`businesses/${business.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='individual-business-listing-container'>
-                            <div>
+                            <div className='cat-image-container' style={{ backgroundImage: `url(${findProfilePic(business.id)?.image_url})` }}></div>
+                            {/* <div>
                                 <img 
                                     alt='Business'
                                     className='business-listing-img-div' 
@@ -27,7 +40,7 @@ const AllBusinessesPage = ({businesses}) => {
                                     width="200" 
                                     height="200">
                                 </img>
-                            </div>
+                            </div> */}
                             <div>
                                 <p>{business.name}</p>
                                 <p>{'这里放category'}</p>
@@ -49,4 +62,4 @@ const AllBusinessesPage = ({businesses}) => {
 }
 
 
-export default AllBusinessesPage
+export default Category
