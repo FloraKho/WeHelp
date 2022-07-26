@@ -45,6 +45,12 @@ def add_review():
         db.session.commit()
         return review.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+#-------------------------GET ONE REVIEW----------------------
+@review_routes.route('/<int:id>', methods=['GET'])
+def get_one_review(id):
+    reviews = Review.query.filter(Review.id == id).all()
+    return { "Reviews": [review.to_dict() for review in reviews] }
+
 #-------------------------UPDATE ONE REVIEW-------------------
 @review_routes.route('/<int:id>', methods=["PUT"])
 # @login_required

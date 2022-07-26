@@ -92,6 +92,14 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     }
 }
 
+export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${reviewId}`);
+    if (response.ok) {
+        const singleReview = await response.json();
+        dispatch(getReviews(singleReview))
+    }
+}
+
 
 const initialState = { reviews: {} };
 
