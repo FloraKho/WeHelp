@@ -49,6 +49,8 @@ function BusinessInfo() {
         return history.push(`/businesses/${businessId}/edit`)
     }
     
+
+    
     const handleAddReview = () => {
         return history.push(`/businesses/${businessId}/post-review`)
     }
@@ -89,8 +91,12 @@ function BusinessInfo() {
                         <div>                            
                             <button
                             onClick = {
-                                history.push()
-                            }>
+                                async (e) => {
+                                    e. preventDefault();
+                                    await history.push(`/edit-review/${id}`);
+                                }
+                            }
+                            businessId = {businessId}>
                                 Edit Review
                             </button>
                             <button

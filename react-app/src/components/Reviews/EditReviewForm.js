@@ -3,25 +3,25 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { getBusinessThunk } from '../../store/businesses'
 import { Redirect } from 'react-router-dom';
-import { getReviewThunk, addReviewThunk } from "../../store/reviews";
+import { getReviewThunk, updateReviewThunk } from "../../store/reviews";
 
-const EditReviewForm = (review) => {
+const EditReviewForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { businessId } = useParams();
-    useEffect(() => {
-        dispatch(getBusinessThunk(parseInt(businessId)))
-    }, [])
+    const { currentReviewId } = useParams();
+    
+    const allReviews= useSelector(state=>state.reviewState);
+    const currentReview = allReviews[currentReviewId];
+    const businessId = currentReview[businessId];
+    const [rating, setRating] = useState(currentReview.rating);
+    const [content, setContent] = useState(currentReview.content);
     const businessInfo = useSelector(state => state.bizState);
     const singleBusiness = businessInfo[parseInt(businessId)];
-
-
-    const [errors, setErrors] = useState([]);
-    const [rating, setRating] = useState(0);
-    const [content, setContent] = useState(review);
-    const user = useSelector(state => state.session.user)
-
-
+    console.log(rating,content);
+    useEffect(()=>{
+        dispatch(getReviewThunk(businessId))
+        .then(()=>dispatch(getBusinessThunk(parseInt(businessId))));
+    }, [dispatch])
     const handleSubmit = async (e) => {
         e.preventDefault()
         const payload = ({
@@ -32,14 +32,14 @@ const EditReviewForm = (review) => {
             dispatch(updateReviewThunk(payload))
             .then(() => dispatch(getReviewThunk(payload)));
 
-        history.push(`/businesses/${businessId}`);
+        // history.push(`/businesses/${currentReview.}`);
 
     }
 
     //
     return (
         <div>
-            <h1>{singleBusiness?.name}</h1>
+            {/* <h1>{singleBusiness?.name}</h1> */}
             <form onSubmit={handleSubmit}>
                 <label>Rating</label>
                 <input
@@ -64,4 +64,4 @@ const EditReviewForm = (review) => {
     )
 }
 
-export default ReviewForm;
+export default EditReviewForm;
