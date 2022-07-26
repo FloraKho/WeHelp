@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllCategoryThunk())
-    // dispatch(getAllBusinessesThunk())
+    dispatch(getAllBusinessesThunk())
   },[])
   useEffect(() => {
     (async() => {
@@ -64,11 +64,12 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <ProtectedRoute path='/post-new-business' exact={true}>
+        <ProtectedRoute path='/post-business' exact={true}>
           <CreateBusinessPage categories={categories} />
         </ProtectedRoute>
         <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
           <UpdateBusinessPage businesses={businesses} categories={categories} />
+        </ProtectedRoute>
         <Route path='/businesses/:businessId' exact={true}>
           <BusinessInfo />
         </Route>

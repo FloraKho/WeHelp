@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams,Redirect, useHistory } from 'react-router-dom';
 import { getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
+import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
 import './BusinessInfo.css'
 
 
 
-
 function BusinessInfo() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const {businessId} = useParams();
-
     const reviews = useSelector(state => state.reviewState.reviews);
     const images = useSelector (state => state.imageState);
     const businessInfo = useSelector (state => state.bizState);
@@ -44,6 +43,13 @@ function BusinessInfo() {
         return result[0].username
     }
 
+    const handleEdit = () => {
+        return history.push(`/businesses/${businessId}/edit`)
+    }
+    
+    const handleAddReview = () => {
+        return history.push(`/businsses/${businessId}/post-review`)
+    }
     return(
         isLoaded&&
         <div>
@@ -52,6 +58,12 @@ function BusinessInfo() {
                     <div className="image_container" style={{backgroundImage:`url(${image_url})`}}></div>
                 </div>
             ))}
+            <div>
+                <button onClick={handleEdit}>Edit</button>
+            </div>
+            <div>
+                <DeleteBusiness businessId={businessId}/>
+            </div>
             <h1>{singleBusiness?.name }</h1>
             <p><span>· {singleBusiness?.price_range} ·</span>{singleBusiness?.description}</p>
             <h2>Location & Hours</h2>
@@ -60,6 +72,11 @@ function BusinessInfo() {
             <p>Phone: {singleBusiness?.phone}</p>
             <p>Website: {singleBusiness?.website}</p>
             <h2>Recommened Reviews</h2>
+            <div>
+                <button onClick={handleAddReview}>
+                    Add Review
+                </button>
+            </div>
             {Object.values(reviews).map(({ id, content, rating, user_id }) => (
                 <div key={id}>
                     <p>{findUserName(user_id)}</p>

@@ -6,6 +6,7 @@ import { getAllBusinessesThunk } from '../../store/businesses';
 
 const AllBusinessesPage = ({businesses}) => {
     const bizArr = Object.values(businesses)
+    const imagesArr = Object.values(useSelector (state => state.imageState));
 
     return (
         <div className='all-businesses-page-container'>
@@ -33,7 +34,7 @@ const AllBusinessesPage = ({businesses}) => {
                                 <p>Open Hour : {business.business_hours}</p>
                                 <p>{business.description}</p>
                                 <hr></hr>     
-                                <p>✔️ Delivery ✔️ Dine In ✔️ Take Out这个放不放都可以</p>
+                                <p>✔️ Delivery ✔️ Dine In ✔️ Take Out</p>
                             </div>
                         </div>
                     </NavLink>

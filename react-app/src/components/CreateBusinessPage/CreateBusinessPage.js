@@ -46,7 +46,7 @@ function CreateBusinessPage({categories}) {
         if (!city.length) errors.push("City is required");
         if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        if (!/^\d+$/.test(zip_code) && zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
+        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
         if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
         if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
@@ -116,7 +116,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -128,7 +128,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -140,7 +140,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -165,7 +165,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={zip_code}
                             onChange={(e) => setZip_code(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -177,7 +177,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -198,7 +198,7 @@ function CreateBusinessPage({categories}) {
                         <select 
                             onChange={(e) => setCategory_id(e.target.value)} 
                             value={category_id}
-                            required
+                            // required
                             >
                             {categoriesArr.map(cate =>
                                 <option value={cate.id} key={cate.id}>{cate.name}</option>
@@ -212,7 +212,7 @@ function CreateBusinessPage({categories}) {
                         <select 
                             onChange={(e) => setPrice_range(e.target.value)} 
                             value={price_range}
-                            required
+                            // required
                             >
                             {pricesArr.map(price =>
                                 <option key={price}>{price}</option>
@@ -228,7 +228,7 @@ function CreateBusinessPage({categories}) {
                             type='text'
                             value={business_hours}
                             onChange={(e) => setBusiness_hours(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -240,7 +240,7 @@ function CreateBusinessPage({categories}) {
                             placeholder='Add Your Description...'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            required
+                            // required
                         />
                     </label>
                 </div>
@@ -254,7 +254,7 @@ function CreateBusinessPage({categories}) {
                                 type='text'
                                 value={latitude}
                                 onChange={(e) => setLatitude(e.target.value)}
-                                required
+                                // required
                             />
                         </label>
                     </div>
@@ -266,7 +266,7 @@ function CreateBusinessPage({categories}) {
                                 type='text'
                                 value={longitude}
                                 onChange={(e) => setLongitude(e.target.value)}
-                                required
+                                // required
                             />
                         </label>
                     </div>

@@ -42,7 +42,7 @@ function UpdateBusinessPage({businesses, categories}) {
         'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
     ]
     const pricesArr = ["$", "$$", "$$$", "$$$$"]
-
+    console.log("THIS IS WEBSITE", website)
 
     useEffect( () => {
         let errors = []
@@ -52,9 +52,9 @@ function UpdateBusinessPage({businesses, categories}) {
         if (!city.length) errors.push("City is required");
         if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        if (!/^\d+$/.test(zip_code) && zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
+        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
-        if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
+        if (!/^(-?\d+(\.\d+)?)$/.test(latitude)) errors.push("Latitude is required and should be in float");
         if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
         setErrors(errors);
     }, [name, description, address, city, state, zip_code, phone, price_range, business_hours, latitude, longitude]);
