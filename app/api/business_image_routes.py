@@ -52,6 +52,7 @@ def add_business_image():
             image_url = upload["url"]
          
         image = Business_Image (
+            user_id=form.data["user_id"],
             business_id=form.data["business_id"],
             image_url=image_url
         )

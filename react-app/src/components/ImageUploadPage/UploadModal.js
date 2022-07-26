@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addImageThunk } from '../../store/images';
 
@@ -8,6 +8,7 @@ import { addImageThunk } from '../../store/images';
 function UploadModal({businessId}){
     const dispatch = useDispatch();
     const history = useHistory();
+    const sessionUser = useSelector(state => state.session.user)
 
     const [showModal, setShowModal] = useState(false);
     const [image, setImage] = useState(null);
@@ -15,11 +16,11 @@ function UploadModal({businessId}){
     const handleSubmit = async (e) => {
         e.preventDefault();
         const imageInfo = {
+            user_id: sessionUser.id,
             business_id: parseInt(businessId),
             image_url: image
         }
 
-        console.log("Image INFO", imageInfo)
         await dispatch(addImageThunk(imageInfo));
         setImage(null)
         setShowModal(false)
@@ -35,13 +36,12 @@ function UploadModal({businessId}){
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Upload</button>
+                <button onClick={() => setShowModal(true)}>Add Photo</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>
-                        <h2>Select Your Business Image Here!</h2>
-                        <p>Ideally, 4 images are perfect for your business listing</p>
+                        <h2>Select Photo Here!</h2>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="file"

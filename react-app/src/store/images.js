@@ -33,8 +33,9 @@ const getAllImages = (images) => {
 
 //thunk
 export const addImageThunk = (image) => async (dispatch) => {
-    const { business_id, image_url} = image;
+    const { user_id, business_id, image_url} = image;
     const formData = new FormData();
+    formData.append("user_id", user_id);
     formData.append("business_id", business_id);
     formData.append("image_url", image_url);
 
