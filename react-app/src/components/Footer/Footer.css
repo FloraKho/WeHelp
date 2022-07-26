@@ -1,0 +1,32 @@
+.footer {
+    background-color: #F7F7F7;
+    margin-top: 80px;
+    padding-left: 400px;
+    padding-right: 400px;
+}
+
+.teams {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.teams h2 {
+    font-size: 1.2rem;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.teams a {
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    color: black;
+}
+
+.copyright {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    padding-bottom: 60px;
+}

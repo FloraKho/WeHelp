@@ -3,15 +3,22 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import HomePage from './components/HomePage/HomePage';
+import Footer from './components/Footer'
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import BusinessInfo from './components/BusinessInfo/BusinessInfo';
 import User from './components/User';
 import { authenticate } from './store/session';
 import AllBusinessesPage from './components/AllBusinessesPage'
-import BusinessDetailPage from './components/BusinessDetailPage';
 import { getAllCategoryThunk } from './store/categories';
 import { getAllBusinessesThunk } from './store/businesses';
+
+import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPage';
+import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
+import ReviewForm from './components/Reviews/ReviewForm';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,11 +54,8 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute>
-          <AllBusinessesPage path='/businesses' exact={true} businesses={businesses}/>
-        </ProtectedRoute >
-        <Route>
-          <BusinessDetailPage path='/businesses/:businessId'  exact={true}/>
+        <Route path='/businesses' exact={true} >
+          <AllBusinessesPage businesses={businesses}/>
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
@@ -60,9 +64,22 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage businesses={businesses} categories={categories}/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/post-business' exact={true}>
+          <CreateBusinessPage categories={categories} />
+        </ProtectedRoute>
+        <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
+          <UpdateBusinessPage businesses={businesses} categories={categories} />
+        </ProtectedRoute>
+        <Route path='/businesses/:businessId' exact={true}>
+          <BusinessInfo />
+        </Route>
+        <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
+          <ReviewForm />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

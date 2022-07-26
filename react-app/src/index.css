@@ -1,5 +1,21 @@
 /* TODO Add site wide styles */
 
-div{
+/* div{
     border: 1px solid black;
+} */
+
+* {
+    font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
+
+/* .body {
+    margin: 0;
+    width: 100vw;
+    padding: 0;
+}
+
+#root {
+    margin: 0;
+    width: 100vw;
+    padding: 0;
+} */

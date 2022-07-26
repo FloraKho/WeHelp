@@ -1,6 +1,7 @@
 const ADD_IMAGE = "image/ADD_IMAGE"
 const GET_BIZ_IMAGES = "image/GET_BIZ_IMAGES"
 const DELETE_IMAGE = "image/DELETE_IMAGE"
+const GET_ALL_IMAGES = "image/GET_ALL_IMAGES"
 
 const addImage = (image) => {
     return {
@@ -20,6 +21,13 @@ const deleteImage = (imageId) => {
     return {
         type: DELETE_IMAGE,
         imageId
+    }
+}
+
+const getAllImages = (images) => {
+    return {
+        type: GET_ALL_IMAGES,
+        images
     }
 }
 
@@ -57,6 +65,14 @@ export const deleteImageThunk = (imageId) => async (dispatch) => {
     }
 }
 
+export const getAllImagesThunk = () => async (dispatch) => {
+    const response = await fetch('/api/business_images/all')
+    if (response.ok) {
+        const images = await response.json();
+        dispatch(getAllImages(images));
+    }
+}
+
 //reducer
 
 const initialState = {};
@@ -70,6 +86,12 @@ const imageReducer = (state = initialState, action) => {
                 [action.image.id]: action.image
             };
         case GET_BIZ_IMAGES:
+            newState = {};
+            action.images.Business_Images.forEach(image => {
+                newState[image.id] = image;
+            });
+            return newState;
+        case GET_ALL_IMAGES:
             newState = {};
             action.images.Business_Images.forEach(image => {
                 newState[image.id] = image;
