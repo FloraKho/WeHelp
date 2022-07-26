@@ -72,3 +72,11 @@ def delete_review(id):
     db.session.delete(review)
     db.session.commit()
     return {"message": "Sucessfully Deleted."}
+
+#-----------------------GET ALL REVIEWS-----------------------
+@review_routes.route("/all")
+def get_all_reviews():
+    reviews = Review.query.all()
+    return { "Reviews": [review.to_dict() for review in reviews] }
+
+
