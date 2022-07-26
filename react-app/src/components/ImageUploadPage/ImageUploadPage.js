@@ -61,6 +61,9 @@ function ImageUploadPage() {
                     </div>
                 }
             </div> */}
+            {photosArr.length === 0 && (
+                <p>You don't have any photo uploaded!</p>
+            )}
 
             {photosArr && photosArr.map(({ id, image_url }) => (
                 <>

@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getBizImagesThunk } from "../../store/images";
 import UploadModal from "../ImageUploadPage/UploadModal";
+import DeleteImageModal from "../ImageUploadPage/DeleteImageModal";
 
 
 function ImagesPage({ businesses }) {
@@ -14,7 +15,8 @@ function ImagesPage({ businesses }) {
     const { businessId } = useParams();
 
     const currentBiz = businesses[businessId];
-    console.log(currentBiz);
+    const sessionUser = useSelector(state => state.session.user)
+    const currentUserId = sessionUser.id;
 
 
     const images = useSelector(state => state.imageState);
@@ -24,12 +26,21 @@ function ImagesPage({ businesses }) {
         dispatch(getBizImagesThunk(parseInt(businessId)))
     }, [dispatch, businessId])
 
+    const handleAddPhoto = () => {
+        return history.push(`/businesses/${businessId}/image-upload`)
+    }
+
+
     return (
 
         <>
             <div>
                 <div><h2>Photos for {currentBiz?.name}</h2></div>
-                <UploadModal />
+                <div>
+                    <button onClick={handleAddPhoto}>
+                        Add Photo
+                    </button>
+                </div>
                 <div>
                     <button onClick={() => history.goBack()}>Go Back</button>
                 </div>
@@ -40,6 +51,8 @@ function ImagesPage({ businesses }) {
                     return (
                         <div key={image.id}>
                             <img src={image.image_url} alt='images' />
+                            { image.user_id === currentUserId && (
+                                <DeleteImageModal businessId={businessId} imageId={image.id}/> )}
                         </div>
                     )
                 })}
