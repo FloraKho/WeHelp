@@ -3,4 +3,23 @@
     flex-direction: row;
     justify-content: space-between;
     border: 1px solid black;
+    width: 100%;
+    height: 50px;
+    padding-top: 15px;
+}
+
+.search-bar-drop-down-menu{
+    position: absolute;
+    background-color: white;
+    width: 50vw;
+    font-size: small;
+    border-radius: 5px;
+    padding: 5px 0 5px 0;
+    box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
+    border: 1px solid grey;
+}
+
+.search-bar-input{
+    width: 50vw;
+    height: 30px;
 }

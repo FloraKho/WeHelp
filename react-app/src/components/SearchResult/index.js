@@ -14,7 +14,7 @@ const SearchResult = ({businesses}) => {
     const bizArr = Object.values(businesses)
     const imagesArr = Object.values(useSelector (state => state.imageState));
     const filter_biz = bizArr.filter(business => business.name.toLowerCase().includes(searchArr[0].toLowerCase()))
-    console.log("THIS IS FILTERED BIZ", filter_biz)
+    // console.log("THIS IS FILTERED BIZ", filter_biz)
 
     useEffect(() => {
         dispatch(getAllImagesThunk())
@@ -23,7 +23,11 @@ const SearchResult = ({businesses}) => {
     const findProfilePic = (number) => {
         return imagesArr.filter(image => image.business_id == number)[0]
     }
-
+    if(filter_biz.length === 0){
+        return (
+            <h1>Oops! No Restuarant Found!!!</h1>
+        )
+    }
     return (
         <div className='all-businesses-page-container'>
             <div>
@@ -32,7 +36,7 @@ const SearchResult = ({businesses}) => {
             <div>
                 { filter_biz.map(business => (
                     <NavLink key={business.id}
-                        to={`businesses/${business.id}`}
+                        to={`/businesses/${business.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='individual-business-listing-container'>
                         <div className='cat-image-container' style={{ backgroundImage: `url(${findProfilePic(business.id)?.image_url})` }}></div>
