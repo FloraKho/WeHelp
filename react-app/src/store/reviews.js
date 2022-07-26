@@ -116,7 +116,7 @@ export const getSingleReviewThunk = (reviewId) => async (dispatch) => {
 }
 
 
-const initialState = { reviews: {} };
+const initialState = {};
 
 const reviewReducer = (state = initialState, action) => {
     switch (action.type) {

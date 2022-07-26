@@ -16,7 +16,7 @@ const HomePage = ({ businesses, categories }) => {
     const bizArr = Object.values(businesses).slice(0, 6) //this will be the top five resturants that have the highest ratings
     const dispatch = useDispatch();
     const images = useSelector(state => state.imageState);
-    const reviews = Object.values(useSelector(state => state.reviewState.reviews))
+    const reviews = Object.values(useSelector(state => state.reviewState))
     const imageArr = Object.values(images);
     const categoriesArr = Object.values(categories).map(category => category.name)
 
