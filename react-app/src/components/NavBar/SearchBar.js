@@ -1,11 +1,8 @@
 import { useState } from "react"
 
 const SearchBar = ({businesses}) => {
-    // console.log("THIS IS NAVI BAR BUSINESSES",businesses)
     const [query, setQuery] = useState("")
-    console.log("SEARCH BAR QUERY", query)
     const businessesArr = Object.values(businesses)
-
 
     return(
         <div>
@@ -15,20 +12,20 @@ const SearchBar = ({businesses}) => {
                 value={query}
                 onChange={event => setQuery(event.target.value)}
             />
-            {businessesArr.filter(business => {
+            { query && businessesArr.filter(business => {
                     if (query === "") {
                     //if query is empty
-                    return business;
+                        return business;
                     } else if (business.name.toLowerCase().includes(query.toLowerCase())) {
                     //returns filtered array
-                    return business;
+                        return business;
                     }
-                }).map((business, index) => (
-                    <div key={index}>
-                        <p>{business.name}</p>
-                    </div>
+                    }).map((business, index) => (
+                        <div key={index}>
+                            <p>{business.name}</p>
+                        </div>
+                        )
                     )
-                )
             }       
             
             <button>Search</button>
