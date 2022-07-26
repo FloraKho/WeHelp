@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
+import HomePage from './components/HomePage/HomePage';
+import Footer from './components/Footer'
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
@@ -62,7 +64,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <HomePage businesses={businesses} categories={categories}/>
         </ProtectedRoute>
         <ProtectedRoute path='/post-business' exact={true}>
           <CreateBusinessPage categories={categories} />
@@ -77,6 +79,7 @@ function App() {
           <ReviewForm />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -15,7 +15,10 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-
+@business_image_routes.route("/all")
+def get_all_images():
+    images = Business_Image.query.all()
+    return {"Business_Images": [image.to_dict() for image in images]}
 
 @business_image_routes.route("/biz/<int:id>")
 def get_biz_images(id):

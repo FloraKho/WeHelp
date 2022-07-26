@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams,Redirect, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
@@ -21,7 +21,7 @@ function BusinessInfo() {
     const [isLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([])
 
-    useEffect (()=>{
+    useEffect (()=> {
         dispatch(getReviewThunk(parseInt(businessId)))
         .then(()=>dispatch(getBusinessThunk(parseInt(businessId))))
         .then(()=>dispatch(getBizImagesThunk(parseInt(businessId))))
