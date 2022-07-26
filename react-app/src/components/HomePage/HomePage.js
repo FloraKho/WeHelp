@@ -7,7 +7,8 @@ import starFilled from './starFilled.png'
 import starEmpty from './starEmpty.png'
 import fiveFilled from './fiveStarsFilled.png'
 import fiveEmpty from './fiveStarsEmpty.png'
-import ReactStars from "react-rating-stars-component";
+import { NavLink } from "react-router-dom";
+// import ReactStars from "react-rating-stars-component";
 
 
 
@@ -40,7 +41,6 @@ const HomePage = ({businesses, categories}) => {
         return percent * 100
     }
 
-    console.log(getPercentage(1))
 
     return (
         <>
@@ -50,27 +50,29 @@ const HomePage = ({businesses, categories}) => {
                 <h2>Recommend For you</h2>
                 <div className="business_card_container">
                     {bizArr.map(business => (
-                        <div className="business_card">
-                            <div className="business_card_left" style={{backgroundImage:`url(${findProfilePic(business.id)?.image_url})`}}></div>
-                            <div className="business_card_right">
-                                <p className="business_name">{business.name}</p>
-                                {/* <p>{getAverage(business.id)}</p>  */}
-                                <div className="fiveEmpty">
-                                    <img src={fiveEmpty}/>
+                        <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/businesses/${business.id}`}>
+                            <div className="business_card">
+                                <div className="business_card_left" style={{backgroundImage:`url(${findProfilePic(business.id)?.image_url})`}}></div>
+                                <div className="business_card_right">
+                                    <p className="business_name">{business.name}</p>
+                                    {/* <p>{getAverage(business.id)}</p>  */}
+                                    <div className="fiveEmpty">
+                                        <img src={fiveEmpty}/>
+                                    </div>
+                                    <div className="fiveFilled">
+                                        <img src={fiveFilled} style={{right: `${getPercentage(business.id)}%`}}/>
+                                    </div>
+                                    {/* <ReactStars
+                                        count={5}
+                                        size={24}
+                                        emptyIcon={<img src={starEmpty}/>}
+                                        fullIcon={<img src={starFilled}/>}
+                                        edit={false}
+                                    /> */}
+                                    <p className="business_description">{business.description.slice(0, 100)}...</p>
                                 </div>
-                                <div className="fiveFilled">
-                                    <img src={fiveFilled} style={{right: `${getPercentage(business.id)}%`}}/>
-                                </div>
-                                {/* <ReactStars
-                                    count={5}
-                                    size={24}
-                                    emptyIcon={<img src={starEmpty}/>}
-                                    fullIcon={<img src={starFilled}/>}
-                                    edit={false}
-                                 /> */}
-                                <p className="business_description">{business.description.slice(0, 100)}...</p>
-                            </div>
-                        </div>
+                            </div>                     
+                        </NavLink>
                     ))}
                 </div>
             </div>

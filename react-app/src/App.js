@@ -5,7 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import HomePage from './components/HomePage/HomePage';
 import Footer from './components/Footer'
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import BusinessInfo from './components/BusinessInfo/BusinessInfo';
@@ -32,6 +32,7 @@ function App() {
     dispatch(getAllCategoryThunk())
     dispatch(getAllBusinessesThunk())
   },[])
+
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
@@ -46,39 +47,41 @@ function App() {
   
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path='/businesses' exact={true} >
-          <AllBusinessesPage businesses={businesses}/>
-        </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <HomePage businesses={businesses} categories={categories}/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/post-business' exact={true}>
-          <CreateBusinessPage categories={categories} />
-        </ProtectedRoute>
-        <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
-          <UpdateBusinessPage businesses={businesses} categories={categories} />
-        </ProtectedRoute>
-        <Route path='/businesses/:businessId' exact={true}>
-          <BusinessInfo />
-        </Route>
-        <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
-          <ReviewForm />
-        </ProtectedRoute>
-      </Switch>
+      <NavBar loaded={loaded} businesses={businesses} />
+      {loaded && (
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route path='/businesses' exact={true} >
+            <AllBusinessesPage businesses={businesses}/>
+          </Route>
+          <ProtectedRoute path='/users' exact={true} >
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path='/post-business' exact={true}>
+            <CreateBusinessPage categories={categories} />
+          </ProtectedRoute>
+          <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
+            <UpdateBusinessPage businesses={businesses} categories={categories} />
+          </ProtectedRoute>
+          <Route path='/businesses/:businessId' exact={true}>
+            <BusinessInfo />
+          </Route>
+          <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
+            <ReviewForm />
+          </ProtectedRoute>
+          <Route path='/' exact={true} >
+            <HomePage businesses={businesses} categories={categories}/>
+          </Route>
+        </Switch>
+        )}
       <Footer />
     </BrowserRouter>
   );
