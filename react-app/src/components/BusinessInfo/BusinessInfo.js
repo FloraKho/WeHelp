@@ -48,7 +48,7 @@ function BusinessInfo() {
     }
     
     const handleAddReview = () => {
-        return history.push(`/businsses/${businessId}/post-review`)
+        return history.push(`/businesses/${businessId}/post-review`)
     }
     return(
         isLoaded&&

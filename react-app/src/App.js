@@ -75,7 +75,7 @@ function App() {
         <Route path='/businesses/:businessId' exact={true}>
           <BusinessInfo />
         </Route>
-        <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
+        <ProtectedRoute path='/businesses/:businessId/post-review' exact={true}>
           <ReviewForm />
         </ProtectedRoute>
       </Switch>
