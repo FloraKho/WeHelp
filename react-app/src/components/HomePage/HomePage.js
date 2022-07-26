@@ -47,9 +47,9 @@ const HomePage = ({businesses, categories}) => {
                             <div className="business_card_left" style={{backgroundImage:`url(${findProfilePic(business.id)?.image_url})`}}></div>
                             <div className="business_card_right">
                                 <p className="business_name">{business.name}</p>
-                                {/* <p>{getAverage(business.id)}</p> */} 
+                                {/* <p>{getAverage(business.id)}</p>  */}
                                 <div className="fiveEmpty">
-                                    <img src={fiveEmpty} style={{width: "50%"}}/>
+                                    <img src={fiveEmpty}/>
                                 </div>
                                 <div className="fiveFilled">
                                     <img src={fiveFilled}/>
