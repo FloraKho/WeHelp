@@ -82,11 +82,10 @@ export const getAllReviewThunk = () => async (dispatch) => {
 
 //U
 export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
-    const { body } = review;
     const response = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ body })
+        body: JSON.stringify(review)
     })
     if (response.ok) {
         const review = await response.json()

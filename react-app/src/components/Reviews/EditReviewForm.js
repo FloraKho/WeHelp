@@ -28,7 +28,10 @@ const EditReviewForm = () => {
         e.preventDefault()
         const payload = ({
             rating: newRating,
-            content: newContent
+            content: newContent,
+            user_id: currentReview.user_id,
+            business_id: parseInt(currentReview.business_id)
+
         })
         await dispatch(updateReviewThunk(parseInt(currentReviewId), payload))
         history.push(`/businesses/${businessId}`);
