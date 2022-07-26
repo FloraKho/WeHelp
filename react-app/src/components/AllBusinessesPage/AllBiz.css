@@ -6,3 +6,12 @@
     display: flex;
     width:70vw
 }
+
+.cat-image-container {
+    height: 200px;
+    min-width: 200px;
+    background-position: center center;
+    background-size: auto 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}

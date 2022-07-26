@@ -7,35 +7,32 @@ import { getBizImagesThunk } from '../../store/images'
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
 import './BusinessInfo.css'
 
-
-
-function BusinessInfo() {
+function BusinessInfo({ businesses }) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {businessId} = useParams();
+    const { businessId } = useParams();
     const reviews = useSelector(state => state.reviewState);
-    const images = useSelector (state => state.imageState);
-    const businessInfo = useSelector (state => state.bizState);
-    const singleBusiness = businessInfo[parseInt(businessId)];
+    const images = useSelector(state => state.imageState);
+    const imagesArr = Object.values(images);
+    const singleBusiness = businesses[parseInt(businessId)];
     const currentUser = useSelector(state => state.session.user);
-    const currentUserId = currentUser.id;
 
     const [isLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([])
 
-    useEffect (()=> {
+    useEffect(() => {
         dispatch(getReviewThunk(parseInt(businessId)))
-        .then(()=>dispatch(getBusinessThunk(parseInt(businessId))))
-        .then(()=>dispatch(getBizImagesThunk(parseInt(businessId))))
-        .then(()=>dispatch(getReviewThunk(parseInt(businessId))))
-        .then(()=>setLoaded(true))
-    },[])
+            .then(() => dispatch(getBusinessThunk(parseInt(businessId))))
+            .then(() => dispatch(getBizImagesThunk(parseInt(businessId))))
+            .then(() => dispatch(getReviewThunk(parseInt(businessId))))
+            .then(() => setLoaded(true))
+    }, [businessId])
 
     useEffect(() => {
         async function fetchData() {
-          const response = await fetch('/api/users/');
-          const responseData = await response.json();
-          setUsers(responseData.users);
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setUsers(responseData.users);
         }
         fetchData();
     }, []);
@@ -48,27 +45,51 @@ function BusinessInfo() {
     const handleEdit = () => {
         return history.push(`/businesses/${businessId}/edit`)
     }
-    
 
-    
     const handleAddReview = () => {
         return history.push(`/businesses/${businessId}/post-review`)
     }
-    return(
-        isLoaded&&
+
+    const handleAddPhoto = () => {
+        return history.push(`/businesses/${businessId}/image-upload`)
+    }
+
+    const handleSeePhotos = () => {
+        return history.push(`/businesses/${businessId}/images`)
+    }
+
+
+    return (
+        isLoaded &&
         <div>
             {Object.values(images).map(({ id, image_url }) => (
                 <div className='background' key={id}>
-                    <div className="image_container" style={{backgroundImage:`url(${image_url})`}}></div>
+                    <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
                 </div>
             ))}
+
+            <div>
+                <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
+            </div>
+
+            <div>
+                <button onClick={handleAddReview}>
+                    Add Review
+                </button>
+            </div>
+            <div>
+                <button onClick={handleAddPhoto}>
+                    Add Photo
+                </button>
+            </div>
+                
             <div>
                 <button onClick={handleEdit}>Edit</button>
             </div>
             <div>
-                <DeleteBusiness businessId={businessId}/>
+                <DeleteBusiness businessId={businessId} />
             </div>
-            <h1>{singleBusiness?.name }</h1>
+            <h1>{singleBusiness?.name}</h1>
             <p><span>· {singleBusiness?.price_range} ·</span>{singleBusiness?.description}</p>
             <h2>Location & Hours</h2>
             <p>Operation Hours: {singleBusiness?.business_hours}</p>
@@ -76,45 +97,48 @@ function BusinessInfo() {
             <p>Phone: {singleBusiness?.phone}</p>
             <p>Website: {singleBusiness?.website}</p>
             <h2>Recommended Reviews</h2>
-            <div>
-                <button onClick={handleAddReview}>
-                    Add Review
-                </button>
-            </div>
+            {currentUser && (
+                <div>
+                    <button onClick={handleAddReview}>
+                        Add Review
+                    </button>
+                </div>
+            )}
+
             {Object.values(reviews).map(({ id, content, rating, user_id }) => (
                 <div key={id}>
                     <p>{findUserName(user_id)}</p>
                     <p>{rating}</p>
                     <p>{content}</p>
-                    { currentUserId==user_id
-                    ?
-                        <div>                            
+                    {currentUser?.id == user_id
+                        ?
+                        <div>
                             <button
-                            onClick = {
-                                async (e) => {
-                                    e. preventDefault();
-                                    await history.push(`/edit-review/${id}`);
+                                onClick={
+                                    async (e) => {
+                                        e.preventDefault();
+                                        await history.push(`/edit-review/${id}`);
+                                    }
                                 }
-                            }
-                            businessId = {businessId}>
+                                businessId={businessId}>
                                 Edit Review
                             </button>
                             <button
-                            onClick = {
-                                async (e) => {
-                                    e.preventDefault();
-                                    await dispatch(deleteReviewThunk(id))
-                                    .then(()=>dispatch(getReviewThunk(parseInt(businessId))));   
-                                }
-                            }>
+                                onClick={
+                                    async (e) => {
+                                        e.preventDefault();
+                                        await dispatch(deleteReviewThunk(id))
+                                            .then(() => dispatch(getReviewThunk(parseInt(businessId))));
+                                    }
+                                }>
                                 Delete Review
                             </button>
                         </div>
-                    : <div></div>
+                        : <div></div>
                     }
                 </div>
             ))}
-            
+
         </div>
     )
 }

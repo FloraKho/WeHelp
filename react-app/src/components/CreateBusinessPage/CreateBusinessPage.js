@@ -76,7 +76,7 @@ function CreateBusinessPage({categories}) {
         if(newbiz && !errors.length){
             reset();
             setHasSubmitted(false)
-            history.push(`/businesses/${newbiz.id}`)
+            history.push(`/businesses/${newbiz.id}/image-upload`)
         }
     }
 
@@ -272,7 +272,7 @@ function CreateBusinessPage({categories}) {
                     </div>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Next</button>
                     {/* <button type='button' onClick={() => history.goBack()}>Cancel</button> */}
                 </div>
             </form>

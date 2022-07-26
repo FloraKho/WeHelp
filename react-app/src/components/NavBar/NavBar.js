@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css'
 import SearchBar from './SearchBar';
+import logo from './logo.png'
 
 const NavBar = ({businesses}) => {
   
@@ -13,9 +14,10 @@ const NavBar = ({businesses}) => {
   let sessionLinks;
   if(sessionUser){
     sessionLinks=(
-      <nav>
+      <nav className='navi-bar-container'>
         <NavLink to='/' exact={true} activeClassName='active'>
-          Home
+          <img src={logo} alt='logo' width="100px" height="30px">
+          </img>
         </NavLink>
         <SearchBar businesses={businesses} />
         <NavLink to='/businesses' exact={true} activeClassName='active'>
@@ -29,7 +31,7 @@ const NavBar = ({businesses}) => {
     )
   }else{
     sessionLinks = (
-      <nav>
+      <nav className='navi-bar-container'>
             <NavLink to='/' exact={true} activeClassName='active'>
               Home
             </NavLink>
@@ -48,7 +50,7 @@ const NavBar = ({businesses}) => {
   }
 
   return (
-    <div className='navi-bar-container'>
+    <div >
       {sessionLinks}
     </div>
   );

@@ -9,6 +9,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import BusinessInfo from './components/BusinessInfo/BusinessInfo';
+import SearchResult from './components/SearchResult';
 import User from './components/User';
 import Category from './components/Category';
 import { authenticate } from './store/session';
@@ -20,6 +21,8 @@ import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPa
 import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
 import ReviewForm from './components/Reviews/ReviewForm';
 import EditReviewForm from './components/Reviews/EditReviewForm'
+import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
+import ImagesPage from './components/ImagesPage/ImagesPage';
 
 
 function App() {
@@ -77,7 +80,7 @@ function App() {
             <UpdateBusinessPage businesses={businesses} categories={categories} />
           </ProtectedRoute>
           <Route path='/businesses/:businessId' exact={true}>
-            <BusinessInfo />
+            <BusinessInfo businesses={businesses}/>
           </Route>
           <ProtectedRoute path='/businesses/:businessId/post-review' exact={true}>
             <ReviewForm />
@@ -85,8 +88,17 @@ function App() {
           <ProtectedRoute path='/edit-review/:currentReviewId' exact={true}>
             <EditReviewForm />
           </ProtectedRoute>
+          <Route path='/search/:searchterms'>
+            <SearchResult businesses={businesses}/>
+          </Route>
           <Route path='/' exact={true} >
             <HomePage businesses={businesses} categories={categories}/>
+          </Route>
+          <ProtectedRoute path='/businesses/:businessId/image-upload' exact={true}>
+            <ImageUploadPage />
+          </ProtectedRoute>
+          <Route path='/businesses/:businessId/images' exact={true}>
+            <ImagesPage businesses={businesses} />
           </Route>
         </Switch>
         )}

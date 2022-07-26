@@ -33,12 +33,19 @@ const getAllImages = (images) => {
 
 //thunk
 export const addImageThunk = (image) => async (dispatch) => {
+    const { user_id, business_id, image_url} = image;
+    const formData = new FormData();
+    formData.append("user_id", user_id);
+    formData.append("business_id", business_id);
+    formData.append("image_url", image_url);
+
+
     const response = await fetch(`/api/business_images`, {
         method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(image)
+        // headers: {
+        //     'Content-Type': "multipart/form-data",
+        // },
+        body: formData
     });
 
     if (response.ok) {

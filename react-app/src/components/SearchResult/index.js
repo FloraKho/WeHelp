@@ -1,16 +1,20 @@
-import { NavLink, useParams } from 'react-router-dom';
+import React from "react";
+import { NavLink, useParams } from "react-router-dom";
+import '../AllBusinessesPage/AllBiz.css'
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
-import { getAllBusinessesThunk } from '../../store/businesses';
 import { getAllImagesThunk } from '../../store/images';
-import './Category.css'
+import { getAllBusinessesThunk } from '../../store/businesses';
 
-const Category = ({businesses}) => {
+
+const SearchResult = ({businesses}) => {
     const dispatch = useDispatch();
+    const {searchterms} = useParams()
+    const searchArr = searchterms.split(' ')
     const bizArr = Object.values(businesses)
     const imagesArr = Object.values(useSelector (state => state.imageState));
-    const {categoryId} = useParams()
-    const filter_biz = bizArr.filter(business => business.category_id == categoryId)
+    const filter_biz = bizArr.filter(business => business.name.toLowerCase().includes(searchArr[0].toLowerCase()))
+    // console.log("THIS IS FILTERED BIZ", filter_biz)
 
     useEffect(() => {
         dispatch(getAllImagesThunk())
@@ -19,8 +23,12 @@ const Category = ({businesses}) => {
     const findProfilePic = (number) => {
         return imagesArr.filter(image => image.business_id == number)[0]
     }
-    
-    return imagesArr && (
+    if(filter_biz.length === 0){
+        return (
+            <h1>Oops! No Restuarant Found!!!</h1>
+        )
+    }
+    return (
         <div className='all-businesses-page-container'>
             <div>
                 <h1>FILTER BAR放这</h1>
@@ -28,10 +36,10 @@ const Category = ({businesses}) => {
             <div>
                 { filter_biz.map(business => (
                     <NavLink key={business.id}
-                        to={`businesses/${business.id}`}
+                        to={`/businesses/${business.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
                         <div className='individual-business-listing-container'>
-                            <div className='cat-image-container' style={{ backgroundImage: `url(${findProfilePic(business.id)?.image_url})` }}></div>
+                        <div className='cat-image-container' style={{ backgroundImage: `url(${findProfilePic(business.id)?.image_url})` }}></div>
                             <div>
                                 <p>{business.name}</p>
                                 <p>{'这里放category'}</p>
@@ -49,8 +57,8 @@ const Category = ({businesses}) => {
                 <h1>GOOGLE MAP 放这</h1>
             </div>
         </div>
-    );
+    )
 }
 
+export default SearchResult;
 
-export default Category
