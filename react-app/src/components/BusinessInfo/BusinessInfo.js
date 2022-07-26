@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import { getReviewThunk } from '../../store/reviews';
+import { deleteReviewThunk, getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
@@ -13,10 +13,12 @@ function BusinessInfo() {
     const history = useHistory();
     const dispatch = useDispatch();
     const {businessId} = useParams();
-    const reviews = useSelector(state => state.reviewState.reviews);
+    const reviews = useSelector(state => state.reviewState);
     const images = useSelector (state => state.imageState);
     const businessInfo = useSelector (state => state.bizState);
     const singleBusiness = businessInfo[parseInt(businessId)];
+    const currentUser = useSelector(state => state.session.user);
+    const currentUserId = currentUser.id;
 
     const [isLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([])
@@ -71,7 +73,7 @@ function BusinessInfo() {
             <p>Location: {singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
             <p>Phone: {singleBusiness?.phone}</p>
             <p>Website: {singleBusiness?.website}</p>
-            <h2>Recommened Reviews</h2>
+            <h2>Recommended Reviews</h2>
             <div>
                 <button onClick={handleAddReview}>
                     Add Review
@@ -82,6 +84,28 @@ function BusinessInfo() {
                     <p>{findUserName(user_id)}</p>
                     <p>{rating}</p>
                     <p>{content}</p>
+                    { currentUserId==user_id
+                    ?
+                        <div>                            
+                            <button
+                            onClick = {
+                                history.push()
+                            }>
+                                Edit Review
+                            </button>
+                            <button
+                            onClick = {
+                                async (e) => {
+                                    e.preventDefault();
+                                    await dispatch(deleteReviewThunk(id))
+                                    .then(()=>dispatch(getReviewThunk(parseInt(businessId))));   
+                                }
+                            }>
+                                Delete Review
+                            </button>
+                        </div>
+                    : <div></div>
+                    }
                 </div>
             ))}
             

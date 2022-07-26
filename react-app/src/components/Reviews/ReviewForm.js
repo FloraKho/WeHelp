@@ -33,11 +33,12 @@ const ReviewForm = () => {
         await 
         dispatch(addReviewThunk(payload))
         .then(()=>dispatch(getReviewThunk(payload)));
-        
+
         history.push(`/businesses/${businessId}`);
            
     }
 
+    //
     return (
         <div>
             <h1>{singleBusiness?.name}</h1>
