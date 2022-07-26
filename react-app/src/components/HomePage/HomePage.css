@@ -63,6 +63,7 @@
     font-size: 0.9rem;
     position: relative;
     bottom: 35px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .fiveFilled {
@@ -101,6 +102,10 @@
     border: 1px solid #d1d5db;
     margin: 30px;
     text-align: center;
+}
+
+.single_category p {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .single_category:hover {
