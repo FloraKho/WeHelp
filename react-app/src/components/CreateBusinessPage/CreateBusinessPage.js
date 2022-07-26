@@ -272,7 +272,7 @@ function CreateBusinessPage({categories}) {
                     </div>
                 </div>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Next</button>
                     {/* <button type='button' onClick={() => history.goBack()}>Cancel</button> */}
                 </div>
             </form>

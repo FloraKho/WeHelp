@@ -35,12 +35,13 @@ function UploadModal({businessId}){
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Select A Image</button>
+                <button onClick={() => setShowModal(true)}>Upload</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>
                         <h2>Select Your Business Image Here!</h2>
+                        <p>Ideally, 4 images are perfect for your business listing</p>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="file"
