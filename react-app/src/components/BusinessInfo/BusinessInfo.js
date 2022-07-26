@@ -13,6 +13,7 @@ function BusinessInfo({ businesses }) {
     const { businessId } = useParams();
     const reviews = useSelector(state => state.reviewState);
     const images = useSelector(state => state.imageState);
+    const imagesArr = Object.values(images);
     const singleBusiness = businesses[parseInt(businessId)];
     const currentUser = useSelector(state => state.session.user);
 
@@ -49,6 +50,15 @@ function BusinessInfo({ businesses }) {
         return history.push(`/businesses/${businessId}/post-review`)
     }
 
+    const handleAddPhoto = () => {
+        return history.push(`/businesses/${businessId}/image-upload`)
+    }
+
+    const handleSeePhotos = () => {
+        return history.push(`/businesses/${businessId}/images`)
+    }
+
+
     return (
         isLoaded &&
         <div>
@@ -57,6 +67,22 @@ function BusinessInfo({ businesses }) {
                     <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
                 </div>
             ))}
+
+            <div>
+                <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
+            </div>
+
+            <div>
+                <button onClick={handleAddReview}>
+                    Add Review
+                </button>
+            </div>
+            <div>
+                <button onClick={handleAddPhoto}>
+                    Add Photo
+                </button>
+            </div>
+                
             <div>
                 <button onClick={handleEdit}>Edit</button>
             </div>

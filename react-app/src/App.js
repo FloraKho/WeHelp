@@ -21,6 +21,8 @@ import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPa
 import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
 import ReviewForm from './components/Reviews/ReviewForm';
 import EditReviewForm from './components/Reviews/EditReviewForm'
+import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
+import ImagesPage from './components/ImagesPage/ImagesPage';
 
 
 function App() {
@@ -91,6 +93,12 @@ function App() {
           </Route>
           <Route path='/' exact={true} >
             <HomePage businesses={businesses} categories={categories}/>
+          </Route>
+          <ProtectedRoute path='/businesses/:businessId/image-upload' exact={true}>
+            <ImageUploadPage />
+          </ProtectedRoute>
+          <Route path='/businesses/:businessId/images' exact={true}>
+            <ImagesPage businesses={businesses} />
           </Route>
         </Switch>
         )}

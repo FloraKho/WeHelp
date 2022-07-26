@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
 
     businesses = db.relationship('Business', back_populates='user')
     reviews = db.relationship('Review', back_populates='user')
+    business_images = db.relationship('Business_Image', back_populates='user')
 
     @property
     def password(self):
