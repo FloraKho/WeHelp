@@ -10,6 +10,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import BusinessInfo from './components/BusinessInfo/BusinessInfo';
 import User from './components/User';
+import Category from './components/Category';
 import { authenticate } from './store/session';
 import AllBusinessesPage from './components/AllBusinessesPage'
 import { getAllCategoryThunk } from './store/categories';
@@ -56,8 +57,11 @@ function App() {
           <Route path='/sign-up' exact={true}>
             <SignUpForm />
           </Route>
+          <Route path='/category/:categoryId' exact={true}>
+            <Category businesses={businesses} />
+          </Route>
           <Route path='/businesses' exact={true} >
-            <AllBusinessesPage businesses={businesses}/>
+            <AllBusinessesPage businesses={businesses} />
           </Route>
           <ProtectedRoute path='/users' exact={true} >
             <UsersList/>

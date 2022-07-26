@@ -1,12 +1,13 @@
-import { NavLink} from 'react-router-dom';
-import './AllBiz.css'
+import { NavLink, useParams } from 'react-router-dom';
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllBusinessesThunk } from '../../store/businesses';
 
-const AllBusinessesPage = ({businesses}) => {
+const Category = ({businesses}) => {
     const bizArr = Object.values(businesses)
     const imagesArr = Object.values(useSelector (state => state.imageState));
+    const {categoryId} = useParams()
+    const filter_biz = bizArr.filter(business => business.category_id == categoryId)
     
     return (
         <div className='all-businesses-page-container'>
@@ -14,7 +15,7 @@ const AllBusinessesPage = ({businesses}) => {
                 <h1>FILTER BAR放这</h1>
             </div>
             <div>
-                { bizArr.map(business => (
+                { filter_biz.map(business => (
                     <NavLink key={business.id}
                         to={`businesses/${business.id}`}
                         style={{ textDecoration: 'none', color: 'black' }}>
@@ -49,4 +50,4 @@ const AllBusinessesPage = ({businesses}) => {
 }
 
 
-export default AllBusinessesPage
+export default Category
