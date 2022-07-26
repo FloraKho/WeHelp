@@ -18,6 +18,7 @@ import { getAllBusinessesThunk } from './store/businesses';
 import CreateBusinessPage from './components/CreateBusinessPage/CreateBusinessPage';
 import UpdateBusinessPage from './components/UpdateBusinessPage/UpdateBusinessPage';
 import ReviewForm from './components/Reviews/ReviewForm';
+import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
 
 
 function App() {
@@ -77,6 +78,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/businesses/:businessId/postReview' exact={true}>
           <ReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/businesses/:businessId/image-upload' exact={true}>
+          <ImageUploadPage />
         </ProtectedRoute>
       </Switch>
       <Footer />

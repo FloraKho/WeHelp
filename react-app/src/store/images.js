@@ -41,9 +41,9 @@ export const addImageThunk = (image) => async (dispatch) => {
 
     const response = await fetch(`/api/business_images`, {
         method: "POST",
-        headers: {
-            'Content-Type': "multipart/form-data",
-        },
+        // headers: {
+        //     'Content-Type': "multipart/form-data",
+        // },
         body: formData
     });
 

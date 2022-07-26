@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import db, Business_Image
@@ -29,48 +30,91 @@ def get_biz_images(id):
     return { "Business_Images": [image.to_dict() for image in images]}
 
 
-# @business_image_routes.route("", methods=["POST"])
-# # @login_required
-# def add_business_image():
-#     form = AddImageForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         image = Business_Image (
-#             business_id=form.data["business_id"],
-#             image_url=form.data["image_url"]
-#         )
-#         db.session.add(image)
-#         db.session.commit()
-#         return image.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
 @business_image_routes.route("", methods=["POST"])
-def upload_image(id):
+# @login_required
+def add_business_image():
+    form = AddImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        if 'image_url' in request.files:
+            image = request.files["image_url"]
 
-    if "image" not in request.files:
-        return { "errors": "image required" }, 400
-    image = request.files["image"]
+            if not allowed_file(image.filename):
+                return { "errors": "file type not permitted" }, 400
+            
+            image.filename = get_unique_filename(image.filename)
 
-    if not allowed_file(image.filename):
-        return { "errors": "file type not permitted" }, 400
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+
+            image_url = upload["url"]
+         
+        image = Business_Image (
+            business_id=form.data["business_id"],
+            image_url=image_url
+        )
+        db.session.add(image)
+        db.session.commit()
+        return image.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# @business_image_routes.route("/biz/<int:id>", methods=["POST"])
+# # @login_required
+# def add_business_image(id):
+#     if 'image_url' in request.files:
+#         image = request.files["image_url"]
+
+#         if not allowed_file(image.filename):
+#             return { "errors": "file type not permitted" }, 400
+            
+#         image.filename = get_unique_filename(image.filename)
+
+#         upload = upload_file_to_s3(image)
+
+#         if "url" not in upload:
+#             return upload, 400
+
+#         image_url = upload["url"]
+            
+#     image = Business_Image (
+#         business_id=id,
+#         image_url=image_url
+#     )
+#     db.session.add(image)
+#     db.session.commit()
+#     return image.to_dict()
+    # return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# @business_image_routes.route("/biz/<int:id>", methods=["POST"])
+# def upload_image(id):
+
+#     if "image" not in request.files:
+#         return { "errors": "image required" }, 400
+#     image = request.files["image"]
+
+#     if not allowed_file(image.filename):
+#         return { "errors": "file type not permitted" }, 400
         
-    image.filename = get_unique_filename(image.filename)
+#     image.filename = get_unique_filename(image.filename)
 
-    upload = upload_file_to_s3(image)
+#     upload = upload_file_to_s3(image)
 
-    if "url" not in upload:
-        return upload, 400
+#     if "url" not in upload:
+#         return upload, 400
         
-    url = upload["url"]
+#     url = upload["url"]
 
-    new_image = Business_Image(
-        business_id=id,
-        image_url=url
-    )
-    db.session.add(new_image)
-    db.session.commit()
+#     new_image = Business_Image(
+#         business_id=id,
+#         image_url=url
+#     )
+#     db.session.add(new_image)
+#     db.session.commit()
 
-    return {"Business_Image": new_image.to_dict()}
+#     return {"Business_Image": new_image.to_dict()}
 
         
 

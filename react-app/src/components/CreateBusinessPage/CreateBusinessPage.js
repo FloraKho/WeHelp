@@ -76,7 +76,7 @@ function CreateBusinessPage({categories}) {
         if(newbiz && !errors.length){
             reset();
             setHasSubmitted(false)
-            history.push(`/businesses/${newbiz.id}`)
+            history.push(`/businesses/${newbiz.id}/image-upload`)
         }
     }
 
