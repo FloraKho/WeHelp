@@ -31,9 +31,16 @@ const HomePage = ({businesses, categories}) => {
     const getAverage = (businessId) => {
         const currentReview = reviews.filter(review => review.business_id == businessId)
         const ratings = currentReview.map(review => review.rating)
-        const averageRating = (ratings.reduce((a,b) => a + b, 0)/ratings.length).toFixed(2)
-        return Number(averageRating)
+        const averageRating = (ratings.reduce((a,b) => a + b, 0)/ratings.length)
+        return Math.floor(Number(averageRating))
     }
+
+    const getPercentage = (businessId) => {
+        let percent = (1 - getAverage(businessId)/5).toFixed(2)
+        return percent * 100
+    }
+
+    console.log(getPercentage(1))
 
     return (
         <>
@@ -52,7 +59,7 @@ const HomePage = ({businesses, categories}) => {
                                     <img src={fiveEmpty}/>
                                 </div>
                                 <div className="fiveFilled">
-                                    <img src={fiveFilled}/>
+                                    <img src={fiveFilled} style={{right: `${getPercentage(business.id)}%`}}/>
                                 </div>
                                 {/* <ReactStars
                                     count={5}
