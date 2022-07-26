@@ -44,7 +44,7 @@ def get_biz_images(id):
 #         return image.to_dict()
 #     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@business_image_routes.route("/biz/<int:id>", methods=["POST"])
+@business_image_routes.route("", methods=["POST"])
 def upload_image(id):
 
     if "image" not in request.files:
