@@ -87,7 +87,7 @@ function App() {
             <EditReviewForm />
           </ProtectedRoute>
           <Route path='/search/:searchterms'>
-            <SearchResult />
+            <SearchResult businesses={businesses}/>
           </Route>
           <Route path='/' exact={true} >
             <HomePage businesses={businesses} categories={categories}/>
