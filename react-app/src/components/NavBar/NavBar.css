@@ -54,6 +54,11 @@
     align-items: center;
 }
 
+#search-button-container:hover {
+    cursor: pointer;
+    background-color: #BF2519;
+}
+
 #search-button {
     color: white;
 }
