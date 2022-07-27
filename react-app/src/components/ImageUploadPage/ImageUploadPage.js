@@ -29,7 +29,7 @@ function ImageUploadPage({businesses}) {
         let errors = [];
         if (photosArr.length === 0 && businessOwner) errors.push("Business owner needs to upload at least one image!");
         setErrors(errors);
-    }, [photosArr, businessOwner])
+    }, [photosArr.length, businessOwner])
 
     useEffect(() => {
         dispatch(getBizImagesThunk(parseInt(businessId)))
