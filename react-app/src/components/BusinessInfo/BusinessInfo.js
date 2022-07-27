@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteReviewThunk, getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
+import ImagesGalleryModal from '../ImagesGalleryModal';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
 import './BusinessInfo.css'
 
@@ -62,14 +63,16 @@ function BusinessInfo({ businesses }) {
     return (
         isLoaded &&
         <div>
-            {Object.values(images).map(({ id, image_url }) => (
-                <div className='background' key={id}>
-                    <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
-                </div>
-            ))}
+            <div className='all-imgs-container'>
+                {imagesArr.map(({ id, image_url }) => (
+                    <div key={id}>
+                        <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
+                    </div>
+                ))}
+            </div>
 
             <div>
-                <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
+                <ImagesGalleryModal imagesArr={imagesArr}/>
             </div>
 
             <div>

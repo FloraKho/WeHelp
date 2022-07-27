@@ -1,4 +1,5 @@
 .image_container {
+
     height: 300px;
     width: 400px;
     background-position: center center;
@@ -6,7 +7,7 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
-.background {
-    width: 1600px;
+.all-imgs-container{
+    display: flex;
 }
+
