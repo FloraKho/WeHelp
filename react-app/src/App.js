@@ -53,8 +53,8 @@ function App() {
   
   return (
     <BrowserRouter>
+      <Wrapper apiKey="AIzaSyCeZffmZE53kHWs1suvpGw-2gzAdoPmo2I" libraries={["places"]}>
       <NavBar loaded={loaded} businesses={businesses} />
-      <Wrapper>
       {loaded && (
         <Switch>
           <Route path='/login' exact={true}>
@@ -104,8 +104,8 @@ function App() {
           </Route>
         </Switch>
         )}
-      </Wrapper>
       <Footer />
+      </Wrapper>
     </BrowserRouter>
     
   );
