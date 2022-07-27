@@ -97,7 +97,7 @@ function App() {
             <HomePage businesses={businesses} categories={categories}/>
           </Route>
           <ProtectedRoute path='/businesses/:businessId/image-upload' exact={true}>
-            <ImageUploadPage />
+            <ImageUploadPage businesses={businesses}/>
           </ProtectedRoute>
           <Route path='/businesses/:businessId/images' exact={true}>
             <ImagesPage businesses={businesses} />

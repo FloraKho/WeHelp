@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getBizImagesThunk } from "../../store/images";
@@ -7,7 +7,7 @@ import DeleteImageModal from "./DeleteImageModal";
 
 
 
-function ImageUploadPage() {
+function ImageUploadPage({businesses}) {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -16,19 +16,20 @@ function ImageUploadPage() {
     const images = useSelector(state => state.imageState);
     const imagesArr = Object.values(images);
     const sessionUser = useSelector(state => state.session.user)
-    const currentUserId = sessionUser.id;
+    const currentUserId = sessionUser?.id;
+    const currentBusiness = businesses[businessId];
 
     const photosArr = imagesArr.filter(image => image.user_id === +currentUserId)
+    const businessOwner = currentBusiness?.user_id === +currentUserId;
 
-    // const [errors, setErrors] = useState([]);
-    // const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [errors, setErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    // useEffect(() => {
-    //     let errors = [];
-    //     if (imagesArr.length === 0) errors.push("Please at least upload one image.");
-    //     setErrors(errors);
-    // }, [])
-
+    useEffect(() => {
+        let errors = [];
+        if (photosArr.length === 0 && businessOwner) errors.push("Business owner need to upload at least one image!");
+        setErrors(errors);
+    }, [photosArr, businessOwner])
 
     useEffect(() => {
         dispatch(getBizImagesThunk(parseInt(businessId)))
@@ -36,7 +37,12 @@ function ImageUploadPage() {
 
     const handleComplete = (e) => {
         e.preventDefault();
-        return history.push(`/businesses/${businessId}`)
+        setHasSubmitted(true);
+        if(!errors.length){
+            setHasSubmitted(false)
+            setErrors([])
+            return history.push(`/businesses/${businessId}`)
+        }  
     }
 
     return (
@@ -45,16 +51,17 @@ function ImageUploadPage() {
             <div>
                 <UploadModal businessId={businessId} />
             </div>
-            {/* <div>
+            <div>
                 {hasSubmitted && errors &&
                     <div>
                         {errors.map((error, idx) => <p className='error-text' key={idx}>* {error}</p>)}
                     </div>
                 }
-            </div> */}
+            </div>
             {photosArr.length === 0 && (
                 <p>You don't have any photo uploaded!</p>
             )}
+
             <div className="img-div">
                 {photosArr && photosArr.map((image) => {
                         return (
@@ -67,7 +74,7 @@ function ImageUploadPage() {
                     })}
             </div>
             <h1>Click below to complete your upload.</h1>
-            <div><button onClick={handleComplete} disabled={imagesArr.length===0}>Complete</button></div>
+            <div><button onClick={handleComplete} >Complete</button></div>
         </>
     )
 }

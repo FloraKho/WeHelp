@@ -39,7 +39,7 @@ function ImagesPage({ businesses }) {
             <div className="add-photo-pg-container">
                 <div>
                     <button onClick={handleAddPhoto}>
-                        Add Photo
+                        Manage Photos
                     </button>
                 </div>
                 <div>
@@ -54,8 +54,8 @@ function ImagesPage({ businesses }) {
                     return (
                         <div key={image.id}>
                             <img src={image.image_url} alt='images' className="img-size"/>
-                            { image.user_id === currentUserId && (
-                                <DeleteImageModal businessId={businessId} imageId={image.id}/> )}
+                            {/* { image.user_id === currentUserId && (
+                                <DeleteImageModal businessId={businessId} imageId={image.id}/> )} */}
                         </div>
                     )
                 })}
