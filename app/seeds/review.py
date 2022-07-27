@@ -280,7 +280,36 @@ def seed_reviews():
         created_at=datetime.datetime.now()
     )
 
+    biz21_rev1 = Review(
+        user_id=7,
+        business_id=21,
+        rating=5,
+        content="Had a great meal with my family here. The decorations were fantastic (protip, really take a look around! They put a lot of thought into the decor) the staff was very friendly and also dressed to the occasion leading to an immersive dining experience.",
+        created_at=datetime.datetime.now()
+    )
+    biz21_rev2 = Review(
+        user_id=8,
+        business_id=21,
+        rating=5,
+        content="Ambience was amazing! The staff are so nice!The portions are huge btw. If you want to try different dishes, I go if you are starving or go in a large group :)",
+        created_at=datetime.datetime.now()
+    )
+
+    biz22_rev1 = Review(
+        user_id=1,
+        business_id=22,
+        rating=3,
+        content="Ordered Pad See Ew via Doordash pickup. Order was ready fairly quickly. When I opened the container at home, I was disappointed. Instead of wide noodle as it should've come with, it was made with the thin noodle you'd see in their Pad Thai. The ticket clearly said Pad See Ew. Worst part is the noodle were all clumped together and the entire dish was flavorless.",
+        created_at=datetime.datetime.now()
+    )
     
+    biz22_rev2 = Review(
+        user_id=2,
+        business_id=22,
+        rating=2,
+        content="Not enough help and I've never had a restaurant hand me a pen and piece of paper and write up my order.  Never checked on my table and they didn't have Thai Chili oil.  Food is also mediocre.",
+        created_at=datetime.datetime.now()
+    )
 
 
 
@@ -339,6 +368,12 @@ def seed_reviews():
 
     db.session.add(biz20_rev1)
     db.session.add(biz20_rev2)
+
+    db.session.add(biz21_rev1)
+    db.session.add(biz21_rev2)
+
+    db.session.add(biz22_rev1)
+    db.session.add(biz22_rev2)
 
 
 

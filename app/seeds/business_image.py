@@ -432,9 +432,48 @@ def seed_business_images():
         image_url='https://s3-media0.fl.yelpcdn.com/bphoto/PpM6gMpgd_-WFaG16ZZ5qw/o.jpg'
     )
 
-
-
-
+    biz21_img1 = Business_Image(
+        user_id=6,
+        business_id=21,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/fTrGJXjBBCEB2MfYnwdcXg/258s.jpg'
+    )
+    biz21_img2 = Business_Image(
+        user_id=6,
+        business_id=21,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/Cr_kmskE2gpf61re1DUX_A/348s.jpg'
+    )
+    biz21_img3 = Business_Image(
+        user_id=6,
+        business_id=21,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/4pONFiA8eHzijxTqnXksow/348s.jpg'
+    )
+    biz21_img4 = Business_Image(
+        user_id=6,
+        business_id=21,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/-h0nKN8YuJQ1bdm75eUFhw/348s.jpg'
+    )
+    
+    biz22_img1 = Business_Image(
+        user_id=7,
+        business_id=22,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/2kIPAen4ALLixHodDtJ7tQ/348s.jpg'
+    )
+    biz22_img2 = Business_Image(
+        user_id=7,
+        business_id=22,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/0NBacgz1w9Ny0O34zrD85Q/348s.jpg'
+    )
+    biz22_img3 = Business_Image(
+        user_id=7,
+        business_id=22,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/2MvH9GFnTsnw-IvdeWCgvA/348s.jpg'
+    )
+    biz22_img4 = Business_Image(
+        user_id=7,
+        business_id=22,
+        image_url='https://s3-media0.fl.yelpcdn.com/bphoto/qjClQF_zVM_EjsbyyZFnkA/348s.jpg'
+    )
+    
 
 
 
@@ -537,6 +576,16 @@ def seed_business_images():
     db.session.add(biz20_img2)
     db.session.add(biz20_img3)
     db.session.add(biz20_img4)
+
+    db.session.add(biz21_img1)
+    db.session.add(biz21_img2)
+    db.session.add(biz21_img3)
+    db.session.add(biz21_img4)
+
+    db.session.add(biz22_img1)
+    db.session.add(biz22_img2)
+    db.session.add(biz22_img3)
+    db.session.add(biz22_img4)
 
     db.session.commit()
 
