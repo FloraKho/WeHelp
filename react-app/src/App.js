@@ -54,6 +54,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar loaded={loaded} businesses={businesses} />
+      <Wrapper>
       {loaded && (
         <Switch>
           <Route path='/login' exact={true}>
@@ -80,11 +81,9 @@ function App() {
           <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
             <UpdateBusinessPage businesses={businesses} categories={categories} />
           </ProtectedRoute>
-          <Wrapper>
-            <Route path='/businesses/:businessId' exact={true}>
-              <BusinessInfo businesses={businesses}/>
-            </Route>
-          </Wrapper>
+          <Route path='/businesses/:businessId' exact={true}>
+            <BusinessInfo businesses={businesses}/>
+          </Route>
           <ProtectedRoute path='/businesses/:businessId/post-review' exact={true}>
             <ReviewForm />
           </ProtectedRoute>
@@ -105,8 +104,10 @@ function App() {
           </Route>
         </Switch>
         )}
+      </Wrapper>
       <Footer />
     </BrowserRouter>
+    
   );
 }
 
