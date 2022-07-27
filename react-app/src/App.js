@@ -62,7 +62,7 @@ function App() {
             <SignUpForm />
           </Route>
           <Route path='/category/:categoryId' exact={true}>
-            <Category businesses={businesses} />
+            <Category businesses={businesses} categories={categories} />
           </Route>
           <Route path='/businesses' exact={true} >
             <AllBusinessesPage businesses={businesses} />
