@@ -2,3 +2,60 @@
     height: 43px;
     margin-left: 10px;
 }
+
+.login-page {
+    height:390px;
+    width: 550px;
+    margin: 0 auto;
+    margin-top: 120px;
+}
+
+.signup-page {
+    height: 430px;
+    width: 550px;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+
+label {
+    font-size: 1.2rem;
+    min-width: 200px;
+    padding-top: 8px;
+    font-weight: 500;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+    justify-items: center;
+}
+
+.login-page input, .signup-page input {
+    min-width: 300px;
+    height: 40px;
+    border: 1px solid #a1a1aa;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.login-page input:focus, .signup-page input:focus {
+    outline: none;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    min-width: 500px;
+}
+
+#login-button, #sign-up-botton{
+    width: 315px;
+    height: 40px;
+    margin-left: 200px;
+}
+
+.error-msg {
+    margin-bottom: 10px;
+    color: #BF2519;
+}

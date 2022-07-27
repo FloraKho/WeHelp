@@ -7,6 +7,7 @@ import './Category.css'
 import placeholder from './placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
+import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
 
 const Category = ({ businesses, categories }) => {
     const dispatch = useDispatch();
@@ -24,6 +25,13 @@ const Category = ({ businesses, categories }) => {
     const findProfilePic = (number) => {
         return imagesArr.filter(image => image.business_id == number)[0]
     }
+
+
+    const loadedPos = [];
+    filter_biz.forEach((biz) => {
+        loadedPos.push({ lat: biz.latitude, lng: biz.longitude })
+        // console.log('line24')
+    })
 
     const getAverage = (businessId) => {
         const currentReview = reviews.filter(review => review.business_id == businessId)
@@ -67,7 +75,7 @@ const Category = ({ businesses, categories }) => {
                 }
             </div>
             <div className='google-map'>
-                <img src={placeholder} />
+                <MultiMapOverview setOfLatLng={loadedPos} />
             </div>
         </div>
     );

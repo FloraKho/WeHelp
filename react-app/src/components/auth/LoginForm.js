@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import DemoUserLogin from './DemoUser';
+import './auth.css'
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -32,16 +33,16 @@ const LoginForm = () => {
   }
 
   return (
-    <>
+    <div className='login-page'>
       <DemoUserLogin />
-      <form onSubmit={onLogin}>
-        <div>
+      <form id="login-form" onSubmit={onLogin}>
+        <div className='error-msg'>
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind}> ❌ {error}</div>
           ))}
         </div>
-        <div>
-          <label htmlFor='email'>Email</label>
+        <div className='form-input'>
+          <label htmlFor='email'>Email:</label>
           <input
             name='email'
             type='text'
@@ -50,8 +51,8 @@ const LoginForm = () => {
             onChange={updateEmail}
           />
         </div>
-        <div>
-          <label htmlFor='password'>Password</label>
+        <div className='form-input'>
+          <label htmlFor='password'>Password:</label>
           <input
             name='password'
             type='password'
@@ -59,10 +60,10 @@ const LoginForm = () => {
             value={password}
             onChange={updatePassword}
           />
-          <button type='submit'>Login</button>
         </div>
+        <button id="login-button" type='submit'>Login</button>
       </form>
-    </>
+    </div>
   );
 };
 
