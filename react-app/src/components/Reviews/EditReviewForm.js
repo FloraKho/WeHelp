@@ -13,17 +13,27 @@ const EditReviewForm = () => {
     const { currentReviewId } = useParams();
 
     const review = useSelector(state => state.reviewState);
+
     useEffect(() => {
         dispatch(getSingleReviewThunk(parseInt(currentReviewId)));
     }, [dispatch])
 
 
     const currentReview = review[parseInt(currentReviewId)];
-    const [newRating, setRating] = useState(currentReview?.rating)
-    const [newContent, setContent] = useState(currentReview?.content);
+    const [newRating, setRating] = useState(currentReview?.rating || 0)
+    const [newContent, setContent] = useState(currentReview?.content || "");
     const stars = Array(5).fill(0)
     const [hoverVal, setHoverVal] = useState(undefined);
+    const [hasSubmitted, setHasSubmitted] = useState(false)
+    const [errors, setErrors] = useState([]);
     const businessId = currentReview?.business_id;
+
+    useEffect(() => {
+        let errors = []
+        if (newRating == 0) errors.push("Please give a rating!")
+        if (!newContent.length) errors.push("Please leave your comments!")
+        setErrors(errors);
+    }, [newRating, newContent])
 
     const colors = {
         red: "#FF0033",
@@ -44,6 +54,7 @@ const EditReviewForm = () => {
     }
 
     const handleSubmit = async (e) => {
+        setHasSubmitted(true)
         e.preventDefault()
         const payload = ({
             rating: newRating,
@@ -52,9 +63,13 @@ const EditReviewForm = () => {
             business_id: parseInt(currentReview.business_id)
 
         })
-        await dispatch(updateReviewThunk(parseInt(currentReviewId), payload))
-        history.push(`/businesses/${businessId}`);
-
+        const newReview = await dispatch(updateReviewThunk(parseInt(currentReviewId), payload))
+        console.log(newReview)
+        console.log(errors.length)
+        if (newReview && !errors.length) {
+            setHasSubmitted(false)
+            history.push(`/businesses/${businessId}`);
+        }
     }
 
 
@@ -64,6 +79,11 @@ const EditReviewForm = () => {
             {currentReview &&
                 <div className="review-page">
                     <h1>Update Your Review</h1>
+                    {hasSubmitted && errors &&
+                        <div className="error-msg">
+                            {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
+                        </div>
+                    }
                     <form onSubmit={handleSubmit}>
                         <div className="review-form">
                             <div id="rating-stars">

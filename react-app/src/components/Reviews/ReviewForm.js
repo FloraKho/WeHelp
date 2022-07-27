@@ -20,12 +20,19 @@ const ReviewForm = () => {
     const singleBusiness = businessInfo[parseInt(businessId)];
     const stars = Array(5).fill(0)
 
-
     const [errors, setErrors] = useState([]);
     const [rating, setRating] = useState(0);
     const [content, setContent] = useState('');
     const [hoverVal, setHoverVal] = useState(undefined);
+    const [hasSubmitted, setHasSubmitted] = useState(false)
     const user = useSelector(state => state.session.user)
+
+    useEffect(() => {
+        let errors = []
+        if (rating == 0) errors.push("Please give a rating!")
+        if (!content.length) errors.push("Please leave your comments!")
+        setErrors(errors);
+    }, [rating, content])
 
     const colors = {
         red: "#FF0033",
@@ -48,23 +55,30 @@ const ReviewForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setHasSubmitted(true)
         const payload = ({
             user_id: user.id,
             business_id: parseInt(businessId),
             rating: rating,
             content: content
         })
-        await
-            dispatch(addReviewThunk(payload))
-                .then(() => dispatch(getReviewThunk(payload)));
 
-        history.push(`/businesses/${businessId}`);
+        const newReview = await dispatch(addReviewThunk(payload))
+        if (newReview && !errors.length) {
+            setHasSubmitted(false)
+            history.push(`/businesses/${businessId}`);
+        }
     }
 
     //
     return (
         <div className="review-page">
             <h1>{singleBusiness?.name}</h1>
+            {hasSubmitted && errors &&
+                <div className="error-msg">
+                    {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
+                </div>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="review-form">
                     <div id="rating-stars">
