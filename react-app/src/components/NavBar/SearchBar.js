@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { NavLink, useHistory } from "react-router-dom"
 
 const SearchBar = ({ businesses }) => {
@@ -7,6 +7,23 @@ const SearchBar = ({ businesses }) => {
 
     const businessesArr = Object.values(businesses)
     const history = useHistory()
+
+    const openMenu = () => {
+        if (showMenu) return;
+        setShowMenu(true)
+    }
+
+    useEffect(() => {
+        if (!showMenu) return;
+
+        const closeMenu = () => {
+            setShowMenu(false);
+        }
+
+        document.addEventListener('click', closeMenu);
+
+        return () => document.removeEventListener('click', closeMenu)
+    }, [showMenu]);
 
     const handleSearch = () => {
         history.push(`/search/${query}`)
@@ -21,7 +38,7 @@ const SearchBar = ({ businesses }) => {
                     placeholder="What do you want to eat?"
                     value={query}
                     onChange={event => {
-                        setShowMenu(true)
+                        openMenu()
                         setQuery(event.target.value)
                     }}
                 />
@@ -30,6 +47,7 @@ const SearchBar = ({ businesses }) => {
                 </div>
                 {showMenu &&
                     <div className="search-bar-drop-down-menu">
+                        <p>your results here...</p>
                         {query && businessesArr.filter(business => {
                             if (query === "") {
                                 //if query is empty
@@ -39,8 +57,8 @@ const SearchBar = ({ businesses }) => {
                                 return business;
                             }
                         }).map((business, index) => (
-                            <NavLink to={`/businesses/${business.id}`} onClick={() => setQuery("")}>
-                                <div key={index}>
+                            <NavLink to={`/businesses/${business.id}`} onClick={() => setQuery("")} style={{ textDecoration: 'none', color: 'black' }}>
+                                <div key={index} className="drop-down-unit">
                                     <p>{business.name}</p>
                                 </div>
                             </NavLink>
