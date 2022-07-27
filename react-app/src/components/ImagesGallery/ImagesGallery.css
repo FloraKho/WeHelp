@@ -1,7 +1,4 @@
 .imgs-slider-container{
-    position: relative;
-    height: 500px;
-    width: 1000px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -9,19 +6,17 @@
 }
 
 .slider-image{
-    position: relative;
-    left:15%;
     width: 600px;
     height: 400px;
     border-radius: 10px;
 }
-.img-info-container{
+/* .img-info-container{
     position: relative;
     left:15%;
     width: 400px;
     height: 400px;
     border-radius: 10px;
-}
+} */
 
 .right-arrow{
     position: absolute;

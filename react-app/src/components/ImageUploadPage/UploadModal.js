@@ -36,7 +36,7 @@ function UploadModal({businessId}){
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Add Photo</button>
+                <button onClick={() => setShowModal(true)}>Upload Photo</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

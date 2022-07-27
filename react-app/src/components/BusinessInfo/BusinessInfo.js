@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteReviewThunk, getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
-import ImagesGalleryModal from '../ImagesGalleryModal';
+import ImagesGalleryModal from '../ImagesGallery';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import SingleMapContainer from '../SingleMapContainer/SingleMapContainer';
@@ -66,6 +66,7 @@ function BusinessInfo({ businesses }) {
     return (
         isLoaded &&
         <div>
+         {/* <ImagesGallery imagesArr={imagesArr}/> */}
             <div className='all-imgs-container'>
                 {imagesArr.map(({ id, image_url }) => (
                     <div key={id}>
@@ -75,8 +76,9 @@ function BusinessInfo({ businesses }) {
             </div>
 
             <div>
-                <ImagesGalleryModal imagesArr={imagesArr}/>
+                <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
             </div>
+
 
             <div>
                 <button onClick={handleAddReview}>
