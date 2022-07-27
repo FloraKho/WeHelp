@@ -8,6 +8,8 @@ import placeholder from '../Category/placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
 
+import { getAllBusinessesThunk } from '../../store/businesses';
+import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
 const AllBusinessesPage = ({businesses}) => {
     const dispatch = useDispatch();
     const bizArr = Object.values(businesses)
@@ -35,6 +37,12 @@ const AllBusinessesPage = ({businesses}) => {
         return percent * 100
     }
 
+    const loadedPos = [];
+    bizArr.forEach((biz)=> {
+        loadedPos.push({lat: biz.latitude, lng: biz.longitude})
+        // console.log('line24')
+    })
+    
     return imagesArr && (
         <div className='all-businesses-page-container'>
             <div className='searchResult'>
@@ -65,7 +73,7 @@ const AllBusinessesPage = ({businesses}) => {
                 }
             </div>
             <div className='google-map'>
-                <img src={placeholder} />
+                <MultiMapOverview setOfLatLng={loadedPos} />
             </div>
         </div>
     );

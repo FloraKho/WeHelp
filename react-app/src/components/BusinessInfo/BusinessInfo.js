@@ -6,6 +6,9 @@ import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
 import ImagesGalleryModal from '../ImagesGalleryModal';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import SingleMapContainer from '../SingleMapContainer/SingleMapContainer';
+
 import './BusinessInfo.css'
 
 function BusinessInfo({ businesses }) {
@@ -59,7 +62,7 @@ function BusinessInfo({ businesses }) {
         return history.push(`/businesses/${businessId}/images`)
     }
 
-
+    const geoloc = { latitude: singleBusiness?.latitude, longitude: singleBusiness?.longitude}
     return (
         isLoaded &&
         <div>
@@ -141,6 +144,9 @@ function BusinessInfo({ businesses }) {
                     }
                 </div>
             ))}
+            {console.log(`line 144 ${geoloc.latitude}, ${geoloc.longitude}`)}
+            {console.log(`geoloc 145${geoloc}`)}
+            <SingleMapContainer latitude = {geoloc.latitude} longitude = {geoloc.longitude} />
 
         </div>
     )

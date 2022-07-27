@@ -9,6 +9,9 @@ import '../Category/Category.css'
 import placeholder from '../Category/placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
+import { getAllBusinessesThunk } from '../../store/businesses';
+import MultiMapOverview from "../MultiMapOverview/MultiMapOverview";
+
 
 const SearchResult = ({businesses}) => {
     const dispatch = useDispatch();
@@ -18,6 +21,12 @@ const SearchResult = ({businesses}) => {
     const bizArr = Object.values(businesses)
     const imagesArr = Object.values(useSelector (state => state.imageState));
     const filter_biz = bizArr.filter(business => business.name.toLowerCase().includes(searchArr[0].toLowerCase()))
+
+    const loadedPos = [];
+    filter_biz.forEach((biz) => {
+        loadedPos.push({ lat: biz.latitude, lng: biz.longitude })
+        // console.log('line24')
+    })
 
     useEffect(() => {
         dispatch(getAllImagesThunk())
@@ -80,7 +89,7 @@ const SearchResult = ({businesses}) => {
             }
         </div>
         <div className='google-map'>
-            <img src={placeholder} />
+            <MultiMapOverview setOfLatLgn = {loadedPos}/>
         </div>
     </div>
     )
