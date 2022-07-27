@@ -7,10 +7,14 @@
     border: 1px solid red;
     display: flex;
     flex-direction: column;
-    width: 25vw
+    width: 25vw;
+    cursor: pointer;
+
 }
 
 .profile-content {
     border: 1px solid red;
     width: 30vw;
+    cursor: pointer;
+
 }
