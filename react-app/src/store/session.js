@@ -117,7 +117,7 @@ export const updatePicThunk = (user) => async (dispatch) => {
 
   if(response.ok){
     const picture = await response.json();
-    dispatch(setUser(picture));
+    dispatch(updatePic(picture));
     return picture;
   }
 } 
