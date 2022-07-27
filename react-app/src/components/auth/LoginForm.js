@@ -38,8 +38,8 @@ const LoginForm = () => {
             <div key={ind}> ❌ {error}</div>
           ))}
         </div>
-        <div className='email-input'>
-          <label id="email-label" htmlFor='email'>Email:</label>
+        <div className='form-input'>
+          <label htmlFor='email'>Email:</label>
           <input
             name='email'
             type='text'
@@ -48,8 +48,8 @@ const LoginForm = () => {
             onChange={updateEmail}
           />
         </div>
-        <div className='password-input'>
-          <label id='password-label' htmlFor='password'>Password:</label>
+        <div className='form-input'>
+          <label htmlFor='password'>Password:</label>
           <input
             name='password'
             type='password'

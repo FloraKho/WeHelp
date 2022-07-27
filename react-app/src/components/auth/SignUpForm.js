@@ -19,6 +19,8 @@ const SignUpForm = () => {
       if (data) {
         setErrors(data)
       }
+    } else {
+      setErrors(["Two passwords do not match!"])
     }
   };
 
@@ -43,15 +45,15 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='login-page'>
+    <div className='signup-page'>
       <form onSubmit={onSignUp}>
         <div className='error-msg'>
           {errors.map((error, ind) => (
-            <div key={ind}><p>❌{error}</p></div>
+            <div key={ind}> ❌ {error}</div>
           ))}
         </div>
-        <div>
-          <label>User Name</label>
+        <div className='form-input'>
+          <label>User Name:</label>
           <input
             type='text'
             name='username'
@@ -59,8 +61,8 @@ const SignUpForm = () => {
             value={username}
           ></input>
         </div>
-        <div>
-          <label>Email</label>
+        <div className='form-input'>
+          <label>Email:</label>
           <input
             type='text'
             name='email'
@@ -68,8 +70,8 @@ const SignUpForm = () => {
             value={email}
           ></input>
         </div>
-        <div>
-          <label>Password</label>
+        <div className='form-input'>
+          <label>Password:</label>
           <input
             type='password'
             name='password'
@@ -77,8 +79,8 @@ const SignUpForm = () => {
             value={password}
           ></input>
         </div>
-        <div>
-          <label>Repeat Password</label>
+        <div className='form-input'>
+          <label>Repeat Password:</label>
           <input
             type='password'
             name='repeat_password'
@@ -87,7 +89,7 @@ const SignUpForm = () => {
             required={true}
           ></input>
         </div>
-        <button type='submit'>Sign Up</button>
+        <button id='sign-up-botton' type='submit'>Sign Up</button>
       </form>
     </div>
   );
