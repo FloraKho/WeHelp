@@ -1,27 +1,37 @@
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { getAllImagesThunk } from '../../store/images'
+import { getAllReviewThunk } from "../../store/reviews";
 import EditModal from "./EditModal";
+import './ProfilePage.css'
+
+
 
 function ProfilePage({businesses}) {
 
 
+    const dispatch = useDispatch();
     let sessionUser = useSelector(state => state.session.user)
-    // const currentUserId = sessionUser?.id;
     const businessArr = Object.values(businesses)
     const businessOwn = businessArr.filter(business => business.user_id === sessionUser?.id)
-    // const [users, setUsers] = useState([]);
-    // const currentUser = users.find(user => user.id === +currentUserId)
+    const images = useSelector(state => state.imageState);
+    const imageArr = Object.values(images);
+    const reviewArr = Object.values(useSelector(state => state.reviewState))
+    const reviewOwn = reviewArr.filter(review => review.user_id === sessionUser?.id)
 
+    const [showOwnBiz, setShowOwnBiz] = useState(false)
+    const [showOwnRev, setShowOwnRev] = useState(false)
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const response = await fetch('/api/users/');
-    //         const responseData = await response.json();
-    //         setUsers(responseData.users);
-    //     }
-    //     fetchData();
-    // }, []);
+    const findBusinessPic = (number) => {
+        return imageArr.filter(image => image.business_id == number)[0]
+    }
+
+    useEffect(() => {
+        dispatch(getAllImagesThunk())
+        dispatch(getAllReviewThunk())
+    }, [])
 
 
 

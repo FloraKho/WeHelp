@@ -1,0 +1,16 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-side-bar {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 25vw
+}
+
+.profile-content {
+    border: 1px solid red;
+    width: 30vw;
+}
