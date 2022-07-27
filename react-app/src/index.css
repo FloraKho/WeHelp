@@ -18,10 +18,15 @@
 } */
 
 button{
-    background-color: rgba(224,7,7,1);
-    border: 1px white solid;
+    background-color: #E00707;
+    border: none;
     color: white;
     font-size: small;
-    border-radius: 3px;
-    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    padding: 5px 15px 5px 15px;
+}
+
+button:hover {
+    background-color: #BF2519;
+    cursor: pointer;
 }
