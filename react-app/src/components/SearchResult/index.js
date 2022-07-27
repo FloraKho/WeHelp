@@ -16,11 +16,12 @@ const SearchResult = ({businesses}) => {
     const imagesArr = Object.values(useSelector (state => state.imageState));
     const filter_biz = bizArr.filter(business => business.name.toLowerCase().includes(searchArr[0].toLowerCase()))
     // console.log("THIS IS FILTERED BIZ", filter_biz)
-    const loadedPos  = {}
-    for (const biz in filter_biz){
-        loadedPos[biz.id].lat = biz.lat;
-        loadedPos[biz.id].lng = biz.lng;
-    }
+
+    const loadedPos = [];
+    filter_biz.forEach((biz) => {
+        loadedPos.push({ lat: biz.latitude, lng: biz.longitude })
+        // console.log('line24')
+    })
 
     useEffect(() => {
         dispatch(getAllImagesThunk())

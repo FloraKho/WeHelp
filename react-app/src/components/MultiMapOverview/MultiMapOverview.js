@@ -36,7 +36,7 @@ const MultiMapOverview = (setOfLatLng) => {
 
     return (
         <div>
-            Map is here!ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+            Map is here!ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Placeholder cuz the space ain't good for now 
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={10}
