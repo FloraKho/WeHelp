@@ -4,7 +4,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllImagesThunk } from '../../store/images';
 import { getAllBusinessesThunk } from '../../store/businesses';
-
+import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
 const AllBusinessesPage = ({businesses}) => {
     const dispatch = useDispatch();
     const bizArr = Object.values(businesses)
@@ -18,6 +18,11 @@ const AllBusinessesPage = ({businesses}) => {
         return imagesArr.filter(image => image.business_id == number)[0]
     }
 
+    const loadedPos = [];
+    bizArr.forEach((biz)=> {
+        loadedPos.push({lat: biz.latitude, lng: biz.longitude})
+        // console.log('line24')
+    })
     return (
         <div className='all-businesses-page-container'>
             <div>
@@ -44,7 +49,7 @@ const AllBusinessesPage = ({businesses}) => {
                     }
             </div>
             <div>
-                <h1>GOOGLE MAP 放这</h1>
+                <MultiMapOverview setOfLatLng={loadedPos} />
             </div>
         </div>
     );

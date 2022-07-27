@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const SingleMapContainer = ({latitude, longitude}) => {
+const SingleMapContainer = ({ latitude, longitude }) => {
 
     console.log(`line 6 ${latitude} ${longitude}`)
     const mapStyles = {
@@ -25,12 +25,12 @@ const SingleMapContainer = ({latitude, longitude}) => {
                 zoom={16}
                 center={defaultCenter}
             >
-                
-                <Marker 
-                position={pin}
+
+                <Marker
+                    position={pin}
                 />
             </GoogleMap>
-            
+
         </div>
     )
 }

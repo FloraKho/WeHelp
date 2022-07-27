@@ -5,6 +5,7 @@ import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllImagesThunk } from '../../store/images';
 import { getAllBusinessesThunk } from '../../store/businesses';
+import MultiMapOverview from "../MultiMapOverview/MultiMapOverview";
 
 
 const SearchResult = ({businesses}) => {
@@ -15,6 +16,11 @@ const SearchResult = ({businesses}) => {
     const imagesArr = Object.values(useSelector (state => state.imageState));
     const filter_biz = bizArr.filter(business => business.name.toLowerCase().includes(searchArr[0].toLowerCase()))
     // console.log("THIS IS FILTERED BIZ", filter_biz)
+    const loadedPos  = {}
+    for (const biz in filter_biz){
+        loadedPos[biz.id].lat = biz.lat;
+        loadedPos[biz.id].lng = biz.lng;
+    }
 
     useEffect(() => {
         dispatch(getAllImagesThunk())
@@ -54,7 +60,7 @@ const SearchResult = ({businesses}) => {
                     }
             </div>
             <div>
-                <h1>GOOGLE MAP 放这</h1>
+                <MultiMapOverview setOfLatLgn = {loadedPos}/>
             </div>
         </div>
     )
