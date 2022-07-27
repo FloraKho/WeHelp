@@ -1,8 +1,11 @@
 from flask import Blueprint, jsonify, session, request
+from app.forms.edit_profile_form import EditProfileForm
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.awsS3 import (
+    upload_file_to_s3, allowed_file, get_unique_filename)
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -65,7 +68,8 @@ def sign_up():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            profile_pic=form.data['profile_pic']
         )
         db.session.add(user)
         db.session.commit()
@@ -80,3 +84,30 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {'errors': ['Unauthorized']}, 401
+
+
+@auth_routes.route('/update', methods=['PUT'])
+def update_picture():
+    form = EditProfileForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        if 'profile_pic' in request.files:
+            image = request.files["profile_pic"]
+
+            if not allowed_file(image.filename):
+                return { "errors": "file type not permitted" }, 400
+            
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if "url" not in upload:
+                return upload, 400
+
+            profile_pic = upload["url"]
+        user = User.query.get(current_user.id)
+        user.profile_pic = profile_pic
+        # db.session.add(user)
+        db.session.commit()
+        return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

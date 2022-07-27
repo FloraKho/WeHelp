@@ -87,9 +87,11 @@ export const updateReviewThunk = (reviewId, review) => async (dispatch) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(review)
     })
+    
     if (response.ok) {
         const review = await response.json()
         dispatch(editReviews(reviewId, review))
+        return review;
     }
 }
 

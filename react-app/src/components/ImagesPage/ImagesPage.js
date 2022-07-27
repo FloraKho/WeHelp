@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBizImagesThunk } from "../../store/images";
 import UploadModal from "../ImageUploadPage/UploadModal";
 import DeleteImageModal from "../ImageUploadPage/DeleteImageModal";
-
+import ImagesGalleryModal from '../ImagesGallery';
+import './ImagesPage.css'
 
 function ImagesPage({ businesses }) {
 
@@ -16,7 +17,7 @@ function ImagesPage({ businesses }) {
 
     const currentBiz = businesses[businessId];
     const sessionUser = useSelector(state => state.session.user)
-    const currentUserId = sessionUser.id;
+    const currentUserId = sessionUser?.id;
 
 
     const images = useSelector(state => state.imageState);
@@ -34,25 +35,27 @@ function ImagesPage({ businesses }) {
     return (
 
         <>
-            <div>
-                <div><h2>Photos for {currentBiz?.name}</h2></div>
+            <div><h2>Photos for {currentBiz?.name}</h2></div>
+            <div className="add-photo-pg-container">
                 <div>
                     <button onClick={handleAddPhoto}>
-                        Add Photo
+                        Manage Photos
                     </button>
                 </div>
                 <div>
                     <button onClick={() => history.goBack()}>Go Back</button>
                 </div>
             </div>
-
-            <div >
+            {/* <div>
+                <ImagesGalleryModal imagesArr={imagesArr}/>
+            </div> */}
+            <div className="img-div">
                 {imagesArr && imagesArr.map((image) => {
                     return (
                         <div key={image.id}>
-                            <img src={image.image_url} alt='images' />
-                            { image.user_id === currentUserId && (
-                                <DeleteImageModal businessId={businessId} imageId={image.id}/> )}
+                            <img src={image.image_url} alt='images' className="img-size"/>
+                            {/* { image.user_id === currentUserId && (
+                                <DeleteImageModal businessId={businessId} imageId={image.id}/> )} */}
                         </div>
                     )
                 })}

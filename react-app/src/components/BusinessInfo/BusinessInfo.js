@@ -4,7 +4,11 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteReviewThunk, getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
+import ImagesGalleryModal from '../ImagesGallery';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import SingleMapContainer from '../SingleMapContainer/SingleMapContainer';
+
 import './BusinessInfo.css'
 
 function BusinessInfo({ businesses }) {
@@ -58,19 +62,23 @@ function BusinessInfo({ businesses }) {
         return history.push(`/businesses/${businessId}/images`)
     }
 
-
+    const geoloc = { latitude: singleBusiness?.latitude, longitude: singleBusiness?.longitude}
     return (
         isLoaded &&
         <div>
-            {Object.values(images).map(({ id, image_url }) => (
-                <div className='background' key={id}>
-                    <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
-                </div>
-            ))}
+         {/* <ImagesGallery imagesArr={imagesArr}/> */}
+            <div className='all-imgs-container'>
+                {imagesArr.map(({ id, image_url }) => (
+                    <div key={id}>
+                        <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
+                    </div>
+                ))}
+            </div>
 
             <div>
                 <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
             </div>
+
 
             <div>
                 <button onClick={handleAddReview}>
@@ -138,6 +146,9 @@ function BusinessInfo({ businesses }) {
                     }
                 </div>
             ))}
+            {console.log(`line 144 ${geoloc.latitude}, ${geoloc.longitude}`)}
+            {console.log(`geoloc 145${geoloc}`)}
+            <SingleMapContainer latitude = {geoloc.latitude} longitude = {geoloc.longitude} />
 
         </div>
     )

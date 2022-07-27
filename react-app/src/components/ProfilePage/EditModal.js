@@ -1,33 +1,36 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addImageThunk } from '../../store/images';
+import { updatePicThunk } from '../../store/session';
 
 
-function UploadModal({businessId}){
+
+function EditModal() {
     const dispatch = useDispatch();
     const history = useHistory();
-    const sessionUser = useSelector(state => state.session.user)
+    // const sessionUser = useSelector(state => state.session.user)
+    // const username = sessionUser?.username;
+    // const email = sessionUser?.email;
+    // const password = sessionUser?.email
+    
 
     const [showModal, setShowModal] = useState(false);
     const [image, setImage] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const imageInfo = {
-            user_id: sessionUser.id,
-            business_id: parseInt(businessId),
-            image_url: image
+        const user = {
+            profile_pic: image
         }
 
-        await dispatch(addImageThunk(imageInfo));
+        await dispatch(updatePicThunk(user));
         setImage(null)
         setShowModal(false)
-        history.push(`/businesses/${businessId}/image-upload`)
-    }    
-    
-    
+        history.push('/')
+    }
+
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
@@ -36,19 +39,19 @@ function UploadModal({businessId}){
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Upload Photo</button>
+                <button onClick={() => setShowModal(true)}>Edit</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div>
-                        <h2>Select Photo Here!</h2>
+                        <h2>Select Your Profile Picture</h2>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="file"
                                 accept="image/*"
                                 onChange={updateImage}
                             />
-                            <button type="submit">Submit</button>
+                            <button type="submit">Change</button>
                         </form>
                         <div>
                             <button onClick={() => setShowModal(false)}>Cancel</button>
@@ -61,4 +64,4 @@ function UploadModal({businessId}){
     )
 }
 
-export default UploadModal;
+export default EditModal;

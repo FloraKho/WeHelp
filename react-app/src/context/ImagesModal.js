@@ -2,28 +2,28 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css'
 
-const ModalContext = React.createContext();
+const ImagesModalContext = React.createContext();
 
-export function ModalProvider({ children }) {
+export function ImagesModalProvider({ children }) {
     const modalRef = useRef();
     const [value, setValue] = useState();
 
     useEffect(() => {
         setValue(modalRef.current);
     }, [])
-    
+
     return (
         <>
-            <ModalContext.Provider value={value}>
+            <ImagesModalContext.Provider value={value}>
                 {children}
-            </ModalContext.Provider>
+            </ImagesModalContext.Provider>
             <div ref={modalRef} />
         </>
     );
 }
 
-export function Modal({ onClose, children }) {
-    const modalNode = useContext(ModalContext);
+export function ImagesModal({ onClose, children }) {
+    const modalNode = useContext(ImagesModalContext);
     if (!modalNode) return null;
 
     return ReactDOM.createPortal(

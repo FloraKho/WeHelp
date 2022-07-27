@@ -1,0 +1,14 @@
+.img-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img-size{
+    width: 500px;
+    height: 500px;
+    padding: 5px;
+    object-fit: cover;
+    object-position: center;
+
+}

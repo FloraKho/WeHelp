@@ -23,6 +23,8 @@ import ReviewForm from './components/Reviews/ReviewForm';
 import EditReviewForm from './components/Reviews/EditReviewForm'
 import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
 import ImagesPage from './components/ImagesPage/ImagesPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import { Wrapper } from '@googlemaps/react-wrapper';
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar loaded={loaded} businesses={businesses} />
+      <Wrapper>
       {loaded && (
         <Switch>
           <Route path='/login' exact={true}>
@@ -62,17 +65,20 @@ function App() {
             <SignUpForm />
           </Route>
           <Route path='/category/:categoryId' exact={true}>
-            <Category businesses={businesses} />
+            <Category businesses={businesses} categories={categories} />
           </Route>
-          <Route path='/businesses' exact={true} >
+          <Route path='/businesses' exact={true}>
             <AllBusinessesPage businesses={businesses} />
           </Route>
-          <ProtectedRoute path='/users' exact={true} >
+          {/* <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
-          </ProtectedRoute>
-          <ProtectedRoute path='/users/:userId' exact={true} >
+          </ProtectedRoute> */}
+          {/* <ProtectedRoute path='/users/:userId' exact={true} >
             <User />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
+            <ProtectedRoute path='/profile' exact={true}>
+              <ProfilePage businesses={businesses}/>
+            </ProtectedRoute>
           <ProtectedRoute path='/post-business' exact={true}>
             <CreateBusinessPage categories={categories} />
           </ProtectedRoute>
@@ -95,15 +101,18 @@ function App() {
             <HomePage businesses={businesses} categories={categories}/>
           </Route>
           <ProtectedRoute path='/businesses/:businessId/image-upload' exact={true}>
-            <ImageUploadPage />
+            <ImageUploadPage businesses={businesses}/>
           </ProtectedRoute>
           <Route path='/businesses/:businessId/images' exact={true}>
             <ImagesPage businesses={businesses} />
           </Route>
+
         </Switch>
         )}
+      </Wrapper>
       <Footer />
     </BrowserRouter>
+    
   );
 }
 

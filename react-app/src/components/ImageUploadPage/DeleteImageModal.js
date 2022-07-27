@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { deleteImageThunk } from '../../store/images';
 
 function DeleteImageModal({ businessId, imageId }) {
+
     const dispatch = useDispatch();
     const history = useHistory();
 

@@ -335,12 +335,46 @@ def seed_businesses():
         city='San Jose', 
         state='California', 
         zip_code=95126, 
-        phone='(408) 564-7150', 
+        phone='(408)564-7150', 
         website='http://www.bcmidtown.com/',
         price_range='$$',
         business_hours='7:00AM-3:00PM',
         latitude=37.32343148948551,
         longitude=-121.9142846460296
+    )
+
+    business21 = Business(
+        user_id=6, 
+        name='LAKSANA THAI CUISINE', 
+        description='Traditional Thai Cuisine with elegent environment', 
+        category_id=4, 
+        address='3250 Zanker Rd', 
+        city='San Jose', 
+        state='California', 
+        zip_code=95134, 
+        phone='(669)284-3139', 
+        website='https://laksanathaicuisine.weebly.com/',
+        price_range='$$',
+        business_hours='11:30AM-9:30PM',
+        latitude=37.413257892356796, 
+        longitude=-121.93252630387265
+    )
+
+    business22 = Business(
+        user_id=7, 
+        name='Thai Chili Cuisine', 
+        description='Warmly decorated Thai restaurant serving classic specialties for dine-in, takeout or delivery.', 
+        category_id=4, 
+        address='1550 Halford Ave', 
+        city='Santa Clara', 
+        state='California', 
+        zip_code=95051, 
+        phone='(408)615-9199', 
+        website='http://thai-chili.com/',
+        price_range='$$',
+        business_hours='11:00AM-9:00PM',
+        latitude=37.354757179699526, 
+        longitude=-122.00041113417274
     )
 
     
@@ -365,6 +399,8 @@ def seed_businesses():
     db.session.add(business18)
     db.session.add(business19)
     db.session.add(business20)
+    db.session.add(business21)
+    db.session.add(business22)
     
 
     db.session.commit()

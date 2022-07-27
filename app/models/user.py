@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_pic = db.Column(db.String(255))
+    profile_pic = db.Column(db.Text, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
 
     businesses = db.relationship('Business', back_populates='user')
     reviews = db.relationship('Review', back_populates='user')

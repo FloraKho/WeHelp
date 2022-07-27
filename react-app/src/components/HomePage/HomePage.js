@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllImagesThunk } from '../../store/images'
 import { getAllReviewThunk } from "../../store/reviews";
-import './HomePage.css'
-import starFilled from './starFilled.png'
-import starEmpty from './starEmpty.png'
 import fiveFilled from './fiveStarsFilled.png'
 import fiveEmpty from './fiveStarsEmpty.png'
 import { NavLink } from "react-router-dom";
+import './HomePage.css'
 // import ReactStars from "react-rating-stars-component";
 
 
