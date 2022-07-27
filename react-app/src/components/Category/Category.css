@@ -11,6 +11,7 @@
 .all-businesses-page-container {
     width: 1400px;
     margin: 0 auto;
+    padding-bottom: 80px;
 }
 
 .individual-business-listing-container {

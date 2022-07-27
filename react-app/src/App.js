@@ -64,7 +64,7 @@ function App() {
           <Route path='/category/:categoryId' exact={true}>
             <Category businesses={businesses} categories={categories} />
           </Route>
-          <Route path='/businesses' exact={true} >
+          <Route path='/businesses' exact={true}>
             <AllBusinessesPage businesses={businesses} />
           </Route>
           <ProtectedRoute path='/users' exact={true} >
