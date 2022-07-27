@@ -23,6 +23,7 @@ import ReviewForm from './components/Reviews/ReviewForm';
 import EditReviewForm from './components/Reviews/EditReviewForm'
 import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
 import ImagesPage from './components/ImagesPage/ImagesPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 import { Wrapper } from '@googlemaps/react-wrapper';
 
 
@@ -69,12 +70,15 @@ function App() {
           <Route path='/businesses' exact={true}>
             <AllBusinessesPage businesses={businesses} />
           </Route>
-          <ProtectedRoute path='/users' exact={true} >
+          {/* <ProtectedRoute path='/users' exact={true} >
             <UsersList/>
-          </ProtectedRoute>
-          <ProtectedRoute path='/users/:userId' exact={true} >
+          </ProtectedRoute> */}
+          {/* <ProtectedRoute path='/users/:userId' exact={true} >
             <User />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
+            <ProtectedRoute path='/profile' exact={true}>
+              <ProfilePage businesses={businesses}/>
+            </ProtectedRoute>
           <ProtectedRoute path='/post-business' exact={true}>
             <CreateBusinessPage categories={categories} />
           </ProtectedRoute>
@@ -102,6 +106,7 @@ function App() {
           <Route path='/businesses/:businessId/images' exact={true}>
             <ImagesPage businesses={businesses} />
           </Route>
+
         </Switch>
         )}
       </Wrapper>
