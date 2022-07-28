@@ -164,7 +164,7 @@ function BusinessInfo({ businesses, categories }) {
                                 <div className='left-map-container'>
                                     <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} />
                                 </div>
-                                <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
+                                <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.state}, {singleBusiness?.zip_code} </p>
                             </div>
                             <div className='location-right'>
                                 <div id='weekdays'>
@@ -291,14 +291,15 @@ function BusinessInfo({ businesses, categories }) {
                             <i class="fa-solid fa-phone fa-lg"></i>
                         </div>
                     </div>
-                    <div className='side-info'>
+                    {singleBusiness.website && <div className='side-info'>
                         <p><a href={`${singleBusiness?.website}`}>{singleBusiness?.website}</a></p>
                         <div className='side-content-icons'>
                             <i class="fa-solid fa-square-up-right fa-lg"></i>
                         </div>
                     </div>
+                    }
                     <div className='side-info'>
-                        <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code}</p>
+                        <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.state}, {singleBusiness?.zip_code}</p>
                         <div className='side-content-icons'>
                             <i class="fa-solid fa-location-dot fa-lg"></i>
                         </div>

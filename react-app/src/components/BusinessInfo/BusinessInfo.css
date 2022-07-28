@@ -101,7 +101,7 @@
 
 .stars-in-review {
     width: 120px;
-    margin-left: 35px;
+    margin-left: 400px;
     margin-top: 30px;
 }
 
@@ -343,6 +343,7 @@ p.smaller-foodie {
     font-weight: 600;
     padding-left: 10px;
     color: #6E7072;
+    overflow: hidden;
 }
 
 .side-info a {
@@ -359,4 +360,8 @@ p.smaller-foodie {
     justify-content: center;
     align-items: center;
     color: #525252;
+}
+
+.all-reviews {
+    margin-bottom: 50px;
 }
