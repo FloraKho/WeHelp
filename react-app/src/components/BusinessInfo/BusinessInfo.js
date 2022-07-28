@@ -227,7 +227,7 @@ function BusinessInfo({ businesses, categories }) {
                                         })}
                                     </div>
                                     <div id="ID-card-add-review" onClick={handleAddReview}>
-                                        Start your review of {singleBusiness.name}.
+                                        Start your review of {singleBusiness?.name}.
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +294,7 @@ function BusinessInfo({ businesses, categories }) {
                             <i class="fa-solid fa-phone fa-lg"></i>
                         </div>
                     </div>
-                    {singleBusiness.website && <div className='side-info'>
+                    {singleBusiness?.website && <div className='side-info'>
                         <p><a href={`${singleBusiness?.website}`}>{singleBusiness?.website}</a></p>
                         <div className='side-content-icons'>
                             <i class="fa-solid fa-square-up-right fa-lg"></i>

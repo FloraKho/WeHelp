@@ -51,6 +51,17 @@ function ProfilePage({ businesses }) {
         setShowOwnBiz(false)
     }
 
+    const getAverage = (businessId) => {
+        const currentReview = reviewArr.filter(review => review.business_id == businessId)
+        const ratings = currentReview.map(review => review.rating)
+        const averageRating = (ratings.reduce((a, b) => a + b, 0) / ratings.length)
+        return Math.floor(Number(averageRating))
+    }
+
+    const getPercentage = (businessId) => {
+        let percent = (1 - getAverage(businessId) / 5).toFixed(2)
+        return percent * 100
+    }
 
     return (
         <>
@@ -140,7 +151,14 @@ function ProfilePage({ businesses }) {
                                             <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(business.id)?.image_url})` }}></div>
                                             <div className="review-card-right">
                                                 <h4>{business.name}</h4>
-                                                <p>{business.description.slice(0, 100)}...</p>
+                                                <p className="profile-location">{business.address}, {business.city}, {business.state}</p>
+                                                <div className="fiveEmpty-profile">
+                                                    <img src={fiveEmpty} />
+                                                </div>
+                                                <div className="fiveFilled-profile">
+                                                    <img src={fiveFilled} style={{ right: `${getPercentage(business.id)}%` }} />
+                                                </div>
+                                                <p className="profile-message">{business.description.slice(0, 100)}...</p>
                                             </div>
                                         </div>
                                     </NavLink>
