@@ -1,0 +1,15 @@
+#delete-on-info {
+    background-color: transparent;
+    border: none;
+    color: #027A97;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    position: relative;
+    right: 100px;
+    margin-top: 10px;
+}
+
+#delete-on-info:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -80,6 +80,29 @@
 
 .fiveEmpty-biz {
     width: 160px;
+    overflow: hidden;
+}
+
+.fiveFilled-review {
+    position: relative;
+    bottom: 30px;
+    overflow: hidden;
+    height: 23px;
+}
+
+.fiveEmpty-review img {
+    width: 120px;
+}
+
+.fiveFilled-review img {
+    width: 120px;
+    position: relative;
+}
+
+.stars-in-review {
+    width: 120px;
+    margin-left: 35px;
+    margin-top: 30px;
 }
 
 .price-and-category {
@@ -258,3 +281,82 @@ p.smaller-foodie {
     cursor: pointer;
 }
 
+.ind-review {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.review-content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding-left: 85px;
+    margin-top: 0px;
+}
+
+.ind-review-left {
+    width: 706px;
+}
+
+.ind-review-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.ind-review-right {
+    margin-top: 25px;
+}
+
+#info-edit-review, #info-delete-review {
+    color: #027A97;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info-edit-review:hover, #info-delete-review:hover {
+    cursor: pointer;
+    background-color: #f5f5f4;
+    border-radius: 50%;
+}
+
+.side-content {
+    height: fit-content;
+    width: 365px;
+    margin-top: 105px;
+    margin-left: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.side-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-info p {
+    font-family: 'Open Sans', sans-serif;
+    width: 300px;
+    font-weight: 600;
+    padding-left: 10px;
+    color: #6E7072;
+}
+
+.side-info a {
+    font-family: 'Open Sans', sans-serif;
+    width: 300px;
+    font-weight: 700;
+    color: #027A97;
+}
+
+.side-content-icons {
+    height: 54px;
+    width: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #525252;
+}

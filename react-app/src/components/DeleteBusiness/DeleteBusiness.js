@@ -21,7 +21,7 @@ function DeleteBusiness({ businessId }) {
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Delete</button>
+                <div id="delete-on-info" onClick={() => setShowModal(true)}><i class="fa-solid fa-trash-can"></i> No longer operating?</div>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

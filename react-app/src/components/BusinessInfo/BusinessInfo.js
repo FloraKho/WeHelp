@@ -112,7 +112,7 @@ function BusinessInfo({ businesses, categories }) {
         <div className='business-info-page'>
 
             <div className='all-imgs-container'>
-                {imagesArr.map(({ id, image_url }) => (
+                {imagesArr.slice(0, 4).map(({ id, image_url }) => (
                     <div key={id}>
                         <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
                     </div>
@@ -157,12 +157,6 @@ function BusinessInfo({ businesses, categories }) {
                         </div>
                     </div>
 
-
-                    {businessOwner ? (
-                        <div>
-                            <DeleteBusiness businessId={businessId} />
-                        </div>) : null
-                    }
                     <div className='location-and-hours'>
                         <h2>Location & Hours</h2>
                         <div className='location-and-hour-conatiner'>
@@ -194,8 +188,13 @@ function BusinessInfo({ businesses, categories }) {
                                         {businessOwner ? (
                                             <div id="edit-biz-button" onClick={handleEdit}>
                                                 <i class="fa-solid fa-pencil"></i> Edit business info
-                                            </div>) : null }
+                                            </div>) : null}
                                     </div>
+                                    {businessOwner ? (
+                                        <div>
+                                            <DeleteBusiness businessId={businessId} />
+                                        </div>) : null
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -231,45 +230,79 @@ function BusinessInfo({ businesses, categories }) {
                             </div>
                         )}
 
-                        {Object.values(reviews).map(({ id, content, rating, user_id }) => (
-                            <div key={id}>
-                                <div className='review-profile' style={{ backgroundImage: `url(${findUserPic(user_id)})` }}></div>
-                                <p>{findUserName(user_id)}</p>
-                                <p>{rating}</p>
-                                <p>{content}</p>
-                                {currentUser?.id == user_id
-                                    ?
-                                    <div>
-                                        <button
-                                            onClick={
-                                                async (e) => {
-                                                    e.preventDefault();
-                                                    await history.push(`/edit-review/${id}`);
-                                                }
-                                            }
-                                            businessId={businessId}>
-                                            Edit Review
-                                        </button>
-                                        <button
-                                            onClick={
-                                                async (e) => {
-                                                    e.preventDefault();
-                                                    await dispatch(deleteReviewThunk(id))
-                                                        .then(() => dispatch(getReviewThunk(parseInt(businessId))));
-                                                }
-                                            }>
-                                            Delete Review
-                                        </button>
+                        <div className='all-reviews'>
+                            {Object.values(reviews).map(({ id, content, rating, user_id }) => (
+                                <div className="ind-review" key={id}>
+                                    <div className='ind-review-left'>
+                                        <div className='ind-review-top'>
+                                            <div className='review-profile' style={{ backgroundImage: `url(${findUserPic(user_id)})` }}></div>
+                                            <div className="review-username">
+                                                <p>{findUserName(user_id)}</p>
+                                                <p className='smaller-foodie'>new foodie</p>
+                                            </div>
+                                            <div className='stars-in-review'>
+                                                <div className="fiveEmpty-review">
+                                                    <img src={fiveEmpty} />
+                                                </div>
+                                                <div className="fiveFilled-review">
+                                                    <img src={fiveFilled} style={{ right: `${(1 - rating / 5) * 100}%` }} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p className='review-content'>{content}</p>
                                     </div>
-                                    : <div></div>
-                                }
-                            </div>
-                        ))}
+                                    <div className='ind-review-right'>
+                                        {currentUser?.id == user_id
+                                            ?
+                                            <div>
+                                                <div id="info-edit-review"
+                                                    onClick={
+                                                        async (e) => {
+                                                            e.preventDefault();
+                                                            await history.push(`/edit-review/${id}`);
+                                                        }
+                                                    }
+                                                    businessId={businessId}>
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </div>
+                                                <div id="info-delete-review"
+                                                    onClick={
+                                                        async (e) => {
+                                                            e.preventDefault();
+                                                            await dispatch(deleteReviewThunk(id))
+                                                                .then(() => dispatch(getReviewThunk(parseInt(businessId))));
+                                                        }
+                                                    }>
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </div>
+                                            </div>
+                                            : <div></div>
+                                        }
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
                 <div className='side-content'>
-                    <p>Phone: {singleBusiness?.phone}</p>
-                    <p>Website: {singleBusiness?.website}</p>
+                    <div className='side-info'>
+                        <p>{singleBusiness?.phone}</p>
+                        <div className='side-content-icons'>
+                            <i class="fa-solid fa-phone fa-lg"></i>
+                        </div>
+                    </div>
+                    <div className='side-info'>
+                        <p><a href={`${singleBusiness?.website}`}>{singleBusiness?.website}</a></p>
+                        <div className='side-content-icons'>
+                            <i class="fa-solid fa-square-up-right fa-lg"></i>
+                        </div>
+                    </div>
+                    <div className='side-info'>
+                        <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code}</p>
+                        <div className='side-content-icons'>
+                            <i class="fa-solid fa-location-dot fa-lg"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
