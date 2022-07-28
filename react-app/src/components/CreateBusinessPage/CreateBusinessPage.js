@@ -3,21 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import { addBusinessThunk } from '../../store/businesses';
 import './CreateBusinessPage.css'
-
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { geocodeByPlaceId, geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 
 function CreateBusinessPage({categories}) {
+    
     const history = useHistory();
     const dispatch = useDispatch();
     const categoriesArr = Object.values(categories)
     const sessionUser = useSelector(state => state.session.user)
     const statesArr = [
-        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-        'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
-        'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 
-        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 
-        'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon',
-        'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 
-        'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
       ]
     const pricesArr = ["$","$$","$$$","$$$$"]
 
@@ -35,6 +31,44 @@ function CreateBusinessPage({categories}) {
     const [ latitude, setLatitude ] = useState('');
     const [ longitude, setLongitude ] = useState('');
 
+    //for AutoComplete
+    const [ longAddy, setLongAddy ] = useState(null);
+    const [ realAddyStr, setRealAddyStr ] = useState('');
+    // console.log(longAddy);
+    let placeId = (longAddy?.value.place_id);
+    
+    //geocode by 3rd party:
+
+    geocodeByPlaceId(placeId)
+        .then(results => {
+            console.log(results)
+            setRealAddyStr(results[0].formatted_address);
+            setAddress(realAddyStr.split(', ')[0]);
+            setCity(realAddyStr.split(', ')[1]);
+            let temp = realAddyStr.split(', ')[2];
+            setState(temp.split(' ')[0]);
+            // console.log(`${parseInt(temp.split(' ')[1])}, type is ${typeof parseInt(temp.split(' ')[1]) } from line 50`)
+            setZip_code(parseInt(temp.split(' ')[1]));
+            // console.log(`${state} and ${zip_code} from line 57`);
+            // console.log(`from line 56 ${zip_code}`)
+            // console.log(`addy: ${address}, city: ${city}, state: ${state} from line 55`)
+        })
+        .catch(error => console.error(error));
+        
+    // console.log(`line 95 ${placeId}, ${realAddyStr}`)
+
+    if (realAddyStr!=''){
+    geocodeByAddress(realAddyStr)
+        .then(results => getLatLng(results[0]))
+        .then(({ lat, lng }) =>{
+            // console.log('Successfully got latitude and longitude', { lat, lng });
+            setLatitude(lat);
+            setLongitude(lng);
+        }
+        );
+    }
+
+        
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
@@ -42,14 +76,14 @@ function CreateBusinessPage({categories}) {
         let errors = []
         if (name.length >= 50) errors.push("Name length invalid and should be less than 50 characters");
         if (!description.length) errors.push("Please enter description for your business");
-        if (!address.length) errors.push("Address is required");
-        if (!city.length) errors.push("City is required");
-        if (!state.length) errors.push("State is required");
+        // if (!address.length) errors.push("Address is required");
+        // if (!city.length) errors.push("City is required");
+        // if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
+        // if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode format invalid, should only contains 5 numbers (e.g. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
-        if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
-        if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
+        // if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
+        // if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
         setErrors(errors);
     }, [name, description, address, city, state, zip_code, phone, price_range, business_hours, latitude, longitude]);
     
@@ -120,7 +154,7 @@ function CreateBusinessPage({categories}) {
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>
                         Address
                         <input
@@ -131,8 +165,8 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         City
                         <input
@@ -143,8 +177,8 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         State
                         <select 
@@ -156,8 +190,8 @@ function CreateBusinessPage({categories}) {
                             )}
                         </select>
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         ZIP
                         <input
@@ -168,7 +202,7 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
+                </div> */}
                 <div>
                     <label>
                         Phone
@@ -245,7 +279,7 @@ function CreateBusinessPage({categories}) {
                     </label>
                 </div>
                 <div>
-                    Enter Your Google Map Location Info
+                    {/* Enter Your Google Map Location Info
                     <div>
                         <label>
                         latitude
@@ -269,7 +303,29 @@ function CreateBusinessPage({categories}) {
                                 // required
                             />
                         </label>
-                    </div>
+                    </div> */}
+                    <GooglePlacesAutocomplete
+                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                        selectProps={{
+                            styles: {
+                                input: (provided) => ({
+                                    ...provided,
+                                    color: 'black',
+                                }),
+                                option: (provided) => ({
+                                    ...provided,
+                                    color: 'black',
+                                }),
+                                singleValue: (provided) => ({
+                                    ...provided,
+                                    color: 'blue',
+                                }),
+                            },
+                            longAddy,
+                            onChange: setLongAddy
+                        }}
+                        
+                    />
                 </div>
                 <div>
                     <button type="submit">Next</button>

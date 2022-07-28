@@ -54,8 +54,8 @@ function App() {
   
   return (
     <BrowserRouter>
+      <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} libraries={["places"]}>
       <NavBar loaded={loaded} businesses={businesses} />
-      <Wrapper>
       {loaded && (
         <Switch>
           <Route path='/login' exact={true}>
@@ -109,8 +109,8 @@ function App() {
 
         </Switch>
         )}
-      </Wrapper>
       <Footer />
+      </Wrapper>
     </BrowserRouter>
     
   );
