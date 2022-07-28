@@ -1,14 +1,37 @@
 .img-div{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .img-size{
-    width: 500px;
-    height: 500px;
+    width: 300px;
+    height: 300px;
     padding: 5px;
     object-fit: cover;
     object-position: center;
 
+}
+
+.images-page {
+    width: 1300px;
+    margin: 0 auto;
+    min-height: 510px;
+}
+
+.images-page h2 {
+    font-size: 30px;
+}
+
+.add-photo-pg-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#manage-photos {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
 }
