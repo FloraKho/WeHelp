@@ -87,25 +87,27 @@ function ProfilePage({businesses}) {
                 </div>
                 <div className="profile-content">
                     <div className="profile-select-container">
-                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}><i class="fa-solid fa-star grey"></i> View Posted Reviews</div>
-                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}><i class="fa-solid fa-utensils grey"></i> View Posted Businesses</div>
-                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}><i class="fa-solid fa-camera grey"></i> View Posted Images</div>
+                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}><i class="fa-solid fa-star grey"></i> View Reviews</div>
+                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}><i class="fa-solid fa-utensils grey"></i> View Businesses</div>
+                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}><i class="fa-solid fa-camera grey"></i> View Images</div>
                     </div>
                     <div className="profile-selected-container">
                         {showOwnRev && (
                             <>
                                 <h1 style={{color:'#d32323'}}>Your Reviews</h1>
                                 {reviewOwn && reviewOwn.map( review => (
-                                    <div className="review-card">
-                                        <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(review.business_id)?.image_url})` }}></div>
-                                        <div className="review-card-right">
-                                            <h4>{businesses[review.business_id].name}</h4>
-                                            <div>{businesses[review.business_id].address}</div>
-                                            <div>{businesses[review.business_id].city}, {businesses[review.business_id].state}</div>
-                                            <p>Rating: {review.rating}</p>
-                                            <p>Content: {review.content}</p>
+                                    <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/edit-review/${review.id}`}>
+                                        <div className="review-card">
+                                            <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(review.business_id)?.image_url})` }}></div>
+                                            <div className="review-card-right">
+                                                <h4>{businesses[review.business_id].name}</h4>
+                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].address}</div>
+                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].city}, {businesses[review.business_id].state}</div>
+                                                <p>Rating: {review.rating}</p>
+                                                <p>Content: {review.content.slice(0, 100)}...</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </NavLink>
                                 ))}
                             </>
                         )

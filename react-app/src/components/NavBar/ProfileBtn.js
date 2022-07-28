@@ -31,16 +31,16 @@ const ProfileBtn = () => {
             <div onClick={openMenu}>
             <img 
                 style={{width:'40px', height:'40px', borderRadius:'50px'}} 
-                src={ sessionUser?.profile_pic } 
+                src={sessionUser?.profile_pic } 
                 alt={sessionUser?.username} 
                 />
             </div>
             {showMenu && (
-                <ul className="profile-drop-down-menu">
-                    <li><NavLink to={`/profile`}>Profile</NavLink></li>
+                <div className="profile-drop-down-menu">
+                    <NavLink style={{ textDecoration: 'none', color: 'black', textAlign:'center'}} to={`/profile`}>Profile</NavLink>
                     <hr></hr>
-                    <li><LogoutButton /></li>
-                </ul>
+                    <LogoutButton />
+                </div>
             )}
         </>
     )
