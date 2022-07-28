@@ -5,6 +5,7 @@ import { addBusinessThunk } from '../../store/businesses';
 import './CreateBusinessPage.css'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId, geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import { getAllCategoryThunk } from '../../store/categories';
 
 function CreateBusinessPage() {
     
