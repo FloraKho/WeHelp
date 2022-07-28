@@ -34,7 +34,7 @@ function CreateBusinessPage({categories}) {
     //for AutoComplete
     const [ longAddy, setLongAddy ] = useState(null);
     const [ realAddyStr, setRealAddyStr ] = useState('');
-    console.log(longAddy);
+    // console.log(longAddy);
     let placeId = (longAddy?.value.place_id);
     
     //geocode by 3rd party:
@@ -47,21 +47,21 @@ function CreateBusinessPage({categories}) {
             setCity(realAddyStr.split(', ')[1]);
             let temp = realAddyStr.split(', ')[2];
             setState(temp.split(' ')[0]);
-            console.log(`${parseInt(temp.split(' ')[1])}, type is ${typeof parseInt(temp.split(' ')[1]) } from line 50`)
+            // console.log(`${parseInt(temp.split(' ')[1])}, type is ${typeof parseInt(temp.split(' ')[1]) } from line 50`)
             setZip_code(parseInt(temp.split(' ')[1]));
-            console.log(`${state} and ${zip_code} from line 57`);
+            // console.log(`${state} and ${zip_code} from line 57`);
             // console.log(`from line 56 ${zip_code}`)
-            console.log(`addy: ${address}, city: ${city}, state: ${state} from line 55`)
+            // console.log(`addy: ${address}, city: ${city}, state: ${state} from line 55`)
         })
         .catch(error => console.error(error));
         
-    console.log(`line 95 ${placeId}, ${realAddyStr}`)
+    // console.log(`line 95 ${placeId}, ${realAddyStr}`)
 
     if (realAddyStr!=''){
     geocodeByAddress(realAddyStr)
         .then(results => getLatLng(results[0]))
         .then(({ lat, lng }) =>{
-            console.log('Successfully got latitude and longitude', { lat, lng });
+            // console.log('Successfully got latitude and longitude', { lat, lng });
             setLatitude(lat);
             setLongitude(lng);
         }
