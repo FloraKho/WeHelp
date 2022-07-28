@@ -31,9 +31,9 @@ function CreateBusinessPage() {
     // const categories = useSelector(state => state.categoryState)
     // const categoriesArr = Object.values(categories)
     const sessionUser = useSelector(state => state.session.user)
-    // const statesArr = [
-    //     'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
-    //   ]
+    const statesArr = [
+        'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
+      ]
     const pricesArr = ["$", "$$", "$$$", "$$$$"]
     // console.log('categoriesarr', categoriesArr)
     const [name, setName] = useState("");
@@ -41,7 +41,7 @@ function CreateBusinessPage() {
     const [category_id, setCategory_id] = useState(1);
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const [state, setState] = useState('')
+    const [state, setState] = useState(statesArr[0])
     const [zip_code, setZip_code] = useState("");
     const [phone, setPhone] = useState("");
     const [website, setWebsite] = useState("");
@@ -66,11 +66,11 @@ function CreateBusinessPage() {
             setCity(realAddyStr.split(', ')[1]);
             let temp = realAddyStr.split(', ')[2];
             setState(temp.split(' ')[0]);
-            // console.log(`${parseInt(temp.split(' ')[1])}, type is ${typeof parseInt(temp.split(' ')[1]) } from line 50`)
+            console.log(`${parseInt(temp.split(' ')[1])}, type is ${typeof parseInt(temp.split(' ')[1]) } from line 50`)
             setZip_code(parseInt(temp.split(' ')[1]));
-            // console.log(`${state} and ${zip_code} from line 57`);
-            // console.log(`from line 56 ${zip_code}`)
-            // console.log(`addy: ${address}, city: ${city}, state: ${state} from line 55`)
+            console.log(`${state} and ${zip_code} from line 57`);
+            console.log(`from line 56 ${zip_code}`)
+            console.log(`addy: ${address}, city: ${city}, state: ${state} from line 55`)
         })
         .catch(error => console.error(error));
 
@@ -95,14 +95,14 @@ function CreateBusinessPage() {
         let errors = []
         if (name.length >= 50) errors.push("Name length invalid and should be less than 50 characters");
         if (!description.length) errors.push("Please enter description for your business");
-        // if (!address.length) errors.push("Address is required");
-        // if (!city.length) errors.push("City is required");
-        // if (!state.length) errors.push("State is required");
+        if (!address.length) errors.push("Address is required");
+        if (!city.length) errors.push("City is required");
+        if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        // if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode format invalid, should only contains 5 numbers (e.g. 12345)");
+        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode format invalid, should only contains 5 numbers (e.g. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
-        // if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
-        // if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
+        if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
+        if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
         setErrors(errors);
     }, [name, description, address, city, state, zip_code, phone, price_range, business_hours, latitude, longitude]);
 
@@ -172,31 +172,47 @@ function CreateBusinessPage() {
                     />
                 </div>
                 <div className='business-form-unit'>
-                    {/* Enter Your Google Map Location Info
-                    <div>
-                        <label>
-                        latitude
-                            <input
-                                placeholder='Latitude'
-                                type='text'
-                                value={latitude}
-                                onChange={(e) => setLatitude(e.target.value)}
-                                // required
-                            />
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                        longitude
-                            <input
-                                placeholder='Longitude'
-                                type='text'
-                                value={longitude}
-                                onChange={(e) => setLongitude(e.target.value)}
-                                // required
-                            />
-                        </label>
-                    </div> */}
+                    <div className='business-form-label'>Address</div>
+                        <input
+                            placeholder='Address'
+                            type='text'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            // required
+                        />
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>City</div>
+                        <input
+                            placeholder='City'
+                            type='text'
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            // required
+                        />
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>State</div>
+                        <select 
+                            onChange={(e) => setState(e.target.value)} 
+                            value={state}
+                            >
+                            {statesArr.map(type =>
+                                <option key={type}>{type}</option>
+                            )}
+                        </select>
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>ZipCode</div>
+                        <input
+                            placeholder=' (ie. 12345)'
+                            type='text'
+                            value={zip_code}
+                            onChange={(e) => setZip_code(e.target.value)}
+                            // required
+                        />
+                </div>
+                {/* </div>
                     <div className='business-form-label'>Address</div>
                     <GooglePlacesAutocomplete
                         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
@@ -220,7 +236,7 @@ function CreateBusinessPage() {
                         }}
 
                     />
-                </div>
+                </div> */}
                 {/* <div>
                     <label>
                         Address
@@ -331,6 +347,31 @@ function CreateBusinessPage() {
                         onChange={(e) => setDescription(e.target.value)}
                     // required
                     />
+                </div>
+                <div>
+                    Enter Your Google Map Location Info
+                    <div className='business-form-unit'>
+                        <div className='business-form-label'>latitude</div>
+                                <input
+                                    placeholder='Latitude'
+                                    type='text'
+                                    value={latitude}
+                                    onChange={(e) => setLatitude(e.target.value)}
+                                    // required
+                                />
+                        </div>
+                    <div>
+                    <div className='business-form-unit'>
+                        <div className='business-form-label'>Longitude</div>
+                            <input
+                                placeholder='Longitude'
+                                type='text'
+                                value={longitude}
+                                onChange={(e) => setLongitude(e.target.value)}
+                                // required
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <button id='next-button' type="submit">Next</button>

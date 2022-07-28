@@ -7,6 +7,7 @@ import { getAllReviewThunk } from '../../store/reviews';
 import placeholder from '../Category/placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
+import mapimg from './allbizmap.PNG'
 
 import { getAllBusinessesThunk } from '../../store/businesses';
 import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
@@ -75,7 +76,8 @@ const AllBusinessesPage = ({businesses}) => {
                 }
             </div>
             <div className='google-map'>
-                <MultiMapOverview setOfLatLng={loadedPos} />
+                {/* <MultiMapOverview setOfLatLng={loadedPos} /> */}
+                <img src={mapimg} className='map-img' alt='map'></img>
             </div>
         </div>
     );

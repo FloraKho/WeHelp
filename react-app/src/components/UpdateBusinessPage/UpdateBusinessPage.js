@@ -45,9 +45,9 @@ function UpdateBusinessPage({ businesses }) {
     const [errors, setErrors] = useState([])
     const [hasSubmitted, setHasSubmitted] = useState(false)
 
-    // const statesArr = [
-    //     'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
-    // ]
+    const statesArr = [
+        'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
+    ]
     const pricesArr = ["$", "$$", "$$$", "$$$$"]
     // console.log("THIS IS WEBSITE", website)
 
@@ -92,11 +92,11 @@ function UpdateBusinessPage({ businesses }) {
         let errors = []
         if (name.length >= 50) errors.push("Name length invalid and should be less than 50 characters");
         if (!description.length) errors.push("Please enter description for your business");
-        // if (!address.length) errors.push("Address is required");
-        // if (!city.length) errors.push("City is required");
-        // if (!state.length) errors.push("State is required");
+        if (!address.length) errors.push("Address is required");
+        if (!city.length) errors.push("City is required");
+        if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        // if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
+        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
         // if (!/^(-?\d+(\.\d+)?)$/.test(latitude)) errors.push("Latitude is required and should be in float");
         // if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
@@ -152,7 +152,7 @@ function UpdateBusinessPage({ businesses }) {
                     // required
                     />
                 </div>
-                <div className='business-form-unit'>
+                {/* <div className='business-form-unit'>
                     <div className='business-form-label'>Address</div>
                     <GooglePlacesAutocomplete
                         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
@@ -176,10 +176,9 @@ function UpdateBusinessPage({ businesses }) {
                         }}
 
                     />
-                </div>
-                {/* <div>
-                    <label>
-                        Address
+                </div> */}
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Address</div>
                         <input
                             placeholder='Address'
                             type='text'
@@ -187,11 +186,9 @@ function UpdateBusinessPage({ businesses }) {
                             onChange={(e) => setAddress(e.target.value)}
                             // required
                         />
-                    </label>
-                </div> */}
-                {/* <div>
-                    <label>
-                        City
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>City</div>
                         <input
                             placeholder='City'
                             type='text'
@@ -199,11 +196,9 @@ function UpdateBusinessPage({ businesses }) {
                             onChange={(e) => setCity(e.target.value)}
                             // required
                         />
-                    </label>
-                </div> */}
-                {/* <div>
-                    <label>
-                        State
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>State</div>
                         <select 
                             onChange={(e) => setState(e.target.value)} 
                             value={state}
@@ -212,11 +207,9 @@ function UpdateBusinessPage({ businesses }) {
                                 <option key={type}>{type}</option>
                             )}
                         </select>
-                    </label>
-                </div> */}
-                {/* <div>
-                    <label>
-                        ZIP
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>ZipCode</div>
                         <input
                             placeholder=' (ie. 12345)'
                             type='text'
@@ -224,8 +217,7 @@ function UpdateBusinessPage({ businesses }) {
                             onChange={(e) => setZip_code(e.target.value)}
                             // required
                         />
-                    </label>
-                </div> */}
+                </div>
                 <div className='business-form-unit'>
                     <div className='business-form-label'>Phone</div>
                     <input

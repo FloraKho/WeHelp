@@ -12,7 +12,7 @@ import filterPic from './filterPic.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
 import { BsFillBookmarkStarFill } from "react-icons/bs";
-
+import singlebizmap from './bizdetailmap.PNG'
 import './BusinessInfo.css'
 
 function BusinessInfo({ businesses, categories }) {
@@ -165,7 +165,8 @@ function BusinessInfo({ businesses, categories }) {
                         <div className='location-and-hour-conatiner'>
                             <div className='location-left'>
                                 <div className='left-map-container'>
-                                    <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} />
+                                    {/* <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} /> */}
+                                    <img src={singlebizmap} alt='singlebizmap'></img>
                                 </div>
                                 <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.state}, {singleBusiness?.zip_code} </p>
                             </div>
