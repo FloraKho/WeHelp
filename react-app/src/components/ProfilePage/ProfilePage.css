@@ -32,6 +32,15 @@
     background-size: cover;
 }
 
+.own-img {
+    height: 215px;
+    width: 215px;
+    border-radius: 5px;
+    margin: 15px;
+    background-position: center center;
+    background-size: cover;
+}
+
 .profile-select{
     background-color: white;
     color:black;
@@ -208,4 +217,21 @@
 .fiveEmpty-profile {
     width: 120px;
     overflow: hidden;
+}
+
+.own-img-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+}
+
+.own-img:hover {
+    box-shadow:  0px 4px 4px rgba(0, 0, 0, 0.15);
+}
+
+.own-img-container h4 {
+    font-weight: 400;
+    margin-top: 5px;
+    color: #525252;;
 }

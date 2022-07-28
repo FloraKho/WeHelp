@@ -166,16 +166,18 @@ function ProfilePage({ businesses }) {
                             </>
                         )}
                         {showOwnImg && (
-                            <div >
+                            <div>
                                 <h1 style={{ color: '#d32323' }}>Your Images</h1>
-                                {imageOwn && imageOwn.map(image => (
-                                    <div className="review-card">
-                                        <NavLink style={{ textDecoration: 'none', color: 'black', textAlign: 'center' }} to={`/businesses/${image.business_id}`}>
-                                            <h4>{businesses[image.business_id].name}</h4>
-                                            <img src={image.image_url} alt='images' className="img-size" />
-                                        </NavLink>
-                                    </div>
-                                ))}
+                                <div className="own-img-container">
+                                    {imageOwn && imageOwn.map(image => (
+                                        <div>
+                                            <NavLink style={{ textDecoration: 'none', color: 'black', textAlign: 'center' }} to={`/businesses/${image.business_id}`}>
+                                                <h4>{businesses[image.business_id].name}</h4>
+                                                <div className="own-img" style={{ backgroundImage: `url(${image?.image_url})` }}></div>
+                                            </NavLink>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         )}
                     </div>
