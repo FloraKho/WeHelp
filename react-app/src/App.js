@@ -86,7 +86,7 @@ function App() {
             <UpdateBusinessPage businesses={businesses} categories={categories} />
           </ProtectedRoute>
           <Route path='/businesses/:businessId' exact={true}>
-            <BusinessInfo businesses={businesses}/>
+            <BusinessInfo businesses={businesses} categories={categories}/>
           </Route>
           <ProtectedRoute path='/businesses/:businessId/post-review' exact={true}>
             <ReviewForm />
