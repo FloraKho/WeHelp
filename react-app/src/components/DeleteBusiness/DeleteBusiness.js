@@ -11,11 +11,10 @@ function DeleteBusiness({ businessId }) {
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleDeleteSubmit = async () => {
-        await dispatch(deleteBusinessThunk(businessId));
-        console.log("deleted")
+    const handleDeleteSubmit = () => {
+        dispatch(deleteBusinessThunk(businessId));
         history.push('/businesses');
-        console.log("history pushed")
+
     }
 
     return (

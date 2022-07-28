@@ -95,10 +95,12 @@ function ProfilePage({businesses}) {
                         </div>
                         <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}>
                             <div className="profile-select-icons">
-                                <i class="fa-solid fa-utensils grey"></i> View Businesses</div>
+                                <i class="fa-solid fa-utensils grey"></i></div>
+                                 <p> View Businesses</p>
                         </div>
                         <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}>
-                            <div className="profile-select-icons"><i class="fa-solid fa-camera grey"></i> View Images</div>
+                            <div className="profile-select-icons"><i class="fa-solid fa-camera grey"></i> </div>
+                            <p>View Images</p>
                         </div>
                     </div>
                     <div className="profile-selected-container">

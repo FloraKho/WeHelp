@@ -19,7 +19,8 @@ function ImageUploadPage({ businesses }) {
     const currentUserId = sessionUser?.id;
     const currentBusiness = businesses[businessId];
 
-    const photosArr = imagesArr.filter(image => image.user_id === +currentUserId)
+    const photosArr = imagesArr.filter(image => image.user_id === +currentUserId && image.business_id === +businessId)
+    console.log("photoarr",photosArr)
     const businessOwner = currentBusiness?.user_id === +currentUserId;
 
     const [errors, setErrors] = useState([]);
