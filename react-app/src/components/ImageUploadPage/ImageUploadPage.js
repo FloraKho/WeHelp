@@ -4,10 +4,10 @@ import { useHistory, useParams } from "react-router-dom";
 import { getBizImagesThunk } from "../../store/images";
 import UploadModal from "./UploadModal";
 import DeleteImageModal from "./DeleteImageModal";
+import './ImageUploadPage.css'
 
 
-
-function ImageUploadPage({businesses}) {
+function ImageUploadPage({ businesses }) {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -38,18 +38,27 @@ function ImageUploadPage({businesses}) {
     const handleComplete = (e) => {
         e.preventDefault();
         setHasSubmitted(true);
-        if(!errors.length){
+        if (!errors.length) {
             setHasSubmitted(false)
             setErrors([])
             return history.push(`/businesses/${businessId}`)
-        }  
+        }
     }
 
     return (
-        <>
-            <h1>Add Photos: </h1>
-            <div>
-                <UploadModal businessId={businessId} />
+        <div className="image-upload-page">
+            <div className="image-upload-top">
+                <h1>Add Photos: </h1>
+                <div className="image-upload-top-buttons">
+                    <div>
+                        <UploadModal businessId={businessId} />
+                    </div>
+                    <div>
+                        <button id="complete-button" onClick={handleComplete} >
+                            <i class="fa-regular fa-circle-check fa-lg"></i> Complete
+                        </button>
+                    </div>
+                </div>
             </div>
             <div>
                 {hasSubmitted && errors &&
@@ -64,18 +73,16 @@ function ImageUploadPage({businesses}) {
 
             <div className="img-div">
                 {photosArr && photosArr.map((image) => {
-                        return (
-                            <div key={image.id}>
-                                <img src={image.image_url} alt='images' className="img-size"/>
-                                { image.user_id === currentUserId && (
-                                    <DeleteImageModal businessId={businessId} imageId={image.id}/> )}
-                            </div>
-                        )
-                    })}
+                    return (
+                        <div key={image.id}>
+                            <div className="img-upload" style={{ backgroundImage: `url(${image.image_url})` }}></div>
+                            {image.user_id === currentUserId && (
+                                <DeleteImageModal businessId={businessId} imageId={image.id} />)}
+                        </div>
+                    )
+                })}
             </div>
-            <h1>Click below to complete your upload.</h1>
-            <div><button onClick={handleComplete} >Complete</button></div>
-        </>
+        </div>
     )
 }
 

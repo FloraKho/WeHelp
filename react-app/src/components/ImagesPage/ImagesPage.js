@@ -53,7 +53,8 @@ function ImagesPage({ businesses }) {
                 {imagesArr && imagesArr.map((image) => {
                     return (
                         <div key={image.id}>
-                            <img src={image.image_url} alt='images' className="img-size" />
+                            <div className="img-size" style={{backgroundImage: `url(${image.image_url})`}}></div>
+                            {/* <img src={image.image_url} alt='images' className="img-size" /> */}
                             {/* { image.user_id === currentUserId && (
                                 <DeleteImageModal businessId={businessId} imageId={image.id}/> )} */}
                         </div>

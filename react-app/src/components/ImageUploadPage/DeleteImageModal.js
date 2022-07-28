@@ -3,6 +3,7 @@ import { Modal } from '../../context/Modal';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteImageThunk } from '../../store/images';
+import './ImageUploadPage.css'
 
 function DeleteImageModal({ businessId, imageId }) {
 
@@ -18,8 +19,9 @@ function DeleteImageModal({ businessId, imageId }) {
 
     return (
         <>
-            <div>
-                <button onClick={() => setShowModal(true)}>Delete</button>
+
+            <div className="cross-button" onClick={() => setShowModal(true)}>
+                <i class="fa-regular fa-circle-xmark fa-xl"></i>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

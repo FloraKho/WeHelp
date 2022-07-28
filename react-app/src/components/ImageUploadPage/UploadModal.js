@@ -3,9 +3,9 @@ import { Modal } from '../../context/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addImageThunk } from '../../store/images';
+import './ImageUploadPage.css'
 
-
-function UploadModal({businessId}){
+function UploadModal({ businessId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const sessionUser = useSelector(state => state.session.user)
@@ -25,9 +25,9 @@ function UploadModal({businessId}){
         setImage(null)
         setShowModal(false)
         history.push(`/businesses/${businessId}/image-upload`)
-    }    
-    
-    
+    }
+
+
     const updateImage = (e) => {
         const file = e.target.files[0];
         setImage(file);
@@ -36,7 +36,9 @@ function UploadModal({businessId}){
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Upload Photo</button>
+                <button id='upload-photo-button' onClick={() => setShowModal(true)}>
+                    <i class="fa-solid fa-images fa-lg"></i> Upload Photo
+                </button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>

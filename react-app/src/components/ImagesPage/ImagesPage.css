@@ -5,12 +5,12 @@
 }
 
 .img-size{
-    width: 300px;
-    height: 300px;
-    padding: 5px;
-    object-fit: cover;
-    object-position: center;
-
+    height: 290px;
+    min-width: 290px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 5px;
+    margin-bottom: 40px;
 }
 
 .images-page {
