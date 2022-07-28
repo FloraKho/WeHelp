@@ -1,0 +1,83 @@
+.img-upload {
+    height: 290px;
+    min-width: 290px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 16px;
+}
+
+.image-upload-page {
+    width: 1300px;
+    margin: 0 auto;
+    min-height: 510px;
+}
+
+.image-upload-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image-upload-top h1 {
+    font-size: 30px;
+}
+
+.image-upload-top-buttons {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    justify-content: space-between;
+}
+
+#upload-photo-button {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+    border: 1px solid #d1d5db;
+}
+
+#upload-photo-button:hover {
+    background-color: #f5f5f4;
+}
+
+
+#complete-button {
+    width: 160px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.cross-button {
+    position: relative;
+    bottom: 296px;
+    left: 255px;
+    color: rgba(255, 0, 0, 0.8);
+    width: fit-content;
+}
+
+.cross-button:hover {
+    cursor: pointer;
+}
+
+.delete-image-modal {
+    width: 550px;
+    height: 220px;
+    padding: 20px 40px;
+}
+
+.delete-image-modal p {
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+.image-upload-modal {
+    width: 550px;
+    height: 220px;
+    padding: 20px 40px;
+}

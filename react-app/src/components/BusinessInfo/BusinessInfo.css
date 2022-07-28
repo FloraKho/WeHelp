@@ -1,13 +1,373 @@
 .image_container {
-
-    height: 300px;
-    width: 400px;
+    height: 426px;
+    width: 25vw;
     background-position: center center;
-    background-size: auto 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    background-size: cover;
 }
+
 .all-imgs-container{
     display: flex;
+    flex-direction: row;
+    width: 100vw;
 }
 
+.info-img-placeholder {
+    width: 100vw;
+    height: 426px;
+    background-image: url('https://img.freepik.com/free-vector/restaurant-mural-wallpaper_23-2148692632.jpg');
+}
+
+.business-info-page{
+    width: 100vw;
+}
+
+.filter-pic {
+    width: 100vw;
+    height: 426px;
+    position: absolute;
+    top: 120px;
+}
+
+/* .everything-below {
+    position: relative;
+    bottom: 660px;
+    margin-bottom: -400px;
+} */
+
+.major-info {
+    color: white;
+    width: 1200px;
+    position: absolute;
+    top: 300px;
+    left: 20%;
+}
+
+.major-info p, .major-info span {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.major-info h1 {
+    font-size: 48px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.major-info-stars {
+    display: flex;
+    flex-direction: row;
+}
+
+.major-info-stars p {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.fiveFilled-biz {
+    position: relative;
+    bottom: 37px;
+    width: 160px; /* width of container */
+    height: 30px; /* height of container */
+    overflow: hidden;
+}
+
+.fiveFilled-biz img {
+    width: 160px; /* width of container */
+    height: 30px; /* height of container */
+    position: relative;
+}
+
+.fiveEmpty-biz img {
+    width: 160px;
+    height: 30px;
+    position: relative;
+    left: 0.5px;
+}
+
+.fiveEmpty-biz {
+    width: 160px;
+    overflow: hidden;
+}
+
+.fiveFilled-review {
+    position: relative;
+    bottom: 30px;
+    overflow: hidden;
+    height: 23px;
+}
+
+.fiveEmpty-review img {
+    width: 120px;
+}
+
+.fiveFilled-review img {
+    width: 120px;
+    position: relative;
+}
+
+.stars-in-review {
+    width: 120px;
+    margin-left: 400px;
+    margin-top: 30px;
+}
+
+.price-and-category {
+    position: relative;
+    bottom: 39px;
+}
+
+.opt-hours {
+    position: relative;
+    bottom: 45px;
+}
+
+#blue-text {
+    color: #1F8EFF;
+}
+
+#see-photos {
+    position: relative;
+    bottom: 95px;
+    left: 1005px;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 9px 32px;
+    font-size: 16px;
+}
+
+#see-photos:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.main-content {
+    width: 745px;
+    margin-left: 20%;
+}
+
+.add-review-photo {
+    display: flex;
+    flex-direction: row;
+    padding-top: 30px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+#write-a-review {
+    font-size: 16px;
+    height: 40px;
+    width: 175px;
+    margin-right: 20px;
+    z-index: 0;
+}
+
+#add-photo-button {
+    height: 40px;
+    width: 149px;
+    font-size: 16px;
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    color: #2D2E2F;
+    font-weight: 500;
+    z-index: 0;
+}
+
+#add-photo-button:hover {
+    background-color: #f5f5f4;
+}
+
+.location-left {
+    width: 350px;
+}
+
+.location-right {
+    line-height: 1.1;
+    display: flex;
+    flex-direction: row;
+}
+
+.location-and-hour-conatiner {
+    display: flex;
+    flex-direction: row;
+}
+
+.location-and-hour-conatiner p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+#weekdays {
+    width: 100px;
+    margin-left: 50px;
+}
+
+.location-and-hours h2 {
+    font-size: 20px;
+}
+
+#edit-biz-button {
+    background-color: transparent;
+    border: none;
+    color: #027A97;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    position: relative;
+    right: 100px;
+    margin-top: 20px;
+}
+
+#ID-card-add-review {
+    background-color: transparent;
+    border: none;
+    color: #027A97;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 5px; 
+}
+
+#edit-biz-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#ID-card-add-review:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.main-and-side {
+    display: flex;
+    flex-direction: row;
+}
+
+#review-section h2 {
+    font-size: 20px;
+}
+
+.review-profile {
+    height: 64px;
+    width: 64px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+#my-user-card {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    height: 116px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+}
+
+.review-username {
+    line-height: 0.5;
+    margin-left: 20px;
+}
+
+.review-username p {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+p.smaller-foodie {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#ID-card-review {
+    margin-left: 200px;
+}
+
+#ID-rating-stars {
+    cursor: pointer;
+}
+
+.ind-review {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+}
+
+.review-content {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding-left: 85px;
+    margin-top: 0px;
+}
+
+.ind-review-left {
+    width: 706px;
+}
+
+.ind-review-top {
+    display: flex;
+    flex-direction: row;
+}
+
+.ind-review-right {
+    margin-top: 25px;
+}
+
+#info-edit-review, #info-delete-review {
+    color: #027A97;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info-edit-review:hover, #info-delete-review:hover {
+    cursor: pointer;
+    background-color: #f5f5f4;
+    border-radius: 50%;
+}
+
+.side-content {
+    height: fit-content;
+    width: 365px;
+    margin-top: 105px;
+    margin-left: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+.side-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.side-info p {
+    font-family: 'Open Sans', sans-serif;
+    width: 300px;
+    font-weight: 600;
+    padding-left: 10px;
+    color: #6E7072;
+    overflow: hidden;
+}
+
+.side-info a {
+    font-family: 'Open Sans', sans-serif;
+    width: 300px;
+    font-weight: 700;
+    color: #027A97;
+}
+
+.side-content-icons {
+    height: 54px;
+    width: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #525252;
+}
+
+.all-reviews {
+    margin-bottom: 50px;
+}

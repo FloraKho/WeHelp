@@ -11,26 +11,25 @@ function DeleteBusiness({ businessId }) {
 
     const [showModal, setShowModal] = useState(false);
 
-    const handleDeleteSubmit = async () => {
-        await dispatch(deleteBusinessThunk(businessId));
-        console.log("deleted")
+    const handleDeleteSubmit = () => {
+        dispatch(deleteBusinessThunk(businessId));
         history.push('/businesses');
-        console.log("history pushed")
+
     }
 
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Delete</button>
+                <div id="delete-on-info" onClick={() => setShowModal(true)}><i class="fa-solid fa-trash-can"></i> No longer operating?</div>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='delete-biz-modal'>
                         <h2>Delete Business</h2>
-                        <p >Are you sure you want to delete your business listing?</p>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
-                            <button onClick={handleDeleteSubmit}>Delete</button>
+                        <p >Are you sure you want to delete your business listing? This action cannot be undo.</p>
+                        <div className='delete-biz-buttons'>
+                            <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button id="modal-delete" onClick={handleDeleteSubmit}>Delete</button>
                         </div>
                     </div>
                 </Modal>

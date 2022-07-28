@@ -42,6 +42,8 @@ const AllBusinessesPage = ({businesses}) => {
         loadedPos.push({lat: biz.latitude, lng: biz.longitude})
         // console.log('line24')
     })
+
+    console.log('++++++++++', process.env.REACT_APP_GOOGLE_MAP_API_ONE)
     
     return imagesArr && (
         <div className='all-businesses-page-container'>
@@ -63,7 +65,7 @@ const AllBusinessesPage = ({businesses}) => {
                                 </div>
                                 <div className="cat-text-lower">
                                     <p>Open Hours: {business.business_hours}</p>
-                                    <p>Description: {business.description.slice(0, 100)}...</p>
+                                    <p>Description: {business.description.slice(0, 95)}...</p>
                                     <p id="no-bottom">✔️ Delivery ✔️ Dine In ✔️ Take Out</p>
                                 </div>
                             </div>

@@ -52,20 +52,12 @@ const HomePage = ({ businesses, categories }) => {
                                 <div className="business_card_left" style={{ backgroundImage: `url(${findProfilePic(business.id)?.image_url})` }}></div>
                                 <div className="business_card_right">
                                     <p className="business_name">{business.name}</p>
-                                    {/* <p>{getAverage(business.id)}</p>  */}
                                     <div className="fiveEmpty">
                                         <img src={fiveEmpty} />
                                     </div>
                                     <div className="fiveFilled">
                                         <img src={fiveFilled} style={{ right: `${getPercentage(business.id)}%` }} />
                                     </div>
-                                    {/* <ReactStars
-                                        count={5}
-                                        size={24}
-                                        emptyIcon={<img src={starEmpty}/>}
-                                        fullIcon={<img src={starFilled}/>}
-                                        edit={false}
-                                    /> */}
                                     <p className="business_description">{business.description.slice(0, 100)}...</p>
                                 </div>
                             </div>
@@ -76,12 +68,6 @@ const HomePage = ({ businesses, categories }) => {
             <div className="categories">
                 <h2>Categories</h2>
                 <div className="categories_container">
-                    {/* {categoriesArr.map(category => (
-                        <div className="category_card">
-                            <p></p>
-                            {category}
-                        </div>
-                    ))} */}
                     <NavLink to='/category/1' style={{ textDecoration: 'none', color: 'black' }}>
                         <div className="single_category">
                             <p className="category_icon">🍲</p>

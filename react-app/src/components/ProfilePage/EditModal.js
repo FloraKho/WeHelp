@@ -27,7 +27,7 @@ function EditModal() {
         await dispatch(updatePicThunk(user));
         setImage(null)
         setShowModal(false)
-        history.push('/')
+        history.go('/profile')
     }
 
 
@@ -39,22 +39,27 @@ function EditModal() {
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Edit</button>
+                <button className="update-profile-pic" onClick={() => setShowModal(true)}><i class="fa-solid fa-upload"></i> Update Profile Picture</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='upload-img-div'>
                         <h2>Select Your Profile Picture</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={updateImage}
-                            />
-                            <button type="submit">Change</button>
-                        </form>
                         <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                            <form className='upload-img-form' onSubmit={handleSubmit}>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={updateImage}
+                                />
+                                <br></br>
+                                <br></br>
+                                <div className='delete-biz-buttons'>
+                                    <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                                    <button type="submit" style={{marginRight:'10px'}}>Change</button>
+                                </div>
+                            </form>
+                            <br></br>
                         </div>
                     </div>
                 </Modal>

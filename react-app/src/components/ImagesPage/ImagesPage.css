@@ -1,14 +1,37 @@
 .img-div{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .img-size{
-    width: 500px;
-    height: 500px;
-    padding: 5px;
-    object-fit: cover;
-    object-position: center;
+    height: 290px;
+    min-width: 290px;
+    background-position: center center;
+    background-size: cover;
+    border-radius: 5px;
+    margin-bottom: 40px;
+}
 
+.images-page {
+    width: 1300px;
+    margin: 0 auto;
+    min-height: 510px;
+}
+
+.images-page h2 {
+    font-size: 30px;
+}
+
+.add-photo-pg-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#manage-photos {
+    width: 200px;
+    height: 40px;
+    font-size: 16px;
 }

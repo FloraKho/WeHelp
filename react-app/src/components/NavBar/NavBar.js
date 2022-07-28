@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import ProfileBtn from './ProfileBtn';
 import './NavBar.css'
 import SearchBar from './SearchBar';
 import logo from './logo.png'
@@ -30,7 +31,7 @@ const NavBar = ({ businesses }) => {
             New Business
           </NavLink>
         </div>
-          <LogoutButton />
+          <ProfileBtn />
         </div>
       </nav>
     )
