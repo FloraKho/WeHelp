@@ -27,7 +27,7 @@ function ImageUploadPage({businesses}) {
 
     useEffect(() => {
         let errors = [];
-        if (photosArr.length === 0 && businessOwner) errors.push("Business owner needs to upload at least one image!");
+        if (photosArr.length < 4 && businessOwner) errors.push("Business owner must upload at least 4 images!");
         setErrors(errors);
     }, [photosArr.length, businessOwner])
 
