@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import { useLoadScript, GoogleMap, Marker,InfoWindow, useGoogleMap } from "@react-google-maps/api";
+import './MultiMap.css'
 //need to pass in an array of latlng
 const MultiMapOverview = (setOfLatLng) => {
 
@@ -82,7 +83,7 @@ const MultiMapOverview = (setOfLatLng) => {
         latlngBoundaries&&
         <div>
             {console.log (latlngBoundaries)}
-            <div style={{width: "688px", height:"1px"}}></div>
+            <div style={{width: "688px", height:"1px", zIndex:'-99', marginTop:'70px'}}></div>
             {latlngBoundaries.east!==0 &&
             <GoogleMap
                 mapContainerStyle={mapStyles}
