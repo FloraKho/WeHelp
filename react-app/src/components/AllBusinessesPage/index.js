@@ -43,7 +43,8 @@ const AllBusinessesPage = ({businesses}) => {
     })
 
     // console.log('++++++++++', process.env.REACT_APP_GOOGLE_MAP_API_ONE)
-    
+    console.log('++++++++++++++++', process.env.REACT_APP_GOOGLE_MAP_API_KEY);
+
     return imagesArr && (
         <div className='all-businesses-page-container'>
             <div className='searchResult'>
