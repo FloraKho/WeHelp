@@ -72,7 +72,7 @@ function ImageUploadPage({ businesses }) {
                 <p>You don't have any photo uploaded!</p>
             )}
 
-            <div className="img-div">
+            <div className="img-div-upload">
                 {photosArr && photosArr.map((image) => {
                     return (
                         <div key={image.id}>

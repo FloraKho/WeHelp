@@ -59,3 +59,11 @@ label {
     margin-bottom: 10px;
     color: #BF2519;
 }
+
+#logout-button {
+    color: #525252;
+}
+
+#logout-button:hover {
+    cursor: pointer;
+}
