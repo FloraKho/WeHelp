@@ -5,8 +5,9 @@ import { editBusinessThunk } from '../../store/businesses';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId, geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
+import '../CreateBusinessPage/CreateBusinessPage.css'
 
-function UpdateBusinessPage({businesses, categories}) {
+function UpdateBusinessPage({ businesses, categories }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -77,7 +78,7 @@ function UpdateBusinessPage({businesses, categories}) {
     }
 
 
-    useEffect( () => {
+    useEffect(() => {
         let errors = []
         if (name.length >= 50) errors.push("Name length invalid and should be less than 50 characters");
         if (!description.length) errors.push("Please enter description for your business");
@@ -113,35 +114,58 @@ function UpdateBusinessPage({businesses, categories}) {
             longitude
         }
         let editedBiz = dispatch(editBusinessThunk(newBizInfo));
-        if(editedBiz && !errors.length){
+        if (editedBiz && !errors.length) {
             setHasSubmitted(false)
             history.push(`/businesses/${newBizInfo.id}`)
         }
     }
 
     return (
-        <>
+        <div className='create-business-page'>
+            <h1>Update your Business Information</h1>
             <div>
-                { hasSubmitted && errors &&
+                {hasSubmitted && errors &&
                     <div>
-                        {errors.map((error, idx) => <p className='error-text' key={idx}>* {error}</p>)}
+                        {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
                     </div>
                 }
             </div>
-            <DeleteBusiness businessId={businessId}/>
-            <h1>Update your Business Information</h1>
+            {/* <DeleteBusiness businessId={businessId}/> */}
             <form onSubmit={handleEditSubmit}>
-                <div>
-                    <label>
-                        Business Name
-                        <input
-                            placeholder='Business Name'
-                            type='text'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            // required
-                        />
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Business Name</div>
+                    <input
+                        placeholder='Business Name'
+                        type='text'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    // required
+                    />
+                </div>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Address</div>
+                    <GooglePlacesAutocomplete
+                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                        selectProps={{
+                            styles: {
+                                input: (provided) => ({
+                                    ...provided,
+                                    color: 'black',
+                                }),
+                                option: (provided) => ({
+                                    ...provided,
+                                    color: 'black',
+                                }),
+                                singleValue: (provided) => ({
+                                    ...provided,
+                                    color: 'blue',
+                                }),
+                            },
+                            longAddy,
+                            onChange: setLongAddy
+                        }}
+
+                    />
                 </div>
                 {/* <div>
                     <label>
@@ -192,80 +216,68 @@ function UpdateBusinessPage({businesses, categories}) {
                         />
                     </label>
                 </div> */}
-                <div>
-                    <label>
-                        Phone
-                        <input
-                            placeholder='ie. (123)456-7890'
-                            type='text'
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            // required
-                        />
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Phone</div>
+                    <input
+                        placeholder='ie. (123)456-7890'
+                        type='text'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    // required
+                    />
                 </div>
-                <div>
-                    <label>
-                        Website
-                        <input
-                            placeholder='Website (Optional)'
-                            type='text'
-                            value={website}
-                            onChange={(e) => setWebsite(e.target.value)}
-                        />
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Website</div>
+                    <input
+                        placeholder='Website (Optional)'
+                        type='text'
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
+                    />
                 </div>
-                <div>
-                    <label>
-                        Category
-                        <select 
-                            onChange={(e) => setCategory_id(e.target.value)} 
-                            value={category_id}
-                            // required
-                            >
-                            {categoriesArr.map(cate =>
-                                <option value={cate.id} key={cate.id}>{cate.name}</option>
-                            )}
-                        </select>
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Category</div>
+                    <select
+                        onChange={(e) => setCategory_id(e.target.value)}
+                        value={category_id}
+                    // required
+                    >
+                        {categoriesArr.map(cate =>
+                            <option value={cate.id} key={cate.id}>{cate.name}</option>
+                        )}
+                    </select>
                 </div>
-                <div>
-                    <label>
-                        Price Range
-                        <select 
-                            onChange={(e) => setPrice_range(e.target.value)} 
-                            value={price_range}
-                            // required
-                            >
-                            {pricesArr.map(price =>
-                                <option key={price}>{price}</option>
-                            )}
-                        </select>
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Price</div>
+                    <select
+                        onChange={(e) => setPrice_range(e.target.value)}
+                        value={price_range}
+                    // required
+                    >
+                        {pricesArr.map(price =>
+                            <option key={price}>{price}</option>
+                        )}
+                    </select>
                 </div>
-                <div>
-                    <label>
-                        Business Hours
-                        <input
-                            placeholder='(ie. 10:00AM-10:00PM)'
-                            type='text'
-                            value={business_hours}
-                            onChange={(e) => setBusiness_hours(e.target.value)}
-                            // required
-                        />
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Business Hour</div>
+                    <input
+                        placeholder='(ie. 10:00AM-10:00PM)'
+                        type='text'
+                        value={business_hours}
+                        onChange={(e) => setBusiness_hours(e.target.value)}
+                    // required
+                    />
                 </div>
-                <div>
-                    <label>
-                    Please provide description to let customer know you better!
-                    <br></br>
-                        <textarea
-                            placeholder='Add Your Description...'
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            // required
-                        />
-                    </label>
+                <div className='business-form-unit'>
+                    <div className='business-form-label'>Add Your Description</div>
+
+                    <textarea
+                        placeholder='Add Your Description...'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    // required
+                    />
                 </div>
                 {/* <div>
                     Enter Your Google Map Location Info
@@ -294,34 +306,12 @@ function UpdateBusinessPage({businesses, categories}) {
                         </label>
                     </div>
                 </div> */}
-                <GooglePlacesAutocomplete
-                    apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
-                    selectProps={{
-                        styles: {
-                            input: (provided) => ({
-                                ...provided,
-                                color: 'black',
-                            }),
-                            option: (provided) => ({
-                                ...provided,
-                                color: 'black',
-                            }),
-                            singleValue: (provided) => ({
-                                ...provided,
-                                color: 'blue',
-                            }),
-                        },
-                        longAddy,
-                        onChange: setLongAddy
-                    }}
-
-                />
                 <div>
-                    <button type="submit">Submit</button>
+                    <button id="submit-edit-biz" type="submit">Submit</button>
                     {/* <button type='button' onClick={() => history.goBack()}>Cancel</button> */}
                 </div>
             </form>
-        </>
+        </div>
     )
 
 }

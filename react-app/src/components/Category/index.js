@@ -30,7 +30,6 @@ const Category = ({ businesses, categories }) => {
     const loadedPos = [];
     filter_biz.forEach((biz) => {
         loadedPos.push({ lat: biz.latitude, lng: biz.longitude })
-        // console.log('line24')
     })
 
     const getAverage = (businessId) => {

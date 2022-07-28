@@ -34,7 +34,6 @@ const LoginForm = () => {
 
   return (
     <div className='login-page'>
-      <DemoUserLogin />
       <form id="login-form" onSubmit={onLogin}>
         <div className='error-msg'>
           {errors.map((error, ind) => (
@@ -63,6 +62,7 @@ const LoginForm = () => {
         </div>
         <button id="login-button" type='submit'>Login</button>
       </form>
+      <DemoUserLogin />
     </div>
   );
 };
