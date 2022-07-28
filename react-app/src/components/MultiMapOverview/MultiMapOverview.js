@@ -87,7 +87,7 @@ const MultiMapOverview = (setOfLatLng) => {
         latlngBoundaries&&
         <div>
             {console.log (latlngBoundaries)}
-            Map is here!ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh Placeholder cuz the space ain't good for now 
+            <div style={{width: "688px", height:"1px"}}></div>
             {latlngBoundaries.east!==0 &&
             <GoogleMap
                 mapContainerStyle={mapStyles}
