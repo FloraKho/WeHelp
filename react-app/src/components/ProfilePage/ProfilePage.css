@@ -5,8 +5,6 @@
     background-color: #ffffff00;
 }
 
-
-
 .profile-top-bar {
     display: flex;
     flex-direction: row;
@@ -21,7 +19,7 @@
     flex-direction: row;
     width: 50vw;
     cursor: pointer;
-    border-top: 1px grey solid;
+    border-top: 1px #d1d5db solid;
 
 }
 
@@ -35,19 +33,23 @@
 .profile-select{
     background-color: white;
     color:black;
-    border-bottom: 1px grey solid;
+    border-bottom: 1px #d1d5db solid;
     width: 215px;
-    height: 35px;
+    height: 40px;
     padding: 5px 0 0 5px;
-    
+    display: flex;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;   
 }
+
 .profile-select:hover{
-    background-color: rgb(204, 204, 204);
+    background-color: #f5f5f4;
 }
 
 .profile-selected-container{
     margin-left: 30px;
-   
 }
 
 
@@ -58,7 +60,7 @@
     width: fit-content;
     height:fit-content;
     margin-bottom: 30px;
-    border-bottom: 1px solid #d1d5db;
+    /* border-bottom: 1px solid #d1d5db; */
     padding: 4%;
 }
 
@@ -110,19 +112,24 @@
 
 
 .curr-selected{
-    background-color: rgb(223, 222, 222);
+    background-color: #f5f5f4;
     color:black;
     border-left: 3px solid #d32323;
     border-bottom: 1px grey solid;
-    width: 215px;
-    height: 35px;
+    width: 212px;
+    height: 40px;
     padding: 5px 0 0 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .update-profile-pic{
     background-color: rgb(255, 255, 255);
     color:#0073bb;
-    border: .5px solid grey;
+    border: .5px solid #d1d5db;
+    height: 40px;
+    font-size: 16px;
 }
 
 
@@ -139,5 +146,10 @@
     align-items: center;
     width: 500px;
     height: 300px;
+}
+
+.profile-select-icons {
+    width: 25px;
+    height: 25px;
 }
 

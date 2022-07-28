@@ -87,9 +87,19 @@ function ProfilePage({businesses}) {
                 </div>
                 <div className="profile-content">
                     <div className="profile-select-container">
-                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}><i class="fa-solid fa-star grey"></i> View Reviews</div>
-                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}><i class="fa-solid fa-utensils grey"></i> View Businesses</div>
-                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}><i class="fa-solid fa-camera grey"></i> View Images</div>
+                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}>
+                            <div className="profile-select-icons">
+                                <i class="fa-solid fa-star grey"></i>
+                            </div> 
+                            <p>View Reviews</p>
+                        </div>
+                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}>
+                            <div className="profile-select-icons">
+                                <i class="fa-solid fa-utensils grey"></i> View Businesses</div>
+                        </div>
+                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}>
+                            <div className="profile-select-icons"><i class="fa-solid fa-camera grey"></i> View Images</div>
+                        </div>
                     </div>
                     <div className="profile-selected-container">
                         {showOwnRev && (
