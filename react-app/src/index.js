@@ -9,6 +9,9 @@ import { ImagesModalProvider } from './context/ImagesModal';
 
 const store = configureStore();
 
+
+
+
 ReactDOM.render(
   <React.StrictMode>
     <ImagesModalProvider>

@@ -4,7 +4,7 @@ import { useLoadScript, GoogleMap, Marker,InfoWindow, useGoogleMap } from "@reac
 //need to pass in an array of latlng
 const MultiMapOverview = (setOfLatLng) => {
 
-    console.log(`inside multimapoverview`)
+    // console.log(`inside multimapoverview`)
     const mapStyles = {
         height: "100vh",
         width: "100%"
@@ -52,37 +52,32 @@ const MultiMapOverview = (setOfLatLng) => {
         lat: avgLat, lng: avgLng
     }
 
-    // let load = (bound)=>{
-    //     google.maps.map.fitBounds(bound);
-    // }
-    // function getBoundsZoomLevel(boundLiteral, mapDim) {
-    //     var WORLD_DIM = { height: 256, width: 256 };
-    //     var ZOOM_MAX = 21;
 
-    //     function latRad(lat) {
-    //         var sin = Math.sin(lat * Math.PI / 180);
-    //         var radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
-    //         return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
-    //     }
+    // let sw = {lat: minLat, lng: minLng};
+    // let ne = {lat: maxLat, lng: maxLng};
 
-    //     function zoom(mapPx, worldPx, fraction) {
-    //         return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
-    //     }
+    // let mapBounds = new window.google.maps.LatLngBounds([sw, ne]);
 
-    //     var ne = { lat: boundLiteral.maxLat, lng: boundLiteral.minLng} ;
-    //     var sw = { lat: boundLiteral.minLat, lng: boundLiteral.maxLng};
-
-    //     var latFraction = (latRad(ne.lat()) - latRad(sw.lat())) / Math.PI;
-
-    //     var lngDiff = ne.lng() - sw.lng();
-    //     var lngFraction = ((lngDiff < 0) ? (lngDiff + 360) : lngDiff) / 360;
-
-    //     var latZoom = zoom(mapDim.height, WORLD_DIM.height, latFraction);
-    //     var lngZoom = zoom(mapDim.width, WORLD_DIM.width, lngFraction);
-
-    //     return Math.min(latZoom, lngZoom, ZOOM_MAX);
+    // let load = (map)=>{
+    //     map.panToBounds(mapBounds);
+    //     map.fitToBounds(mapBounds);
     // }
 
+    const [map, setMap] = useState();
+
+    useEffect(() => {
+        if (map) {
+            let bounds = new window.google.maps.LatLngBounds();
+            for (var i = 0; i < allCoordinates.length; i++) {
+                bounds.extend(new window.google.maps.LatLng(Object.values(allCoordinates[i])[0], Object.values(allCoordinates[i])[1]));
+            }
+            map.fitBounds(bounds)
+            console.log(`from line 75`)
+            console.log(bounds);
+        }
+    }, [allCoordinates, map])
+
+    //
     return (
         latlngBoundaries&&
         <div>
@@ -92,8 +87,8 @@ const MultiMapOverview = (setOfLatLng) => {
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 center={defaultCenter}
-                // panToBounds={latlngBoundaries}
                 zoom={7}
+                
             >
             {allCoordinates.map(biz=> (
                 <Marker
