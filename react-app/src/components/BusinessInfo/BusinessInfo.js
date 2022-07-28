@@ -96,7 +96,7 @@ function BusinessInfo({ businesses, categories }) {
             </div>
 
             <div className='filter-pic' style={{ backgroundImage: `url(${filterPic})` }}></div>
-            
+
             <div className='major-info'>
                 <h1>{singleBusiness?.name}</h1>
                 <div className='major-info-stars'>
@@ -116,82 +116,111 @@ function BusinessInfo({ businesses, categories }) {
                 <div className='opt-hours'>
                     <p>Operation Hours: {singleBusiness?.business_hours}</p>
                 </div>
+                <button id='see-photos' onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
             </div>
 
+            <div className='main-content'>
+                <div className='add-review-photo'>
+                    <div onClick={handleAddReview}>
+                        <button id="write-a-review">
+                            <i class="fa-regular fa-star fa-lg"></i> Write a review
+                        </button>
+                    </div>
+                    <div onClick={handleAddPhoto}>
+                        <button id="add-photo-button">
+                            <i class="fa-solid fa-camera fa-lg"></i> Add Photo
+                        </button>
+                    </div>
+                </div>
 
-
-            <div>
-                <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
-            </div>
-
-
-            <div>
-                <button onClick={handleAddReview}>
-                    Add Review
-                </button>
-            </div>
-            <div>
-                <button onClick={handleAddPhoto}>
-                    Add Photo
-                </button>
-            </div>
-
-            <div>
-                <button onClick={handleEdit}>Edit</button>
-            </div>
-            <div>
-                <DeleteBusiness businessId={businessId} />
-            </div>
-            <h2>Location & Hours</h2>
-            <p>Operation Hours: {singleBusiness?.business_hours}</p>
-            <p>Location: {singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
-            <p>Phone: {singleBusiness?.phone}</p>
-            <p>Website: {singleBusiness?.website}</p>
-            <h2>Recommended Reviews</h2>
-            {currentUser && (
+                {/* <div>
+                    <button onClick={handleEdit}>Edit</button>
+                </div>
                 <div>
-                    <button onClick={handleAddReview}>
-                        Add Review
-                    </button>
-                </div>
-            )}
-
-            {Object.values(reviews).map(({ id, content, rating, user_id }) => (
-                <div key={id}>
-                    <p>{findUserName(user_id)}</p>
-                    <p>{rating}</p>
-                    <p>{content}</p>
-                    {currentUser?.id == user_id
-                        ?
-                        <div>
-                            <button
-                                onClick={
-                                    async (e) => {
-                                        e.preventDefault();
-                                        await history.push(`/edit-review/${id}`);
-                                    }
-                                }
-                                businessId={businessId}>
-                                Edit Review
-                            </button>
-                            <button
-                                onClick={
-                                    async (e) => {
-                                        e.preventDefault();
-                                        await dispatch(deleteReviewThunk(id))
-                                            .then(() => dispatch(getReviewThunk(parseInt(businessId))));
-                                    }
-                                }>
-                                Delete Review
-                            </button>
+                    <DeleteBusiness businessId={businessId} />
+                </div> */}
+                <div className='location-and-hours'>
+                    <h2>Location & Hours</h2>
+                    <div className='location-and-hour-conatiner'>
+                        <div className='location-left'>
+                            <div className='left-map-container'>
+                                <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} />
+                            </div>
+                            <p>{singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
                         </div>
-                        : <div></div>
-                    }
+                        <div className='location-right'>
+                            <div id='weekdays'>
+                                <p>Mon</p>
+                                <p>Tue</p>
+                                <p>Wed</p>
+                                <p>Thu</p>
+                                <p>Fri</p>
+                                <p>Sat</p>
+                                <p>Sun</p>
+                            </div>
+                            <div id='hours-weekday'>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <p>{singleBusiness?.business_hours}</p>
+                                <div>
+                                    <div id="edit-biz-button" onClick={handleEdit}>
+                                        <i class="fa-solid fa-pencil"></i> Edit business info
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            ))}
-            {console.log(`line 144 ${geoloc.latitude}, ${geoloc.longitude}`)}
-            {console.log(`geoloc 145${geoloc}`)}
-            <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} />
+
+                {/* <p>Phone: {singleBusiness?.phone}</p>
+                <p>Website: {singleBusiness?.website}</p> */}
+                <h2>Recommended Reviews</h2>
+                {currentUser && (
+                    <div>
+                        <button onClick={handleAddReview}>
+                            Add Review
+                        </button>
+                    </div>
+                )}
+
+                {Object.values(reviews).map(({ id, content, rating, user_id }) => (
+                    <div key={id}>
+                        <p>{findUserName(user_id)}</p>
+                        <p>{rating}</p>
+                        <p>{content}</p>
+                        {currentUser?.id == user_id
+                            ?
+                            <div>
+                                <button
+                                    onClick={
+                                        async (e) => {
+                                            e.preventDefault();
+                                            await history.push(`/edit-review/${id}`);
+                                        }
+                                    }
+                                    businessId={businessId}>
+                                    Edit Review
+                                </button>
+                                <button
+                                    onClick={
+                                        async (e) => {
+                                            e.preventDefault();
+                                            await dispatch(deleteReviewThunk(id))
+                                                .then(() => dispatch(getReviewThunk(parseInt(businessId))));
+                                        }
+                                    }>
+                                    Delete Review
+                                </button>
+                            </div>
+                            : <div></div>
+                        }
+                    </div>
+                ))}
+            </div>
         </div>
     )
 }
