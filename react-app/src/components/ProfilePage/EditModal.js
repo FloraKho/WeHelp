@@ -27,7 +27,7 @@ function EditModal() {
         await dispatch(updatePicThunk(user));
         setImage(null)
         setShowModal(false)
-        history.push('/')
+        history.go('/profile')
     }
 
 
