@@ -101,3 +101,19 @@
 .drop-down-unit:hover {
     background-color: #f4f4f5;
 }
+
+
+.profile-drop-down-menu{
+    position: absolute;
+    background-color: white;
+    font-size: small;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px 20px 5px 20px;
+    box-shadow: 10px 15px 25px 0 rgba(0,0,0,.2);
+    border: 1px solid grey;
+}
+
+.menu-selected:hover{
+    background-color: rgb(207, 200, 200);
+}

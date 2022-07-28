@@ -39,7 +39,7 @@ function EditModal() {
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Edit</button>
+                <button onClick={() => setShowModal(true)}>Update Profile Picture</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
