@@ -1,20 +1,77 @@
 .profile-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
-.profile-side-bar {
-    border: 1px solid red;
+.profile-top-bar {
     display: flex;
-    flex-direction: column;
-    width: 25vw;
+    flex-direction: row;
     cursor: pointer;
-
+    width: 50vw;
+    padding-bottom: 2%;
+    border-bottom: 1px solid grey;
 }
 
 .profile-content {
-    border: 1px solid red;
-    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
     cursor: pointer;
 
+}
+
+.profile-img{
+    height: 215px;
+    width: 215px;
+    border-radius: 5px;
+    padding-right: 30px;
+}
+
+.profile-select{
+    background-color: white;
+    color:black;
+    border-bottom: 1px grey solid;
+    width: 215px;
+}
+.profile-select:hover{
+    background-color: rgb(204, 204, 204);
+}
+
+.profile-selected-container{
+    margin-left: 30px
+}
+
+
+.review-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 550px;
+    height:fit-content;
+    margin: 30px;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    padding: 5%;
+}
+
+.review-card:hover {
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.08);
+}
+
+.review-card-left {
+    height: 200px;
+    min-width: 200px;
+    background-position: center center;
+    background-size: auto 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+.review-card-right {
+    overflow: clip;
+    text-overflow:ellipsis;
+    padding-left: 20px;
+    padding-right: 12px;
 }
