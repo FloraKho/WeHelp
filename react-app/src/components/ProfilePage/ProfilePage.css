@@ -2,15 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #ffffff00;
 }
+
+
 
 .profile-top-bar {
     display: flex;
     flex-direction: row;
     cursor: pointer;
     width: 50vw;
+    padding: 5%;
     padding-bottom: 2%;
-    border-bottom: 1px solid grey;
 }
 
 .profile-content {
@@ -18,6 +21,7 @@
     flex-direction: row;
     width: 50vw;
     cursor: pointer;
+    border-top: 1px grey solid;
 
 }
 
@@ -33,13 +37,17 @@
     color:black;
     border-bottom: 1px grey solid;
     width: 215px;
+    height: 35px;
+    padding: 5px 0 0 5px;
+    
 }
 .profile-select:hover{
     background-color: rgb(204, 204, 204);
 }
 
 .profile-selected-container{
-    margin-left: 30px
+    margin-left: 30px;
+   
 }
 
 
@@ -75,3 +83,62 @@
     padding-left: 20px;
     padding-right: 12px;
 }
+
+.grey-div{
+    position: absolute;
+    background-color: rgb(238, 238, 238);
+    height: 25vh;
+    width: 100vw;
+    z-index: -1;
+}
+
+.yellow{
+    color: orange;
+    padding-right: 7px;
+}
+.grey{
+    color:grey
+}
+.icon-space{
+    padding-left: 15px;
+
+}
+.profile-calculations{
+    display: flex;
+    padding-right:20px;
+    justify-content: space-between;
+}
+
+
+.curr-selected{
+    background-color: rgb(223, 222, 222);
+    color:black;
+    border-left: 3px solid #d32323;
+    border-bottom: 1px grey solid;
+    width: 215px;
+    height: 35px;
+    padding: 5px 0 0 5px;
+}
+
+.update-profile-pic{
+    background-color: rgb(255, 255, 255);
+    color:#0073bb;
+    border: .5px solid grey;
+}
+
+
+.update-profile-pic:hover{
+    background-color: #E00707;
+    color:white;
+    text-decoration: underline;
+}
+
+.upload-img-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 300px;
+}
+

@@ -39,22 +39,27 @@ function EditModal() {
     return (
         <>
             <div>
-                <button onClick={() => setShowModal(true)}>Update Profile Picture</button>
+                <button className="update-profile-pic" onClick={() => setShowModal(true)}><i class="fa-solid fa-upload"></i> Update Profile Picture</button>
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='upload-img-div'>
                         <h2>Select Your Profile Picture</h2>
-                        <form onSubmit={handleSubmit}>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={updateImage}
-                            />
-                            <button type="submit">Change</button>
-                        </form>
                         <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                            <form className='upload-img-form' onSubmit={handleSubmit}>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={updateImage}
+                                />
+                                <br></br>
+                                <br></br>
+                                <div >
+                                    <button type="submit" style={{marginRight:'10px'}}>Change</button>
+                                    <button onClick={() => setShowModal(false)}>Cancel</button>
+                                </div>
+                            </form>
+                            <br></br>
                         </div>
                     </div>
                 </Modal>
