@@ -12,9 +12,9 @@ function CreateBusinessPage({categories}) {
     const dispatch = useDispatch();
     const categoriesArr = Object.values(categories)
     const sessionUser = useSelector(state => state.session.user)
-    const statesArr = [
-        'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
-      ]
+    // const statesArr = [
+    //     'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY'
+    //   ]
     const pricesArr = ["$","$$","$$$","$$$$"]
 
     const [ name, setName ] = useState("");
@@ -22,7 +22,7 @@ function CreateBusinessPage({categories}) {
     const [ category_id, setCategory_id ] = useState(1);
     const [ address, setAddress ] = useState("");
     const [ city, setCity ] = useState("");
-    const [ state, setState ] = useState(statesArr[0])
+    const [ state, setState ] = useState('')
     const [ zip_code, setZip_code] = useState("");
     const [ phone, setPhone ] = useState("");
     const [ website, setWebsite ] = useState("");
