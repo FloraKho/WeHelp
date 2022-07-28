@@ -8,10 +8,13 @@ import ImagesGalleryModal from '../ImagesGallery';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import SingleMapContainer from '../SingleMapContainer/SingleMapContainer';
+import filterPic from './filterPic.png'
+import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
+import fiveFilled from '../HomePage/fiveStarsFilled.png'
 
 import './BusinessInfo.css'
 
-function BusinessInfo({ businesses }) {
+function BusinessInfo({ businesses, categories }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const { businessId } = useParams();
@@ -62,11 +65,28 @@ function BusinessInfo({ businesses }) {
         return history.push(`/businesses/${businessId}/images`)
     }
 
-    const geoloc = { latitude: singleBusiness?.latitude, longitude: singleBusiness?.longitude}
+    const getAverage = (businessId) => {
+        const currentReview = Object.values(reviews).filter(review => review.business_id == businessId)
+        const ratings = currentReview.map(review => review.rating)
+        const averageRating = (ratings.reduce((a, b) => a + b, 0) / ratings.length)
+        return Math.floor(Number(averageRating))
+    }
+
+    const getPercentage = (businessId) => {
+        let percent = (1 - getAverage(businessId) / 5).toFixed(2)
+        return percent * 100
+    }
+
+    const getCategory = (id) => {
+        return Object.values(categories)[id - 1]?.name
+    }
+
+    const geoloc = { latitude: singleBusiness?.latitude, longitude: singleBusiness?.longitude }
+
     return (
         isLoaded &&
-        <div>
-         {/* <ImagesGallery imagesArr={imagesArr}/> */}
+        <div className='business-info-page'>
+
             <div className='all-imgs-container'>
                 {imagesArr.map(({ id, image_url }) => (
                     <div key={id}>
@@ -74,6 +94,31 @@ function BusinessInfo({ businesses }) {
                     </div>
                 ))}
             </div>
+
+            <div className='filter-pic' style={{ backgroundImage: `url(${filterPic})` }}></div>
+            
+            <div className='major-info'>
+                <h1>{singleBusiness?.name}</h1>
+                <div className='major-info-stars'>
+                    <div>
+                        <div className="fiveEmpty-biz">
+                            <img src={fiveEmpty} />
+                        </div>
+                        <div className="fiveFilled-biz">
+                            <img src={fiveFilled} style={{ right: `${getPercentage(singleBusiness?.id)}%` }} />
+                        </div>
+                    </div>
+                    <p>{Object.values(reviews).length} reviews</p>
+                </div>
+                <div className='price-and-category'>
+                    <p>☑️ <span id="blue-text">Recommended</span><span> · {singleBusiness?.price_range} ·</span> {getCategory(singleBusiness?.category_id)}</p>
+                </div>
+                <div className='opt-hours'>
+                    <p>Operation Hours: {singleBusiness?.business_hours}</p>
+                </div>
+            </div>
+
+
 
             <div>
                 <button onClick={handleSeePhotos}>See {imagesArr.length} photos</button>
@@ -90,15 +135,13 @@ function BusinessInfo({ businesses }) {
                     Add Photo
                 </button>
             </div>
-                
+
             <div>
                 <button onClick={handleEdit}>Edit</button>
             </div>
             <div>
                 <DeleteBusiness businessId={businessId} />
             </div>
-            <h1>{singleBusiness?.name}</h1>
-            <p><span>· {singleBusiness?.price_range} ·</span>{singleBusiness?.description}</p>
             <h2>Location & Hours</h2>
             <p>Operation Hours: {singleBusiness?.business_hours}</p>
             <p>Location: {singleBusiness?.address}, {singleBusiness?.city}, {singleBusiness?.zip_code} </p>
@@ -148,8 +191,7 @@ function BusinessInfo({ businesses }) {
             ))}
             {console.log(`line 144 ${geoloc.latitude}, ${geoloc.longitude}`)}
             {console.log(`geoloc 145${geoloc}`)}
-            <SingleMapContainer latitude = {geoloc.latitude} longitude = {geoloc.longitude} />
-
+            <SingleMapContainer latitude={geoloc.latitude} longitude={geoloc.longitude} />
         </div>
     )
 }

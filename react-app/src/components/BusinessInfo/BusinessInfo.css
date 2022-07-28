@@ -1,13 +1,97 @@
 .image_container {
-
-    height: 300px;
-    width: 400px;
+    height: 426px;
+    width: 25vw;
     background-position: center center;
-    background-size: auto 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    background-size: cover;
 }
+
 .all-imgs-container{
     display: flex;
+    flex-direction: row;
+    width: 100vw;
 }
 
+.business-info-page{
+    width: 100vw;
+}
+
+.filter-pic {
+    width: 100vw;
+    height: 426px;
+    position: absolute;
+    top: 120px;
+}
+
+/* .everything-below {
+    position: relative;
+    bottom: 660px;
+    margin-bottom: -400px;
+} */
+
+.major-info {
+    color: white;
+    width: 1200px;
+    position: absolute;
+    top: 300px;
+    left: 20%;
+}
+
+.major-info p, .major-info span {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.major-info h1 {
+    font-size: 48px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.major-info-stars {
+    display: flex;
+    flex-direction: row;
+}
+
+.major-info-stars p {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.fiveFilled-biz {
+    position: relative;
+    bottom: 37px;
+    width: 160px; /* width of container */
+    height: 30px; /* height of container */
+    overflow: hidden;
+}
+
+.fiveFilled-biz img {
+    width: 160px; /* width of container */
+    height: 30px; /* height of container */
+    position: relative;
+}
+
+.fiveEmpty-biz img {
+    width: 160px;
+    height: 30px;
+    position: relative;
+    left: 0.5px;
+}
+
+.fiveEmpty-biz {
+    width: 160px;
+}
+
+.price-and-category {
+    position: relative;
+    bottom: 39px;
+}
+
+.opt-hours {
+    position: relative;
+    bottom: 45px;
+}
+
+#blue-text {
+    color: #1F8EFF;
+}
