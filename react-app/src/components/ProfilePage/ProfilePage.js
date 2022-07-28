@@ -53,47 +53,68 @@ function ProfilePage({businesses}) {
     return (
         <>
             <div className="profile-container">
+                <div className="grey-div"></div>
                 <div className="profile-top-bar">
                     <div>
                         <img className="profile-img" src={ sessionUser?.profile_pic } alt={sessionUser?.username} />
-                        <EditModal />
                     </div>
                     <div>
                         <h1>{sessionUser.username}</h1>
-                        <p><i class="fa-solid fa-envelope"></i> {sessionUser.email}</p>
-                        <p><i class="fa-solid fa-star"></i> {reviewOwn.length} Reviews</p>
-                        <p><i class="fa-solid fa-utensils"></i> {businessOwn.length} Business</p>
-                        <p><i class="fa-solid fa-camera"></i> {imageOwn.length} Images</p>
-
+                        <p>
+                            <i class="fa-solid fa-envelope"></i> 
+                            {` ${sessionUser.email}`}
+                        </p>
+                        <div className="profile-calculations">
+                            <div>
+                                <i class="fa-solid fa-star yellow"></i>
+                                <span style={{fontWeight:'bold'}}>{reviewOwn.length} </span> 
+                                    Reviews
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-utensils yellow icon-space"></i> 
+                                <span style={{fontWeight:'bold'}}>{businessOwn.length} </span>  
+                                    Businesses
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-camera yellow icon-space"></i> 
+                                <span style={{fontWeight:'bold'}}>{imageOwn.length} </span>
+                                    Images
+                            </div>
+                        </div>
+                            <br></br>
+                            <EditModal />
                     </div>
                 </div>
-                <hr></hr>
                 <div className="profile-content">
                     <div className="profile-select-container">
-                        <div className="profile-select" onClick={showRev}>View Posted Reviews</div>
-                        <div className="profile-select" onClick={showBiz}>View Posted Businesses</div>
-                        <div className="profile-select" onClick={showImg}>View Posted Images</div>
+                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}><i class="fa-solid fa-star grey"></i> View Reviews</div>
+                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}><i class="fa-solid fa-utensils grey"></i> View Businesses</div>
+                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}><i class="fa-solid fa-camera grey"></i> View Images</div>
                     </div>
                     <div className="profile-selected-container">
                         {showOwnRev && (
                             <>
-                                <h1>Your Reviews</h1>
+                                <h1 style={{color:'#d32323'}}>Your Reviews</h1>
                                 {reviewOwn && reviewOwn.map( review => (
-                                    <div className="review-card">
-                                        <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(review.business_id)?.image_url})` }}></div>
-                                        <div className="review-card-right">
-                                            <h4>{businesses[review.business_id].name}</h4>
-                                            <p>Rating: {review.rating}</p>
-                                            <p>Content: {review.content}</p>
+                                    <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/edit-review/${review.id}`}>
+                                        <div className="review-card">
+                                            <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(review.business_id)?.image_url})` }}></div>
+                                            <div className="review-card-right">
+                                                <h4>{businesses[review.business_id].name}</h4>
+                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].address}</div>
+                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].city}, {businesses[review.business_id].state}</div>
+                                                <p>Rating: {review.rating}</p>
+                                                <p>Content: {review.content.slice(0, 100)}...</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </NavLink>
                                 ))}
                             </>
                         )
                         }
                         {showOwnBiz && (
                             <>
-                                <h1>Your Businesses </h1>
+                                <h1 style={{color:'#d32323'}}>Your Businesses </h1>
                                 {businessOwn && businessOwn.map( business => (
                                     <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/businesses/${business.id}`}>
                                     <div className="review-card">
@@ -109,7 +130,7 @@ function ProfilePage({businesses}) {
                         )}
                         {showOwnImg && (
                             <div >
-                                <h1>Your Images</h1>
+                                <h1 style={{color:'#d32323'}}>Your Images</h1>
                                 {imageOwn && imageOwn.map( image => (
                                     <div className="review-card">
                                         <NavLink style={{ textDecoration: 'none', color: 'black', textAlign:'center'}} to={`/businesses/${image.business_id}`}>

@@ -63,7 +63,7 @@ const AllBusinessesPage = ({businesses}) => {
                                 </div>
                                 <div className="cat-text-lower">
                                     <p>Open Hours: {business.business_hours}</p>
-                                    <p>Description: {business.description.slice(0, 100)}...</p>
+                                    <p>Description: {business.description.slice(0, 95)}...</p>
                                     <p id="no-bottom">✔️ Delivery ✔️ Dine In ✔️ Take Out</p>
                                 </div>
                             </div>
