@@ -11,6 +11,12 @@
     width: 100vw;
 }
 
+.info-img-placeholder {
+    width: 100vw;
+    height: 426px;
+    background-image: url('https://img.freepik.com/free-vector/restaurant-mural-wallpaper_23-2148692632.jpg');
+}
+
 .business-info-page{
     width: 100vw;
 }
