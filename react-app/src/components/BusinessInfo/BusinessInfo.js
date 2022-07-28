@@ -112,11 +112,14 @@ function BusinessInfo({ businesses, categories }) {
         <div className='business-info-page'>
 
             <div className='all-imgs-container'>
-                {imagesArr.slice(0, 4).map(({ id, image_url }) => (
-                    <div key={id}>
-                        <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
-                    </div>
-                ))}
+                {imagesArr.length
+                    ?   imagesArr.slice(0, 4).map(({ id, image_url }) => (
+                        <div key={id}>
+                            <div className="image_container" style={{ backgroundImage: `url(${image_url})` }}></div>
+                        </div>
+                    ))
+                    : <div className='info-img-placeholder'></div>
+                }
             </div>
 
             <div className='filter-pic' style={{ backgroundImage: `url(${filterPic})` }}></div>

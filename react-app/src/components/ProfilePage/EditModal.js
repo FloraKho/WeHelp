@@ -54,9 +54,9 @@ function EditModal() {
                                 />
                                 <br></br>
                                 <br></br>
-                                <div >
+                                <div className='delete-biz-buttons'>
+                                    <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
                                     <button type="submit" style={{marginRight:'10px'}}>Change</button>
-                                    <button onClick={() => setShowModal(false)}>Cancel</button>
                                 </div>
                             </form>
                             <br></br>

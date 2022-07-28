@@ -42,6 +42,8 @@ const AllBusinessesPage = ({businesses}) => {
         loadedPos.push({lat: biz.latitude, lng: biz.longitude})
         // console.log('line24')
     })
+
+    console.log('++++++++++', process.env.REACT_APP_GOOGLE_MAP_API_ONE)
     
     return imagesArr && (
         <div className='all-businesses-page-container'>
