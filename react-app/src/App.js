@@ -55,7 +55,6 @@ function App() {
     <BrowserRouter>
       <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} libraries={["places"]}>
       <NavBar loaded={loaded} businesses={businesses} />
-        <h1>{process.env.REACT_APP_GOOGLE_MAP_API_KEY}</h1>
       {loaded && (
         <Switch>
           <Route path='/login' exact={true}>
