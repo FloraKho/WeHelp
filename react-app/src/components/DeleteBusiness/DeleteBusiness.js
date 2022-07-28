@@ -25,12 +25,12 @@ function DeleteBusiness({ businessId }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='delete-biz-modal'>
                         <h2>Delete Business</h2>
-                        <p >Are you sure you want to delete your business listing?</p>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
-                            <button onClick={handleDeleteSubmit}>Delete</button>
+                        <p >Are you sure you want to delete your business listing? This action cannot be undo.</p>
+                        <div className='delete-biz-buttons'>
+                            <button id="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button id="modal-delete" onClick={handleDeleteSubmit}>Delete</button>
                         </div>
                     </div>
                 </Modal>
