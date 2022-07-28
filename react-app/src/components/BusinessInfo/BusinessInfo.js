@@ -28,6 +28,9 @@ function BusinessInfo({ businesses, categories }) {
     const [isLoaded, setLoaded] = useState(false);
     const [users, setUsers] = useState([])
     const [hoverVal, setHoverVal] = useState(undefined);
+    const businessOwner = singleBusiness?.user_id === currentUser?.id
+
+
 
     useEffect(() => {
         dispatch(getReviewThunk(parseInt(businessId)))
@@ -154,12 +157,12 @@ function BusinessInfo({ businesses, categories }) {
                         </div>
                     </div>
 
-                    {/* <div>
-                    <button onClick={handleEdit}>Edit</button>
-                </div>
-                <div>
-                    <DeleteBusiness businessId={businessId} />
-                </div> */}
+
+                    {businessOwner ? (
+                        <div>
+                            <DeleteBusiness businessId={businessId} />
+                        </div>) : null
+                    }
                     <div className='location-and-hours'>
                         <h2>Location & Hours</h2>
                         <div className='location-and-hour-conatiner'>
@@ -188,9 +191,10 @@ function BusinessInfo({ businesses, categories }) {
                                     <p>{singleBusiness?.business_hours}</p>
                                     <p>{singleBusiness?.business_hours}</p>
                                     <div>
-                                        <div id="edit-biz-button" onClick={handleEdit}>
-                                            <i class="fa-solid fa-pencil"></i> Edit business info
-                                        </div>
+                                        {businessOwner ? (
+                                            <div id="edit-biz-button" onClick={handleEdit}>
+                                                <i class="fa-solid fa-pencil"></i> Edit business info
+                                            </div>) : null }
                                     </div>
                                 </div>
                             </div>
