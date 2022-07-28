@@ -7,7 +7,7 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 import { geocodeByPlaceId, geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import '../CreateBusinessPage/CreateBusinessPage.css'
 
-function UpdateBusinessPage({ businesses, categories }) {
+function UpdateBusinessPage({ businesses }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -16,7 +16,17 @@ function UpdateBusinessPage({ businesses, categories }) {
 
     // const businessesArr = Object.values(businesses);
     // const currentBusiness = businessesArr.find(businessId)
-    const categoriesArr = Object.values(categories)
+    // const categoriesArr = Object.values(categories)
+    const cateArr = [
+        {id: 1, name: 'Chinese'},
+        {id: 2, name: 'Korean'},
+        {id: 3, name: 'Japanese'},
+        {id: 4, name: 'Thai'},
+        {id: 5, name: 'Vietnamese'},
+        {id: 6, name: 'Mexican'},
+        {id: 7, name: 'Italian'},
+        {id: 8, name: 'Coffee & Tea'},
+        {id: 9, name: 'Breakfast & Brunch'}]
     const currentBiz = businesses[businessId];
 
     const [name, setName] = useState(currentBiz?.name);
@@ -239,10 +249,10 @@ function UpdateBusinessPage({ businesses, categories }) {
                     <div className='business-form-label'>Category</div>
                     <select
                         onChange={(e) => setCategory_id(e.target.value)}
-                        value={category_id}
+                        value={+category_id}
                     // required
                     >
-                        {categoriesArr.map(cate =>
+                        {cateArr.map(cate =>
                             <option value={cate.id} key={cate.id}>{cate.name}</option>
                         )}
                     </select>
