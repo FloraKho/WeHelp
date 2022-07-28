@@ -25,11 +25,11 @@ function DeleteImageModal({ businessId, imageId }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='delete-image-modal'>
                         <h2>Remove this image from your listing</h2>
                         <p >Are you sure you want to delete this image?</p>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
+                        <div className='delete-biz-buttons'>
+                            <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
                             <button onClick={handleDeleteSubmit}>Delete</button>
                         </div>
                     </div>

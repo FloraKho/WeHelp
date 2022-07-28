@@ -39,13 +39,13 @@
     font-size: 1rem;
 }
 
-#modal-cancel {
+.modal-cancel {
     background-color: white;
     color: black;
     border: 1px solid #d1d5db;
     margin-right: 20px;
 }
 
-#modal-cancel:hover {
+.modal-cancel:hover {
     background-color: #f5f5f4;
 }

@@ -42,7 +42,7 @@ function UploadModal({ businessId }) {
             </div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <div>
+                    <div className='image-upload-modal'>
                         <h2>Select Photo Here!</h2>
                         <form onSubmit={handleSubmit}>
                             <input
@@ -50,11 +50,11 @@ function UploadModal({ businessId }) {
                                 accept="image/*"
                                 onChange={updateImage}
                             />
-                            <button type="submit">Submit</button>
+                            <div className='delete-biz-buttons'>
+                                <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                                <button type="submit">Submit</button>
+                            </div>
                         </form>
-                        <div>
-                            <button onClick={() => setShowModal(false)}>Cancel</button>
-                        </div>
                     </div>
                 </Modal>
             )}

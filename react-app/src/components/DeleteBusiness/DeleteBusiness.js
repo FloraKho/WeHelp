@@ -29,7 +29,7 @@ function DeleteBusiness({ businessId }) {
                         <h2>Delete Business</h2>
                         <p >Are you sure you want to delete your business listing? This action cannot be undo.</p>
                         <div className='delete-biz-buttons'>
-                            <button id="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+                            <button className="modal-cancel" onClick={() => setShowModal(false)}>Cancel</button>
                             <button id="modal-delete" onClick={handleDeleteSubmit}>Delete</button>
                         </div>
                     </div>
