@@ -64,8 +64,8 @@ const EditReviewForm = () => {
 
         })
         const newReview = await dispatch(updateReviewThunk(parseInt(currentReviewId), payload))
-        console.log(newReview)
-        console.log(errors.length)
+        // console.log(newReview)
+        // console.log(errors.length)
         if (newReview && !errors.length) {
             setHasSubmitted(false)
             history.push(`/businesses/${businessId}`);

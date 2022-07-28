@@ -1,0 +1,57 @@
+.create-business-page {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.create-business-page h1 {
+    font-size: 24px;
+}
+
+.business-form-unit {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.business-form-unit input {
+    min-width: 500px;
+    height: 40px;
+    border: 1px solid #a1a1aa;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.business-form-unit select {
+    min-width: 520px;
+    height: 40px;
+    border: 1px solid #a1a1aa;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.business-form-unit textarea {
+    min-width: 500px;
+    height: 150px;
+    border: 1px solid #a1a1aa;
+    border-radius: 5px;
+    padding-left: 15px;
+}
+
+.business-form-unit textarea:focus, 
+.business-form-unit input:focus {
+    outline: none;
+}
+
+.business-form-label {
+    min-width: 250px;
+}
+
+#next-button, #submit-edit-biz {
+    width: 315px;
+    height: 40px;
+    margin-left: 452px;
+    margin-top: 50px;
+    margin-bottom: 60px;
+    font-size: 16px;
+}

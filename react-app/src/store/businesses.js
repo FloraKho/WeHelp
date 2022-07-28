@@ -65,7 +65,6 @@ export const getAllBusinessesThunk = () => async (dispatch) => {
     const response = await fetch(`/api/businesses`);
     if (response.ok) {
         const businesses = await response.json();
-        console.log("THIS IS BUSINESSES", businesses)
         dispatch(getAllBusinesses(businesses));
     }
 }

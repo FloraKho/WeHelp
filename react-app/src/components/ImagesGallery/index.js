@@ -20,7 +20,7 @@ function ImagesGallery({ imagesArr }) {
     const nextSlide = () => {
         setCurr( curr === imagesArr.length - 1? 0: curr + 1)// if curr is the last set to 0, else set curr += 1
     }
-    console.log(curr)
+    // console.log(curr)
 
     if (imagesArr.length <= 0){
         return (

@@ -25,6 +25,7 @@ import ImageUploadPage from './components/ImageUploadPage/ImageUploadPage';
 import ImagesPage from './components/ImagesPage/ImagesPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { Wrapper } from '@googlemaps/react-wrapper';
+import PageNotFound from './components/PageNotFound';
 
 
 function App() {
@@ -106,7 +107,9 @@ function App() {
           <Route path='/businesses/:businessId/images' exact={true}>
             <ImagesPage businesses={businesses} />
           </Route>
-
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
         )}
       <Footer />

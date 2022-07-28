@@ -20,7 +20,7 @@ function ImageUploadPage({ businesses }) {
     const currentBusiness = businesses[businessId];
 
     const photosArr = imagesArr.filter(image => image.user_id === +currentUserId && image.business_id === +businessId)
-    console.log("photoarr",photosArr)
+    // console.log("photoarr",photosArr)
     const businessOwner = currentBusiness?.user_id === +currentUserId;
 
     const [errors, setErrors] = useState([]);
@@ -72,7 +72,7 @@ function ImageUploadPage({ businesses }) {
                 <p>You don't have any photo uploaded!</p>
             )}
 
-            <div className="img-div">
+            <div className="img-div-upload">
                 {photosArr && photosArr.map((image) => {
                     return (
                         <div key={image.id}>
