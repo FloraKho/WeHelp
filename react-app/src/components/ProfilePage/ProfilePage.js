@@ -6,10 +6,12 @@ import { getAllImagesThunk } from '../../store/images'
 import { getAllReviewThunk } from "../../store/reviews";
 import EditModal from "./EditModal";
 import './ProfilePage.css'
+import fiveFilled from '../HomePage/fiveStarsFilled.png'
+import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 
 
 
-function ProfilePage({businesses}) {
+function ProfilePage({ businesses }) {
 
 
     const dispatch = useDispatch();
@@ -48,73 +50,80 @@ function ProfilePage({businesses}) {
         setShowOwnRev(false)
         setShowOwnBiz(false)
     }
-    
+
 
     return (
         <>
             <div className="profile-container">
                 <div className="grey-div"></div>
                 <div className="profile-top-bar">
-                    <div>
-                        <img className="profile-img" src={ sessionUser?.profile_pic } alt={sessionUser?.username} />
-                    </div>
+                    <div className="profile-img" style={{ backgroundImage: `url(${sessionUser?.profile_pic})` }}></div>
                     <div>
                         <h1>{sessionUser.username}</h1>
                         <p>
-                            <i class="fa-solid fa-envelope"></i> 
+                            <i class="fa-solid fa-envelope"></i>
                             {` ${sessionUser.email}`}
                         </p>
                         <div className="profile-calculations">
                             <div>
                                 <i class="fa-solid fa-star yellow"></i>
-                                <span style={{fontWeight:'bold'}}>{reviewOwn.length} </span> 
-                                    Reviews
+                                <span style={{ fontWeight: 'bold' }}>{reviewOwn.length} </span>
+                                Reviews
                             </div>
                             <div>
-                                <i class="fa-solid fa-utensils yellow icon-space"></i> 
-                                <span style={{fontWeight:'bold'}}>{businessOwn.length} </span>  
-                                    Businesses
+                                <i class="fa-solid fa-utensils yellow icon-space"></i>
+                                <span style={{ fontWeight: 'bold' }}>{businessOwn.length} </span>
+                                Businesses
                             </div>
                             <div>
-                                <i class="fa-solid fa-camera yellow icon-space"></i> 
-                                <span style={{fontWeight:'bold'}}>{imageOwn.length} </span>
-                                    Images
+                                <i class="fa-solid fa-camera yellow icon-space"></i>
+                                <span style={{ fontWeight: 'bold' }}>{imageOwn.length} </span>
+                                Images
                             </div>
                         </div>
-                            <br></br>
-                            <EditModal />
+                        <br></br>
+                        <EditModal />
                     </div>
                 </div>
                 <div className="profile-content">
                     <div className="profile-select-container">
-                        <div className={ showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}>
+                        <div className={showOwnRev ? "curr-selected" : "profile-select"} onClick={showRev}>
                             <div className="profile-select-icons">
                                 <i class="fa-solid fa-star grey"></i>
-                            </div> 
+                            </div>
                             <p>View Reviews</p>
                         </div>
-                        <div className={ showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}>
+                        <div className={showOwnBiz ? "curr-selected" : "profile-select"} onClick={showBiz}>
                             <div className="profile-select-icons">
-                                <i class="fa-solid fa-utensils grey"></i> View Businesses</div>
+                                <i class="fa-solid fa-utensils grey"></i>
+                            </div>
+                            <p>View Businesses</p>
                         </div>
-                        <div className={ showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}>
-                            <div className="profile-select-icons"><i class="fa-solid fa-camera grey"></i> View Images</div>
+                        <div className={showOwnImg ? "curr-selected" : "profile-select"} onClick={showImg}>
+                            <div className="profile-select-icons">
+                                <i class="fa-solid fa-camera grey"></i>
+                            </div>
+                            <p>View Images</p>
                         </div>
                     </div>
                     <div className="profile-selected-container">
                         {showOwnRev && (
                             <>
-                                <h1 style={{color:'#d32323'}}>Your Reviews</h1>
-                                {reviewOwn && reviewOwn.map( review => (
+                                <h1 style={{ color: '#d32323' }}>Your Reviews</h1>
+                                {reviewOwn && reviewOwn.map(review => (
                                     <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/edit-review/${review.id}`}>
                                         <div className="review-card">
                                             <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(review.business_id)?.image_url})` }}></div>
                                             <div className="review-card-right">
                                                 <h4>{businesses[review.business_id].name}</h4>
-                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].address}</div>
-                                                <div style={{fontSize:"small"}}>{businesses[review.business_id].city}, {businesses[review.business_id].state}</div>
-                                                <p>Rating: {review.rating}</p>
-                                                <p>Content: {review.content.slice(0, 100)}...</p>
+                                                <p className="profile-location">{businesses[review.business_id].address}, {businesses[review.business_id].city}, {businesses[review.business_id].state}</p>
+                                                <div className="fiveEmpty-profile">
+                                                    <img src={fiveEmpty} />
+                                                </div>
+                                                <div className="fiveFilled-profile">
+                                                    <img src={fiveFilled} style={{ right: `${(1 - review.rating / 5) * 100}%` }} />
+                                                </div>
+                                                <p className="profile-message"><i class="fa-solid fa-comment-dots fa-lg"></i> {review.content.slice(0, 100)}...</p>
                                             </div>
                                         </div>
                                     </NavLink>
@@ -124,31 +133,31 @@ function ProfilePage({businesses}) {
                         }
                         {showOwnBiz && (
                             <>
-                                <h1 style={{color:'#d32323'}}>Your Businesses </h1>
-                                {businessOwn && businessOwn.map( business => (
+                                <h1 style={{ color: '#d32323' }}>Your Businesses </h1>
+                                {businessOwn && businessOwn.map(business => (
                                     <NavLink style={{ textDecoration: 'none', color: 'black' }} to={`/businesses/${business.id}`}>
-                                    <div className="review-card">
-                                        <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(business.id)?.image_url})` }}></div>
-                                        <div className="review-card-right">
-                                            <h4>{business.name}</h4>
-                                            <p>{business.description.slice(0, 100)}...</p>
+                                        <div className="review-card">
+                                            <div className="review-card-left" style={{ backgroundImage: `url(${findBusinessPic(business.id)?.image_url})` }}></div>
+                                            <div className="review-card-right">
+                                                <h4>{business.name}</h4>
+                                                <p>{business.description.slice(0, 100)}...</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </NavLink>
+                                    </NavLink>
                                 ))}
                             </>
                         )}
                         {showOwnImg && (
                             <div >
-                                <h1 style={{color:'#d32323'}}>Your Images</h1>
-                                {imageOwn && imageOwn.map( image => (
+                                <h1 style={{ color: '#d32323' }}>Your Images</h1>
+                                {imageOwn && imageOwn.map(image => (
                                     <div className="review-card">
-                                        <NavLink style={{ textDecoration: 'none', color: 'black', textAlign:'center'}} to={`/businesses/${image.business_id}`}>
+                                        <NavLink style={{ textDecoration: 'none', color: 'black', textAlign: 'center' }} to={`/businesses/${image.business_id}`}>
                                             <h4>{businesses[image.business_id].name}</h4>
-                                            <img src={image.image_url} alt='images' className="img-size"/>
+                                            <img src={image.image_url} alt='images' className="img-size" />
                                         </NavLink>
                                     </div>
-                                ))}    
+                                ))}
                             </div>
                         )}
                     </div>

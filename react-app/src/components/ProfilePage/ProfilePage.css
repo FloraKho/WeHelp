@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row;
     cursor: pointer;
-    width: 50vw;
+    width: 1000px;
     padding: 5%;
     padding-bottom: 2%;
 }
@@ -17,7 +17,7 @@
 .profile-content {
     display: flex;
     flex-direction: row;
-    width: 50vw;
+    width: 1000px;
     cursor: pointer;
     border-top: 1px #d1d5db solid;
 
@@ -27,7 +27,9 @@
     height: 215px;
     width: 215px;
     border-radius: 5px;
-    padding-right: 30px;
+    margin-right: 30px;
+    background-position: center center;
+    background-size: cover;
 }
 
 .profile-select{
@@ -56,16 +58,19 @@
 .review-card {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
     width: fit-content;
-    height:fit-content;
-    margin-bottom: 30px;
+    height:200px;
+    margin-bottom: 40px;
     /* border-bottom: 1px solid #d1d5db; */
-    padding: 4%;
+    padding: 30px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
 }
 
 .review-card:hover {
-    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
 }
 
 .review-card-left {
@@ -79,11 +84,30 @@
 
 
 .review-card-right {
-    overflow: clip;
-    text-overflow:ellipsis;
-    padding-left: 20px;
+    /* overflow: clip;
+    text-overflow:ellipsis; */
+    padding-left: 30px;
     padding-right: 12px;
+    max-height: 200px;
 }
+
+.profile-location {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 0px;
+}
+
+.profile-message {
+    margin: 0px;
+}
+
+
+.review-card-right h4 {
+    margin-top: 0px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
 
 .grey-div{
     position: absolute;
@@ -136,16 +160,14 @@
 .update-profile-pic:hover{
     background-color: #E00707;
     color:white;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .upload-img-div{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 500px;
-    height: 300px;
+    width: 550px;
+    height: 220px;
+    padding: 20px 40px;
+    /* box-sizing: border-box; */
 }
 
 .profile-select-icons {
@@ -153,3 +175,37 @@
     height: 25px;
 }
 
+.profile-selected-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-selected-container {
+    min-width: 750px;
+}
+
+.fiveFilled-profile {
+    position: relative;
+    bottom: 30px;
+    width: 120px; /* width of container */
+    height: 23px; /* height of container */
+    overflow: hidden;
+}
+
+.fiveFilled-profile img {
+    width: 120px; /* width of container */
+    height: 23px; /* height of container */
+    position: relative;
+}
+
+.fiveEmpty-profile img {
+    width: 120px;
+    height: 23px;
+    position: relative;
+    left: 0.5px;
+}
+
+.fiveEmpty-profile {
+    width: 120px;
+    overflow: hidden;
+}
