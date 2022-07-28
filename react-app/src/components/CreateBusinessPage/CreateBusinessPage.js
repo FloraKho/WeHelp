@@ -80,7 +80,7 @@ function CreateBusinessPage({categories}) {
         // if (!city.length) errors.push("City is required");
         // if (!state.length) errors.push("State is required");
         if (!/^\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{4})$/.test(phone)) errors.push("Phone format invalid, should be in correct format (123)456-7890");
-        if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode fotmat invalid, should only contains 5 numbers (ie. 12345)");
+        // if (!/^\d+$/.test(zip_code) || zip_code.length !== 5) errors.push("Zipcode format invalid, should only contains 5 numbers (e.g. 12345)");
         if (!business_hours.length) errors.push("Business hour is required.")
         // if (!/^(-?\d+(\.\d+)?)/.test(latitude)) errors.push("Latitude is required and should be in float");
         // if (!/\s*(-?\d+(\.\d+)?)$/.test(longitude)) errors.push("Longitude is required and should be in float");
@@ -154,7 +154,7 @@ function CreateBusinessPage({categories}) {
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>
                         Address
                         <input
@@ -165,8 +165,8 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         City
                         <input
@@ -177,8 +177,8 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         State
                         <select 
@@ -190,8 +190,8 @@ function CreateBusinessPage({categories}) {
                             )}
                         </select>
                     </label>
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                     <label>
                         ZIP
                         <input
@@ -202,7 +202,7 @@ function CreateBusinessPage({categories}) {
                             // required
                         />
                     </label>
-                </div>
+                </div> */}
                 <div>
                     <label>
                         Phone
@@ -279,7 +279,7 @@ function CreateBusinessPage({categories}) {
                     </label>
                 </div>
                 <div>
-                    Enter Your Google Map Location Info
+                    {/* Enter Your Google Map Location Info
                     <div>
                         <label>
                         latitude
@@ -303,9 +303,9 @@ function CreateBusinessPage({categories}) {
                                 // required
                             />
                         </label>
-                    </div>
+                    </div> */}
                     <GooglePlacesAutocomplete
-                        apiKey="AIzaSyCeZffmZE53kHWs1suvpGw-2gzAdoPmo2I"
+                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
                         selectProps={{
                             styles: {
                                 input: (provided) => ({
@@ -314,7 +314,7 @@ function CreateBusinessPage({categories}) {
                                 }),
                                 option: (provided) => ({
                                     ...provided,
-                                    color: 'red',
+                                    color: 'black',
                                 }),
                                 singleValue: (provided) => ({
                                     ...provided,
