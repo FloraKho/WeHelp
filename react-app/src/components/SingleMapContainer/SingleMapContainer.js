@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { useSelector } from 'react-redux';
 
 const SingleMapContainer = ({ latitude, longitude }) => {
     const mapStyles = {
@@ -10,6 +11,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
     const defaultCenter = {
         lat: latitude, lng: longitude
     }
+    const mapKey = useSelector(state => state.mapsState.key);
 
 
     const pin = {
@@ -22,6 +24,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
                 mapContainerStyle={mapStyles}
                 zoom={16}
                 center={defaultCenter}
+                apiKey={mapKey}
             >
 
                 <Marker

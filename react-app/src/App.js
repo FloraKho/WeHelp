@@ -26,6 +26,7 @@ import ImagesPage from './components/ImagesPage/ImagesPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { Wrapper } from '@googlemaps/react-wrapper';
 import PageNotFound from './components/PageNotFound';
+import { getKey } from './store/map';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllCategoryThunk())
     dispatch(getAllBusinessesThunk())
+    dispatch(getKey())
   },[])
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Wrapper apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY} libraries={["places"]}>
+      <Wrapper libraries={["places"]}>
       <NavBar loaded={loaded} businesses={businesses} />
       {loaded && (
         <Switch>
