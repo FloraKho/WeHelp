@@ -23,7 +23,7 @@ const NavBar = ({ businesses }) => {
         <div className='navi-bar-right'>
         <div className='navi-bar-right-buttons'>
           <NavLink to='/businesses' exact={true} activeClassName='active' style={{ textDecoration: 'none', color: 'black' }}>
-            Restuarants
+            Restaurants
           </NavLink>
         </div>
         <div className='navi-bar-right-buttons'>
@@ -55,7 +55,7 @@ const NavBar = ({ businesses }) => {
           </div>
           <div className='navi-bar-right-buttons'>
             <NavLink to='/businesses' exact={true} activeClassName='active' style={{ textDecoration: 'none', color: 'black' }}>
-              Restuarants
+              Restaurants
             </NavLink>
           </div>
         </div>
