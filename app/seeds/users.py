@@ -12,7 +12,7 @@ def seed_users():
     rena = User(
         username='Rena', email='rena@aa.io', password='password', profile_pic='https://preview.redd.it/pxpvfgm6jac81.png?width=1109&format=png&auto=webp&s=9bfdb1a81dc4aecd353b9765b9c6e84119c2b641',)
     flora = User(
-        username='Flora', email='flora@aa.io', password='password', profile_pic='https://ibb.co/mGBKrfN',)
+        username='Flora', email='flora@aa.io', password='password', profile_pic='https://cdn1.parksmedia.wdprapps.disney.com/media/blog/wp-content/uploads/2015/10/01_ParksBlog_ShellieMay_Logo.jpg',)
     tianyi = User(
         username='Tianyi', email='tianyi@aa.io', password='password', profile_pic='https://avatars.githubusercontent.com/u/75456670?v=4',)
     jackie = User(

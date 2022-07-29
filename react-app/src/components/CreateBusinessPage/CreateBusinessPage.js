@@ -79,7 +79,7 @@ function CreateBusinessPage() {
 
     // console.log(`line 95 ${placeId}, ${realAddyStr}`)
 
-    if (realAddyStr != '') {
+    if (realAddyStr !== '') {
         geocodeByAddress(realAddyStr)
             .then(results => getLatLng(results[0]))
             .then(({ lat, lng }) => {

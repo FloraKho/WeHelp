@@ -13,22 +13,25 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 ## Technical Skills:
 **This project is built with:**
 
-![image](https://user-images.githubusercontent.com/90532956/181680382-5952371b-860d-46ea-9b0d-0281fc88045c.png)Python
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
-![image](https://user-images.githubusercontent.com/90532956/181680557-402826f8-3579-4ee3-b15c-593b769492c7.png)Flask
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
 
-![image](https://user-images.githubusercontent.com/90532956/181681335-9cc7cc59-f5c0-4a23-9794-13fa61e8a910.png)SQLAlchemy
+![image](https://user-images.githubusercontent.com/90532956/181799885-cca85da1-d72e-458c-a0c0-9653cb532651.png)
 
-![image](https://user-images.githubusercontent.com/90532956/181680723-82f31ad3-a744-4570-9e25-4cebb379e495.png)
-PostgreSQL
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
-![image](https://user-images.githubusercontent.com/90532956/181680412-cc5183f2-04e7-47a8-924d-c03a494c55d8.png)JavaScript
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-![image](https://user-images.githubusercontent.com/90532956/181681164-8bcb0c28-51f2-4b68-ab93-f2adeaf1b38c.png)React
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-![image](https://user-images.githubusercontent.com/90532956/181681119-a16f2467-3846-469e-8836-b0473e658b95.png)Redux
+![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
 ## Project Planning
 **Please see below links to project Wiki:**\

@@ -37,14 +37,12 @@ function ImagesPage({ businesses }) {
         <div className="images-page">
             <div className="add-photo-pg-container">
                 <h2>Photos for {currentBiz?.name}</h2>
-                <div>
+                <div className="imagespage-button">
+                    <div id="go-back" onClick={() => history.push(`/businesses/${ businessId }`)}>Go Back</div>
                     <button id="manage-photos" onClick={handleAddPhoto}>
                         <i class="fa-solid fa-images fa-lg"></i> Manage Photos
                     </button>
                 </div>
-                {/* <div>
-                    <button onClick={() => history.goBack()}>Go Back</button>
-                </div> */}
             </div>
             {/* <div>
                 <ImagesGalleryModal imagesArr={imagesArr}/>
@@ -53,7 +51,7 @@ function ImagesPage({ businesses }) {
                 {imagesArr && imagesArr.map((image) => {
                     return (
                         <div key={image.id}>
-                            <div className="img-size" style={{backgroundImage: `url(${image.image_url})`}}></div>
+                            <div className="img-size" style={{ backgroundImage: `url(${image.image_url})` }}></div>
                             {/* <img src={image.image_url} alt='images' className="img-size" /> */}
                             {/* { image.user_id === currentUserId && (
                                 <DeleteImageModal businessId={businessId} imageId={image.id}/> )} */}

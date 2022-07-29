@@ -64,12 +64,13 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    default='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
-            profile_pic=form.data['profile_pic']
+            profile_pic=default
         )
         db.session.add(user)
         db.session.commit()

@@ -56,15 +56,15 @@ function ImageUploadPage({ businesses }) {
                     </div>
                     <div>
                         <button id="complete-button" onClick={handleComplete} >
-                            <i class="fa-regular fa-circle-check fa-lg"></i> Complete
+                            <i className="fa-regular fa-circle-check fa-lg"></i> Complete
                         </button>
                     </div>
                 </div>
             </div>
             <div>
                 {hasSubmitted && errors &&
-                    <div>
-                        {errors.map((error, idx) => <p className='error-text' key={idx}>* {error}</p>)}
+                    <div className="error-msg">
+                        {errors.map((error, idx) => <div key={idx}> ❌ {error}</div>)}
                     </div>
                 }
             </div>

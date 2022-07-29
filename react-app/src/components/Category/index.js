@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { getAllImagesThunk } from '../../store/images';
 import { getAllReviewThunk } from '../../store/reviews';
 import './Category.css'
-import placeholder from './placeholder.png'
+// import placeholder from './placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
 import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
@@ -20,7 +20,7 @@ const Category = ({ businesses, categories }) => {
     useEffect(() => {
         dispatch(getAllImagesThunk())
         dispatch(getAllReviewThunk())
-    }, [])
+    }, [dispatch])
 
     const findProfilePic = (number) => {
         return imagesArr.filter(image => image.business_id == number)[0]
