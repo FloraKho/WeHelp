@@ -13,7 +13,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
     }
     const mapKey = useSelector(state => state.mapsState.key);
     console.log(`from SingleMapContainer ${mapKey.length}`)
-
+    console.log(`from SingleMapContainer ${mapKey}`)
 
     const pin = {
         lat: latitude, lng: longitude
