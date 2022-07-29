@@ -83,10 +83,10 @@ function App() {
               <ProfilePage businesses={businesses}/>
             </ProtectedRoute>
           <ProtectedRoute path='/post-business' exact={true}>
-            <CreateBusinessPage categories={categories} />
+            <CreateBusinessPage />
           </ProtectedRoute>
           <ProtectedRoute path='/businesses/:businessId/edit' exact={true}>
-            <UpdateBusinessPage businesses={businesses} categories={categories} />
+            <UpdateBusinessPage businesses={businesses} />
           </ProtectedRoute>
           <Route path='/businesses/:businessId' exact={true}>
             <BusinessInfo businesses={businesses} categories={categories}/>

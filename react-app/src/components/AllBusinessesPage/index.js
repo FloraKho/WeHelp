@@ -48,7 +48,7 @@ const AllBusinessesPage = ({businesses}) => {
     return imagesArr && (
         <div className='all-businesses-page-container'>
             <div className='searchResult'>
-                <h2>All Restuarants</h2>
+                <h2>All Restaurants</h2>
                 {bizArr.map(business => (
                     <NavLink key={business.id}
                         to={`/businesses/${business.id}`}
