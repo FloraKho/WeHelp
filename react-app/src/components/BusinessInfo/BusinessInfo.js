@@ -4,9 +4,9 @@ import { useParams, useHistory } from 'react-router-dom';
 import { deleteReviewThunk, getReviewThunk } from '../../store/reviews';
 import { getBusinessThunk } from '../../store/businesses'
 import { getBizImagesThunk } from '../../store/images'
-import ImagesGalleryModal from '../ImagesGallery';
+// import ImagesGalleryModal from '../ImagesGallery';
 import DeleteBusiness from '../DeleteBusiness/DeleteBusiness'
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
+// import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import SingleMapContainer from '../SingleMapContainer/SingleMapContainer';
 import filterPic from './filterPic.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
@@ -38,7 +38,7 @@ function BusinessInfo({ businesses, categories }) {
             .then(() => dispatch(getBizImagesThunk(parseInt(businessId))))
             .then(() => dispatch(getReviewThunk(parseInt(businessId))))
             .then(() => setLoaded(true))
-    }, [businessId])
+    }, [dispatch, businessId])
 
     useEffect(() => {
         async function fetchData() {
@@ -56,12 +56,12 @@ function BusinessInfo({ businesses, categories }) {
     };
 
     const findUserName = (user_id) => {
-        let result = users.filter(user => user.id == user_id);
+        let result = users.filter(user => user.id === user_id);
         return result[0].username
     }
 
     const findUserPic = (user_id) => {
-        let result = users.filter(user => user.id == user_id)
+        let result = users.filter(user => user.id === user_id)
         return result[0].profile_pic
     }
 
@@ -82,7 +82,7 @@ function BusinessInfo({ businesses, categories }) {
     }
 
     const getAverage = (businessId) => {
-        const currentReview = Object.values(reviews).filter(review => review.business_id == businessId)
+        const currentReview = Object.values(reviews).filter(review => review.business_id === businessId)
         const ratings = currentReview.map(review => review.rating)
         const averageRating = (ratings.reduce((a, b) => a + b, 0) / ratings.length)
         return Math.floor(Number(averageRating))
@@ -129,10 +129,10 @@ function BusinessInfo({ businesses, categories }) {
                 <div className='major-info-stars'>
                     <div>
                         <div className="fiveEmpty-biz">
-                            <img src={fiveEmpty} />
+                            <img src={fiveEmpty} alt='business-images'/>
                         </div>
                         <div className="fiveFilled-biz">
-                            <img src={fiveFilled} style={{ right: `${getPercentage(singleBusiness?.id)}%` }} />
+                            <img src={fiveFilled} style={{ right: `${getPercentage(singleBusiness?.id)}%` }} alt='business-images'/>
                         </div>
                     </div>
                     <p>{Object.values(reviews).length} reviews</p>
@@ -245,17 +245,17 @@ function BusinessInfo({ businesses, categories }) {
                                             </div>
                                             <div className='stars-in-review'>
                                                 <div className="fiveEmpty-review">
-                                                    <img src={fiveEmpty} />
+                                                    <img src={fiveEmpty} alt='stars-images'/>
                                                 </div>
                                                 <div className="fiveFilled-review">
-                                                    <img src={fiveFilled} style={{ right: `${(1 - rating / 5) * 100}%` }} />
+                                                    <img src={fiveFilled} style={{ right: `${(1 - rating / 5) * 100}%` }} alt='stars-images'/>
                                                 </div>
                                             </div>
                                         </div>
                                         <p className='review-content'>{content}</p>
                                     </div>
                                     <div className='ind-review-right'>
-                                        {currentUser?.id == user_id
+                                        {currentUser?.id === user_id
                                             ?
                                             <div>
                                                 <div id="info-edit-review"

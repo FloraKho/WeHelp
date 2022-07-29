@@ -142,7 +142,7 @@
 .add-review-photo {
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
+    padding-top: 50px;
     padding-bottom: 35px;
     border-bottom: 1px solid #d1d5db;
     z-index: 15;
