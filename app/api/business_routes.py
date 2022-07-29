@@ -3,6 +3,7 @@ from app.forms import CreateBusinessForm, UpdateBusinessForm
 from app.models import db, Business, Business_Image
 from flask_login import login_required
 
+import os
 
 business_routes = Blueprint('businesses', __name__)
 #-------------------------BUSINESS VALIDATIONS------------------
@@ -94,3 +95,8 @@ def delete_business(id):
     db.session.delete(business)
     db.session.commit()
     return {'message': 'Successfully Delete.'}
+
+
+@business_routes.route('/googlemapapi', methods=['GET'])
+def get_google_map_api():
+    return {'googleMapsAPIKey': os.environ.get('GOOGLE_MAP_API_KEY')}

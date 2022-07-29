@@ -10,6 +10,7 @@ import '../CreateBusinessPage/CreateBusinessPage.css'
 function UpdateBusinessPage({ businesses }) {
     const history = useHistory();
     const dispatch = useDispatch();
+    const mapKey = useSelector(state => state.mapsState.key);
 
     const { businessId } = useParams();
     const sessionUser = useSelector(state => state.session.user);
@@ -155,7 +156,7 @@ function UpdateBusinessPage({ businesses }) {
                 <div className='business-form-unit'>
                     <div className='business-form-label'>Address</div>
                     <GooglePlacesAutocomplete
-                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                        apiKey={mapKey}
                         selectProps={{
                             styles: {
                                 input: (provided) => ({

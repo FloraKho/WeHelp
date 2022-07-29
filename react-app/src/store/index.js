@@ -5,12 +5,16 @@ import businessReducer from './businesses'
 import reviewReducer from './reviews';
 import categoryReducer from './categories';
 import imageReducer from './images';
+import mapsReducer from './map'
+
+
 const rootReducer = combineReducers({
   session,
   bizState: businessReducer,
   reviewState: reviewReducer,
   categoryState : categoryReducer,
-  imageState: imageReducer
+  imageState: imageReducer,
+  mapsState: mapsReducer
 });
 
 

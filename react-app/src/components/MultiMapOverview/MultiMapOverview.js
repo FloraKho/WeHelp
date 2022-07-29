@@ -2,9 +2,13 @@ import React from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import { useLoadScript, GoogleMap, Marker, InfoWindow, useGoogleMap } from "@react-google-maps/api";
 import './MultiMap.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { getKey, loadApiKey } from '../../store/map';
 //need to pass in an array of latlng
 const MultiMapOverview = (setOfLatLng) => {
 
+
+    // const dispatch = useDispatch();
     // console.log(`inside multimapoverview`)
     const mapStyles = {
         height: "100vh",
@@ -16,6 +20,8 @@ const MultiMapOverview = (setOfLatLng) => {
     let allCoordinates = Object.values(setOfLatLng)[0]
     // console.log(allCoordinates);
 
+    const mapKey = useSelector(state=>state.mapsState.key);
+    // console.log(`line 21 ${mapKey}`)
 
     let accumLat = 0;
     let accumLng = 0;
@@ -64,19 +70,9 @@ const MultiMapOverview = (setOfLatLng) => {
     //     map.fitToBounds(mapBounds);
     // }
 
-    const [map, setMap] = useState();
+    // useEffect(() => {
+    // }, [dispatch])
 
-    useEffect(() => {
-        if (map) {
-            let bounds = new window.google.maps.LatLngBounds();
-            for (var i = 0; i < allCoordinates.length; i++) {
-                bounds.extend(new window.google.maps.LatLng(Object.values(allCoordinates[i])[0], Object.values(allCoordinates[i])[1]));
-            }
-            map.fitBounds(bounds)
-            // console.log(`from line 75`)
-            // console.log(bounds);
-        }
-    }, [allCoordinates, map])
 
     //
     return (
@@ -89,7 +85,7 @@ const MultiMapOverview = (setOfLatLng) => {
                     mapContainerStyle={mapStyles}
                     center={defaultCenter}
                     zoom={7}
-
+                    apiKey={mapKey}
                 >
                     {allCoordinates.map(biz => (
                         <Marker
