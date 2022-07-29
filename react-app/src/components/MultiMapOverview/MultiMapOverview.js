@@ -14,10 +14,12 @@ const MultiMapOverview = (setOfLatLng) => {
         height: "100vh",
         width: "100%"
     };
-    const [loaded, setLoaded] = false;
+    const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        setLoaded(true);
+        if (mapKey){
+            setLoaded(true);
+        }
     });
     // console.log(Object.values(setOfLatLng))
     // console.log(Object.values(setOfLatLng)[0][0])
