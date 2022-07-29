@@ -16,6 +16,9 @@ function CreateBusinessPage() {
         dispatch(getAllCategoryThunk())
     },[])
 
+
+    const mapKey = useSelector(state => state.mapsState.key);
+
     const cateArr = [
         {id: 1, name: 'Chinese'},
         {id: 2, name: 'Korean'},
@@ -198,8 +201,9 @@ function CreateBusinessPage() {
                         </label>
                     </div> */}
                     <div className='business-form-label'>Address</div>
+                    {mapKey&&
                     <GooglePlacesAutocomplete
-                        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}
+                        apiKey={mapKey}
                         selectProps={{
                             styles: {
                                 input: (provided) => ({
@@ -220,6 +224,7 @@ function CreateBusinessPage() {
                         }}
 
                     />
+                    }
                 </div>
                 {/* <div>
                     <label>

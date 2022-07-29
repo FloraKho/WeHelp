@@ -2,20 +2,33 @@ import React from 'react';
 import { useState, useCallback, useEffect } from 'react';
 import { useLoadScript, GoogleMap, Marker, InfoWindow, useGoogleMap } from "@react-google-maps/api";
 import './MultiMap.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { getKey, loadApiKey } from '../../store/map';
 //need to pass in an array of latlng
 const MultiMapOverview = (setOfLatLng) => {
 
+
+    // const dispatch = useDispatch();
     // console.log(`inside multimapoverview`)
     const mapStyles = {
         height: "100vh",
         width: "100%"
     };
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (mapKey){
+            setLoaded(true);
+        }
+    });
     // console.log(Object.values(setOfLatLng))
     // console.log(Object.values(setOfLatLng)[0][0])
 
     let allCoordinates = Object.values(setOfLatLng)[0]
     // console.log(allCoordinates);
 
+    const mapKey = useSelector(state=>state.mapsState.key);
+    // console.log(`line 21 ${mapKey}`)
 
     let accumLat = 0;
     let accumLng = 0;
@@ -43,8 +56,7 @@ const MultiMapOverview = (setOfLatLng) => {
         }
     }
 
-
-    const latlngBoundaries = { north: maxLat, south: minLat, west: minLng, east: maxLat };
+    // const latlngBoundaries = { north: maxLat, south: minLat, west: minLng, east: maxLat };
     // console.log(`line 25 ${accumLat}, ${accumLng}`)
     let avgLat = accumLat / allCoordinates.length;
     let avgLng = accumLng / allCoordinates.length;
@@ -64,32 +76,21 @@ const MultiMapOverview = (setOfLatLng) => {
     //     map.fitToBounds(mapBounds);
     // }
 
-    const [map, setMap] = useState();
+    // useEffect(() => {
+    // }, [dispatch])
 
-    useEffect(() => {
-        if (map) {
-            let bounds = new window.google.maps.LatLngBounds();
-            for (var i = 0; i < allCoordinates.length; i++) {
-                bounds.extend(new window.google.maps.LatLng(Object.values(allCoordinates[i])[0], Object.values(allCoordinates[i])[1]));
-            }
-            map.fitBounds(bounds)
-            // console.log(`from line 75`)
-            // console.log(bounds);
-        }
-    }, [allCoordinates, map])
 
     //
     return (
-        latlngBoundaries &&
         <div>
             {/* {console.log(latlngBoundaries)} */}
             <div style={{ width: "688px", height: "1px", zIndex: '-99', marginTop: '78px' }}></div>
-            {latlngBoundaries.east !== 0 &&
+            { loaded &&
                 <GoogleMap
                     mapContainerStyle={mapStyles}
                     center={defaultCenter}
                     zoom={7}
-
+                    apiKey={mapKey}
                 >
                     {allCoordinates.map(biz => (
                         <Marker
