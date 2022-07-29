@@ -8,6 +8,12 @@ const SingleMapContainer = ({ latitude, longitude }) => {
         width: "350px",
     };
 
+    const [loaded, setLoaded] = false;
+
+    useEffect(() => {
+        setLoaded(true);
+    });
+
     const defaultCenter = {
         lat: latitude, lng: longitude
     }
@@ -21,7 +27,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
 
     return (
         <div>
-            {mapKey &&
+            {loaded &&
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={16}
