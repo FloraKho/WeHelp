@@ -1,8 +1,7 @@
 # Wehelp
 
 ## About
-A crowd-sourced local resturants reviews site, inspired by Yelp. This site has detailed information for individual resturant business, where users can post reviews and images of their experience within the individual business.\
-**CLICK HERE TO VIEW [LIVE SITE](https://wehelp-project.herokuapp.com/)**
+A crowd-sourced local resturants reviews site, inspired by Yelp. This site has detailed information for individual resturant business, where users can post reviews and images of their experience within the individual business. CLICK HERE TO VIEW **[LIVE SITE](https://wehelp-project.herokuapp.com/)**
 
 ## Contributors
 **Github Links:**\
