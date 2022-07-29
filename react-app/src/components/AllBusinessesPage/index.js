@@ -4,11 +4,11 @@ import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from 'react';
 import { getAllImagesThunk } from '../../store/images';
 import { getAllReviewThunk } from '../../store/reviews';
-import placeholder from '../Category/placeholder.png'
+// import placeholder from '../Category/placeholder.png'
 import fiveEmpty from '../HomePage/fiveStarsEmpty.png'
 import fiveFilled from '../HomePage/fiveStarsFilled.png'
 
-import { getAllBusinessesThunk } from '../../store/businesses';
+// import { getAllBusinessesThunk } from '../../store/businesses';
 import MultiMapOverview from '../MultiMapOverview/MultiMapOverview';
 const AllBusinessesPage = ({businesses}) => {
     const dispatch = useDispatch();
@@ -19,14 +19,14 @@ const AllBusinessesPage = ({businesses}) => {
     useEffect(() => {
         dispatch(getAllImagesThunk())
         dispatch(getAllReviewThunk())
-    }, [])
+    }, [dispatch])
 
     const findProfilePic = (number) => {
-        return imagesArr.filter(image => image.business_id == number)[0]
+        return imagesArr.filter(image => image.business_id === number)[0]
     }
 
     const getAverage = (businessId) => {
-        const currentReview = reviews.filter(review => review.business_id == businessId)
+        const currentReview = reviews.filter(review => review.business_id === businessId)
         const ratings = currentReview.map(review => review.rating)
         const averageRating = (ratings.reduce((a, b) => a + b, 0) / ratings.length)
         return Math.floor(Number(averageRating))
@@ -58,10 +58,10 @@ const AllBusinessesPage = ({businesses}) => {
                             <div className='cat-text-container'>
                                 <p id='biz-name'>{business.name}</p>
                                 <div className="fiveEmpty">
-                                    <img src={fiveEmpty} />
+                                    <img src={fiveEmpty} alt='default-images'/>
                                 </div>
                                 <div className="fiveFilled">
-                                    <img src={fiveFilled} style={{ right: `${getPercentage(business.id)}%` }} />
+                                    <img src={fiveFilled} style={{ right: `${getPercentage(business.id)}%` }} alt='filled-images'/>
                                 </div>
                                 <div className="cat-text-lower">
                                     <p>Open Hours: {business.business_hours}</p>

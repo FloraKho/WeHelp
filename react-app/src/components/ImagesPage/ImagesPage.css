@@ -35,3 +35,18 @@
     height: 40px;
     font-size: 16px;
 }
+
+.imagespage-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#go-back {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#go-back:hover {
+    color: #E00707;
+}
