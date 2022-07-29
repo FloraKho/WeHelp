@@ -10,7 +10,7 @@ export const getKey = () => async (dispatch) => {
         method: 'GET',
     });
     const data = await res.json();
-    console.log(`from reducer line13 ${data}`);
+    // console.log(`from reducer line13 ${data}`);
     dispatch(loadApiKey(data.googleMapsAPIKey));
 };
 

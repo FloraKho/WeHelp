@@ -63,7 +63,7 @@ function UpdateBusinessPage({ businesses }) {
 
     geocodeByPlaceId(placeId)
         .then(results => {
-            console.log(results)
+            // console.log(results)
             setRealAddyStr(results[0].formatted_address);
             setAddress(realAddyStr.split(', ')[0]);
             setCity(realAddyStr.split(', ')[1]);
