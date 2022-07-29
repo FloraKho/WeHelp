@@ -155,6 +155,7 @@ function UpdateBusinessPage({ businesses }) {
                 </div>
                 <div className='business-form-unit'>
                     <div className='business-form-label'>Address</div>
+                    {mapKey&&
                     <GooglePlacesAutocomplete
                         apiKey={mapKey}
                         selectProps={{
@@ -177,6 +178,7 @@ function UpdateBusinessPage({ businesses }) {
                         }}
 
                     />
+                    }
                 </div>
                 {/* <div>
                     <label>

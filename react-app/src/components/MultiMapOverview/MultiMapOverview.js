@@ -80,7 +80,7 @@ const MultiMapOverview = (setOfLatLng) => {
         <div>
             {/* {console.log(latlngBoundaries)} */}
             <div style={{ width: "688px", height: "1px", zIndex: '-99', marginTop: '78px' }}></div>
-            {latlngBoundaries.east !== 0 &&
+            {latlngBoundaries.east !== 0 && mapKey &&
                 <GoogleMap
                     mapContainerStyle={mapStyles}
                     center={defaultCenter}

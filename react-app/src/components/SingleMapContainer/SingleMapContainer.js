@@ -21,6 +21,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
 
     return (
         <div>
+            {mapKey &&
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={16}
@@ -32,7 +33,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
                     position={pin}
                 />
             </GoogleMap>
-
+            }
         </div>
     )
 }
