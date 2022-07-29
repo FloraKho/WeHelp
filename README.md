@@ -5,6 +5,7 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 **CLICK HERE TO VIEW [LIVE SITE](https://wehelp-project.herokuapp.com/)**
 
 ## Contributors
+**Github Links:**\
 [Jingjing (Flora) Kho](https://github.com/FloraKho)\
 [Jiaqi (Jackie) Cheng](https://github.com/jiaqicheng1998)\
 [Zhiqi (Rena) Lin](https://github.com/ZhiqiLinn)\
