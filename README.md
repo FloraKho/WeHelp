@@ -11,7 +11,7 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 [Zhiqi (Rena) Lin](https://github.com/ZhiqiLinn)\
 [Tianyi Shao](https://github.com/tshao42)
 
-## Technical Implementations:
+## Technical Skills:
 **This project is built with:**
 
 ![image](https://user-images.githubusercontent.com/90532956/181680382-5952371b-860d-46ea-9b0d-0281fc88045c.png)Python
