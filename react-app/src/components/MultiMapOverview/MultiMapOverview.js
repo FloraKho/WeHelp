@@ -14,6 +14,13 @@ const MultiMapOverview = (setOfLatLng) => {
         height: "100vh",
         width: "100%"
     };
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (mapKey){
+            setLoaded(true);
+        }
+    });
     // console.log(Object.values(setOfLatLng))
     // console.log(Object.values(setOfLatLng)[0][0])
 
@@ -49,8 +56,7 @@ const MultiMapOverview = (setOfLatLng) => {
         }
     }
 
-
-    const latlngBoundaries = { north: maxLat, south: minLat, west: minLng, east: maxLat };
+    // const latlngBoundaries = { north: maxLat, south: minLat, west: minLng, east: maxLat };
     // console.log(`line 25 ${accumLat}, ${accumLng}`)
     let avgLat = accumLat / allCoordinates.length;
     let avgLng = accumLng / allCoordinates.length;
@@ -76,11 +82,10 @@ const MultiMapOverview = (setOfLatLng) => {
 
     //
     return (
-        latlngBoundaries &&
         <div>
             {/* {console.log(latlngBoundaries)} */}
             <div style={{ width: "688px", height: "1px", zIndex: '-99', marginTop: '78px' }}></div>
-            {latlngBoundaries.east !== 0 && mapKey &&
+            { loaded &&
                 <GoogleMap
                     mapContainerStyle={mapStyles}
                     center={defaultCenter}
