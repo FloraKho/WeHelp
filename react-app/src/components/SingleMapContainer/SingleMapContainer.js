@@ -1,6 +1,7 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 const SingleMapContainer = ({ latitude, longitude }) => {
     const mapStyles = {
@@ -8,12 +9,20 @@ const SingleMapContainer = ({ latitude, longitude }) => {
         width: "350px",
     };
 
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        if (mapKey){
+            setLoaded(true);
+        }
+    });
+
     const defaultCenter = {
         lat: latitude, lng: longitude
     }
     const mapKey = useSelector(state => state.mapsState.key);
-    console.log(`from SingleMapContainer ${mapKey.length}`)
-    console.log(`from SingleMapContainer ${mapKey}`)
+    // console.log(`from SingleMapContainer ${mapKey.length}`)
+    // console.log(`from SingleMapContainer ${mapKey}`)
 
     const pin = {
         lat: latitude, lng: longitude
@@ -21,7 +30,7 @@ const SingleMapContainer = ({ latitude, longitude }) => {
 
     return (
         <div>
-            {mapKey &&
+            {loaded &&
             <GoogleMap
                 mapContainerStyle={mapStyles}
                 zoom={16}
