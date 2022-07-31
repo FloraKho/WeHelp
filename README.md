@@ -1,7 +1,11 @@
 # Wehelp
 
 ## About
-A crowd-sourced local resturants reviews site, inspired by Yelp. This site has detailed information for individual resturant business, where users can post reviews and images of their experience within the individual business. CLICK HERE TO VIEW **[LIVE SITE](https://wehelp-project.herokuapp.com/)**
+A crowd-sourced local resturants reviews site, inspired by Yelp. This site has detailed information for individual resturant business, where users can post reviews and images of their experience within the individual business. 
+
+CLICK HERE TO VIEW **[WEHELP LIVE SITE](https://wehelp-project.herokuapp.com/)**
+
+CLICK HERE TO VIEW **[YELP](https://www.yelp.com/)**
 
 ## Contributors
 **Github Links:**\
@@ -59,8 +63,8 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 * Post a business and view business detail
 ![postbiz](https://user-images.githubusercontent.com/90532956/182034309-66d31e85-337a-45e5-96af-8c8f57c6ae6a.gif)
 
-* Edit businesses belong to the logged-in user
-* Delete businesses belong to the logged-in user
+* Edit and delte a business posted by the logged-in user
+![editdelte](https://user-images.githubusercontent.com/90532956/182036166-2b4145f2-561d-492b-8505-7360bf335979.gif)
 
 
 **Ratings and Reviews**
@@ -69,12 +73,13 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 
 **Images**
 * View all images. Add and delete an image posted by logged-in user for a business.
-* Delete Own![viewadddeleteimg](https://user-images.githubusercontent.com/90532956/182035323-63082c85-8a33-452c-944f-9f96ef75688b.gif)
+![viewadddeleteimg](https://user-images.githubusercontent.com/90532956/182035323-63082c85-8a33-452c-944f-9f96ef75688b.gif)
 
 **Search and Filters**
 * Search a keyword and will be redirect to result page
-* Homepage Category will lead to individual type of resturant.
+![search](https://user-images.githubusercontent.com/90532956/182035888-f3c338be-da14-458b-925c-ede55ad93e0d.gif)
 
 **Google Map**
-* All Businesses locations will be shown on all businesses page.
-* Individual location will be shown on the detail page
+* View all Businesses locations on all businesses page, view individual location on the detail page
+![map](https://user-images.githubusercontent.com/90532956/182035981-a7103afd-1425-4830-8afc-b49b098a120e.gif)
+
