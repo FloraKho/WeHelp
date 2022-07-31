@@ -45,29 +45,31 @@ A crowd-sourced local resturants reviews site, inspired by Yelp. This site has d
 
 ## Functionalities
 
+**Home Page**
+* Login & Signup
+![signupLoginDemo](https://user-images.githubusercontent.com/90532956/182033628-091b6498-3e7e-4527-96ce-346841428f38.gif)
+* View all businesses or view businesses by category
+![viewallbusinessesdemo](https://user-images.githubusercontent.com/90532956/182033631-937771fa-d88a-4000-867d-c4ebeea4c0ec.gif)
+
 **User Profile**
-* View all posted businesses belong to the logged-in user
-* View all posted reviews belong to the logged-in user
-* View all posted images belong to the logged-in user
+* View all businesses, reviews, images posted by the current logged-in user
+![profile](https://user-images.githubusercontent.com/90532956/182034492-befd963c-3653-4fa1-aff7-777caeea31af.gif)
 
 **Businesses**
-* View all listing businesses 
-* View one business detail
-* Post a business
+* Post a business and view business detail
+![postbiz](https://user-images.githubusercontent.com/90532956/182034309-66d31e85-337a-45e5-96af-8c8f57c6ae6a.gif)
+
 * Edit businesses belong to the logged-in user
 * Delete businesses belong to the logged-in user
 
+
 **Ratings and Reviews**
-* View all ratings and reviews for a business
-* View rating and review details under a business
-* Add rating and review for a business
-* Edit ratings and reviews belong to the logged-in user
-* Delete ratings and reviews belong to the logged-in user
+* View all reviews. Add, edit and delete a review posted by logged-in user for a business
+![addeditdeletereview](https://user-images.githubusercontent.com/90532956/182034953-647d6bfe-7318-42c0-af43-e2a5b33785d2.gif)
 
 **Images**
-* View all images for a businesses
-* Add images for a business
-* Delete Own ratings and reviews
+* View all images. Add and delete an image posted by logged-in user for a business.
+* Delete Own![viewadddeleteimg](https://user-images.githubusercontent.com/90532956/182035323-63082c85-8a33-452c-944f-9f96ef75688b.gif)
 
 **Search and Filters**
 * Search a keyword and will be redirect to result page

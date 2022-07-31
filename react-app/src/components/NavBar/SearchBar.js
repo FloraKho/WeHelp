@@ -42,8 +42,8 @@ const SearchBar = ({ businesses }) => {
                         setQuery(event.target.value)
                     }}
                 />
-                <div id="search-button-container">
-                    <i id="search-button" className="fa-solid fa-magnifying-glass fa-lg glass" onClick={handleSearch} />
+                <div id="search-button-container" onClick={handleSearch}>
+                    <i id="search-button" className="fa-solid fa-magnifying-glass fa-lg glass"  />
                 </div>
                 {showMenu &&
                     <div className="search-bar-drop-down-menu">
