@@ -124,8 +124,8 @@ function UpdateBusinessPage({ businesses }) {
             latitude,
             longitude
         }
-        let editedBiz = dispatch(editBusinessThunk(newBizInfo));
-        if (editedBiz && !errors.length) {
+        if (!errors.length) {
+            dispatch(editBusinessThunk(newBizInfo));
             setHasSubmitted(false)
             history.push(`/businesses/${newBizInfo.id}`)
         }
