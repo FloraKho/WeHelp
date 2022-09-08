@@ -295,7 +295,7 @@ function BusinessInfo({ businesses, categories }) {
                         </div>
                     </div>
                     {singleBusiness?.website && <div className='side-info'>
-                        <p><a href={`${singleBusiness?.website}`}>{singleBusiness?.website}</a></p>
+                        <p><a target="_blank" href={`${singleBusiness?.website}`}>{singleBusiness?.website}</a></p>
                         <div className='side-content-icons'>
                             <i class="fa-solid fa-square-up-right fa-lg"></i>
                         </div>
